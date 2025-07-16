@@ -1,8 +1,12 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
+import { useState } from 'react';
 
 const WorkSection = () => {
+  const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
   const projects = [
     {
       id: 'creacy-photography',
@@ -73,32 +77,34 @@ const WorkSection = () => {
               <div key={project.id} className="group cursor-pointer relative">
                 {/* Outer Image - Background */}
                 <div className="relative overflow-hidden aspect-[4/3] h-[400px] md:h-[500px] lg:h-[600px] rounded-xl w-full max-w-full">
-                <Image
-                  src={project.outerImage}
-                  alt={`${project.title} background`}
-                  fill
-                  className="object-cover"
-                  onError={(e) => {
-                    console.error(`Failed to load image: ${project.outerImage}`);
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
-                  }}
-                />
+                {!imageErrors[`${project.id}-outer`] && (
+                  <Image
+                    src={project.outerImage}
+                    alt={`${project.title} background`}
+                    fill
+                    className="object-cover"
+                    onError={() => {
+                      console.error(`Failed to load image: ${project.outerImage}`);
+                      setImageErrors(prev => ({ ...prev, [`${project.id}-outer`]: true }));
+                    }}
+                  />
+                )}
                 
                 {/* Inner Image - Website screenshot (16:9) centered */}
                 <div className="absolute inset-0 flex items-center justify-center p-8 md:p-12 lg:p-16">
                   <div className="relative w-full max-w-md aspect-video bg-white rounded-md shadow-md overflow-hidden">
-                    <Image
-                      src={project.innerImage}
-                      alt={project.title}
-                      fill
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                      onError={(e) => {
-                        console.error(`Failed to load inner image: ${project.innerImage}`);
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = 'none';
-                      }}
-                    />
+                    {!imageErrors[`${project.id}-inner`] && (
+                      <Image
+                        src={project.innerImage}
+                        alt={project.title}
+                        fill
+                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                        onError={() => {
+                          console.error(`Failed to load inner image: ${project.innerImage}`);
+                          setImageErrors(prev => ({ ...prev, [`${project.id}-inner`]: true }));
+                        }}
+                      />
+                    )}
                   </div>
                 </div>
                 
