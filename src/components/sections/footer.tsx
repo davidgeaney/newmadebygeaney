@@ -98,13 +98,14 @@ export default function Footer() {
 
   return (
     <footer className="relative bg-white text-black py-10 -mt-px z-0">
-      <div className="w-full max-w-[2000px] mx-auto">
+      <div className="w-full">
         {/* Full-width subtle divider line */}
-        <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mb-8 md:mb-12">
+        <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mb-4">
           <div className="h-px bg-gray-200"></div>
         </div>
         
-        <div className="px-2 md:px-4">
+        {/* Content container with side padding */}
+        <div className="px-4 md:px-6">
           <div className="flex flex-col lg:flex-row">
             {/* Left side - Contact Info */}
             <div className="space-y-3 mb-8 lg:mb-0 lg:pr-8">
@@ -114,7 +115,7 @@ export default function Footer() {
                   <div className="flex items-baseline space-x-2">
                     <span className="text-sm font-regular text-black">Donegal</span>
                     <span className="text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                      {isAvailable ? "We're here to help :)" : "Sorry we're closed :("}
+                      {isAvailable ? "We're here to help :)" : "Sorry we're asleep :("}
                     </span>
                   </div>
                 </div>

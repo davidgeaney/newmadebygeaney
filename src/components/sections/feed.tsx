@@ -38,22 +38,24 @@ export default function FeedSection() {
           <div className="h-px bg-gray-200"></div>
         </div>
         
-        {/* Section Header - Stacked on mobile, row on desktop */}
-        <div className="flex flex-col md:flex-row md:items-start justify-between mb-8 p-2 md:p-4 gap-4">
-          <p className="text-xl text-black max-w-xl">
-            <span className="text-xl text-gray-600 mr-2">Feed</span> Thoughts, insights, and perspectives on design and creativity.
-          </p>
+        {/* Content container with side padding */}
+        <div className="px-4 md:px-6">
+          {/* Section Header - Stacked on mobile, row on desktop */}
+          <div className="flex flex-col md:flex-row md:items-start justify-between mb-8 gap-4">
+            <p className="text-xl text-black max-w-xl">
+              <span className="text-xl text-gray-600 mr-2">Feed</span> Thoughts, insights, and perspectives on design and creativity.
+            </p>
+            
+            <Link 
+              href="/feed"
+              className="group relative text-sm text-black bg-gray-100 px-4 py-2.5 pr-6 rounded-full hover:pr-8 hover:bg-black hover:text-white transition-all duration-200 flex items-center w-fit overflow-hidden"
+            >
+              <span>View all posts</span>
+              <ArrowRightIcon className="absolute w-3.5 h-3.5 right-1 opacity-0 group-hover:opacity-100 group-hover:right-2 transition-all duration-200 text-white" />
+            </Link>
+          </div>
           
-          <Link 
-            href="/feed"
-            className="group relative text-sm text-black bg-gray-100 px-4 py-2.5 pr-4 rounded-lg hover:pr-10 hover:bg-black hover:text-white transition-all duration-300 flex items-center w-fit overflow-hidden"
-          >
-            <span>View all posts</span>
-            <ArrowRightIcon className="absolute w-3.5 h-3.5 -right-3 opacity-0 group-hover:opacity-100 group-hover:right-3 transition-all duration-300" />
-          </Link>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-2 md:px-2 max-w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
           {feedItems.map((item, index) => (
             <article key={index} className="group cursor-pointer">
               <div className="aspect-[4/3] bg-gray-100 mb-4 overflow-hidden rounded-lg">
@@ -77,6 +79,7 @@ export default function FeedSection() {
             </article>
           ))}
         </div>
+      </div>
       </div>
     </section>
   )

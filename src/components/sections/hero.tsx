@@ -83,25 +83,27 @@ export default function HeroSection() {
       </nav>
 
       {/* Hero Content */}
-      <div className="p-2 md:p-4">
-        <h1 className="text-4xl font-bold text-black mb-2 tracking-tight">
-          MADE BY GEANEY
-        </h1>
-        <div className="flex items-center space-x-2 mb-4 cursor-default">
-          <div className={`w-2 h-2 rounded-full ${isAvailable ? 'bg-green-500' : 'bg-red-500'}`}></div>
-          <span className="text-sm font-medium text-gray-700">Donegal</span>
-          <div className="relative group h-[20px] flex items-center">
-            <span className="inline-block text-sm font-mono text-gray-700 transition-opacity duration-200 group-hover:opacity-0 min-w-[100px]">
-              {currentTime} GMT+1
-            </span>
-            <span className="absolute left-0 text-xs font-mono text-gray-700 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
-              {isAvailable ? "Here to help :)" : "We're asleep :("}
-            </span>
+      <div className="w-full">
+        <div className="px-4 md:px-6">
+          <h1 className="text-4xl font-bold text-black mb-2 tracking-tight">
+            MADE BY GEANEY
+          </h1>
+          <div className="flex items-center space-x-2 mb-4 cursor-default">
+            <div className={`w-2 h-2 rounded-full ${isAvailable ? 'bg-green-500' : 'bg-red-500'}`}></div>
+            <span className="text-sm font-medium text-gray-700">Donegal</span>
+            <div className="relative group h-[20px] flex items-center">
+              <span className="inline-block text-sm font-mono text-gray-700 transition-opacity duration-200 group-hover:opacity-0 min-w-[100px]">
+                {currentTime} GMT+1
+              </span>
+              <span className="absolute left-0 text-xs font-mono text-gray-700 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                {isAvailable ? "Here to help :)" : "We're asleep :("}
+              </span>
+            </div>
           </div>
+          <p className="text-xl text-black max-w-lg leading-relaxed">
+            A globally operating digital design studio, offering purposeful design, goal orientated development and dependable growth.
+          </p>
         </div>
-        <p className="text-xl text-black max-w-lg leading-relaxed">
-          A globally operating digital design studio, offering purposeful design, goal orientated development and dependable growth.
-        </p>
       </div>
     </section>
   )
