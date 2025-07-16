@@ -1,5 +1,5 @@
 "use client";
-import { animate, motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { GoCopilot } from "react-icons/go";
@@ -20,76 +20,88 @@ export function FeatureBlockAnimatedCard() {
 }
 
 const Skeleton = () => {
-  const scale = [1, 1.1, 1];
-  const transform = ["translateY(0px)", "translateY(-4px)", "translateY(0px)"];
-  const sequence = [
-    [
-      ".circle-1",
-      {
-        scale,
-        transform,
-      },
-      { duration: 0.8 },
-    ],
-    [
-      ".circle-2",
-      {
-        scale,
-        transform,
-      },
-      { duration: 0.8 },
-    ],
-    [
-      ".circle-3",
-      {
-        scale,
-        transform,
-      },
-      { duration: 0.8 },
-    ],
-    [
-      ".circle-4",
-      {
-        scale,
-        transform,
-      },
-      { duration: 0.8 },
-    ],
-    [
-      ".circle-5",
-      {
-        scale,
-        transform,
-      },
-      { duration: 0.8 },
-    ],
-  ];
+  const controls1 = useAnimation();
+  const controls2 = useAnimation();
+  const controls3 = useAnimation();
+  const controls4 = useAnimation();
+  const controls5 = useAnimation();
 
   useEffect(() => {
-    animate(sequence, {
-      // @ts-ignore
-      repeat: Infinity,
-      repeatDelay: 1,
-    });
-  }, []);
+    const sequence = async () => {
+      while (true) {
+        await controls1.start({
+          scale: [1, 1.1, 1],
+          y: [0, -4, 0],
+          transition: { duration: 0.8, ease: "easeInOut" }
+        });
+        await controls2.start({
+          scale: [1, 1.1, 1],
+          y: [0, -4, 0],
+          transition: { duration: 0.8, ease: "easeInOut" }
+        });
+        await controls3.start({
+          scale: [1, 1.1, 1],
+          y: [0, -4, 0],
+          transition: { duration: 0.8, ease: "easeInOut" }
+        });
+        await controls4.start({
+          scale: [1, 1.1, 1],
+          y: [0, -4, 0],
+          transition: { duration: 0.8, ease: "easeInOut" }
+        });
+        await controls5.start({
+          scale: [1, 1.1, 1],
+          y: [0, -4, 0],
+          transition: { duration: 0.8, ease: "easeInOut" }
+        });
+        await new Promise(resolve => setTimeout(resolve, 1000)); // Repeat delay
+      }
+    };
+    
+    sequence();
+    
+    return () => {
+      controls1.stop();
+      controls2.stop();
+      controls3.stop();
+      controls4.stop();
+      controls5.stop();
+    };
+  }, [controls1, controls2, controls3, controls4, controls5]);
+
   return (
     <div className="p-8 overflow-hidden h-full relative flex items-center justify-center">
       <div className="flex flex-row flex-shrink-0 justify-center items-center gap-2">
-        <Container className="h-8 w-8 circle-1">
-          <ClaudeLogo className="h-4 w-4 " />
-        </Container>
-        <Container className="h-12 w-12 circle-2">
+        <motion.div 
+          className="h-8 w-8 flex items-center justify-center"
+          animate={controls1}
+        >
+          <ClaudeLogo className="h-4 w-4" />
+        </motion.div>
+        <motion.div 
+          className="h-12 w-12 flex items-center justify-center"
+          animate={controls2}
+        >
           <GoCopilot className="h-6 w-6 dark:text-white" />
-        </Container>
-        <Container className="circle-3">
+        </motion.div>
+        <motion.div 
+          className="flex items-center justify-center"
+          animate={controls3}
+        >
           <OpenAILogo className="h-8 w-8 dark:text-white" />
-        </Container>
-        <Container className="h-12 w-12 circle-4">
-          <MetaIconOutline className="h-6 w-6 " />
-        </Container>
-        <Container className="h-8 w-8 circle-5">
-          <GeminiLogo className="h-4 w-4 " />
-        </Container>
+        </motion.div>
+        <motion.div 
+          className="h-12 w-12 flex items-center justify-center"
+          animate={controls4}
+        >
+          <MetaIconOutline className="h-6 w-6" />
+        </motion.div>
+        <motion.div 
+          className="h-8 w-8 flex items-center justify-center"
+          animate={controls5}
+        >
+          <GeminiLogo className="h-4 w-4" />
+        </motion.div>
       </div>
 
       <div className="h-40 w-px absolute top-20 m-auto z-40 bg-gradient-to-b from-transparent via-cyan-500 to-transparent animate-move">
