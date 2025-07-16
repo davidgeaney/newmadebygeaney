@@ -1,6 +1,6 @@
 "use client";
 import { HiArrowRight } from "react-icons/hi2";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 import Image from "next/image";
 import { cn } from "@/lib/utils";

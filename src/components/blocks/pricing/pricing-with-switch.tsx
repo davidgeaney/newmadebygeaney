@@ -3,7 +3,7 @@ import React from "react";
 import { IconCircleCheckFilled } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { Outfit } from "next/font/google";
 
 const outfit = Outfit({ subsets: ["latin"], weight: ["400", "500", "700"] });

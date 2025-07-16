@@ -1,10 +1,10 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { useMotionValueEvent, useScroll } from "motion/react";
+import { useMotionValueEvent, useScroll } from "framer-motion";
 import { Outfit } from "next/font/google";
 import Image from "next/image";
 import React, { useRef, useState } from "react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 const outfit = Outfit({
   subsets: ["latin"],

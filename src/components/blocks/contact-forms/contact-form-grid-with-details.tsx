@@ -4,7 +4,7 @@ import { IconMailFilled } from "@tabler/icons-react";
 import { useId } from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 export function ContactFormGridWithDetails() {
   return (

@@ -10,7 +10,7 @@ import {
   useSpring,
   animate,
   stagger,
-} from "motion/react";
+} from "framer-motion";
 
 import { BsStarFill } from "react-icons/bs";
 import { HiArrowRight } from "react-icons/hi2";
