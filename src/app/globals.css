@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap');
-@import "tailwindcss";
-@import "tw-animate-css";
 
-@theme {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
   --color-primary-black: #000000;
   --color-pure-white: #FFFFFF;
   --color-light-gray: #F5F5F5;
@@ -10,6 +12,7 @@
   --color-dark-gray: #333333;
 
   --font-sans: 'IBM Plex Sans', sans-serif;
+  font-family: var(--font-sans);
 
   --text-heading-lg: 3.5rem;
   --text-heading-md: 2.5rem;
