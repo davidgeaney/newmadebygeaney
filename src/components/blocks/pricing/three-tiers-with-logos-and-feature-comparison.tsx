@@ -1,8 +1,29 @@
-import { Fragment } from 'react'
-import { CheckIcon, MinusIcon, PlusIcon } from '@heroicons/react/16/solid'
-import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
+import { Fragment } from 'react';
+import { CheckIcon, MinusIcon, PlusIcon } from '@heroicons/react/16/solid';
+import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react';
 
-const tiers = [
+type TierName = 'Starter' | 'Growth' | 'Scale';
+type TierValue = boolean | string;
+
+interface Tier {
+  name: TierName;
+  description: string;
+  priceMonthly: string;
+  href: string;
+  highlights: {
+    description: string;
+    disabled?: boolean;
+  }[];
+}
+
+interface Feature {
+  name: string;
+  tiers: {
+    [key in TierName]: TierValue;
+  };
+}
+
+const tiers: Tier[] = [
   {
     name: 'Starter',
     description: 'Everything you need to get started.',
@@ -46,7 +67,10 @@ const tiers = [
     ],
   },
 ]
-const sections = [
+const sections: Array<{
+  name: string;
+  features: Feature[];
+}> = [
   {
     name: 'Features',
     features: [
@@ -225,14 +249,16 @@ export default function ThreeTiersWithLogosAndFeatureComparison() {
                   </th>
                   {tiers.map((tier) => (
                     <td key={tier.name} className="p-4 max-sm:text-center">
-                      {typeof feature.tiers[tier.name] === 'string' ? (
+                      {typeof feature.tiers[tier.name as TierName] === 'string' ? (
                         <>
                           <span className="sr-only">{tier.name} includes:</span>
-                          <span className="text-sm/6 text-gray-950">{feature.tiers[tier.name]}</span>
+                          <span className="text-sm/6 text-gray-950">
+                            {feature.tiers[tier.name as TierName] as string}
+                          </span>
                         </>
                       ) : (
                         <>
-                          {feature.tiers[tier.name] === true ? (
+                          {feature.tiers[tier.name as TierName] === true ? (
                             <CheckIcon aria-hidden="true" className="inline-block size-4 fill-green-600" />
                           ) : (
                             <MinusIcon aria-hidden="true" className="inline-block size-4 fill-gray-400" />
