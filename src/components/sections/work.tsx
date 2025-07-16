@@ -3,11 +3,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const WorkSection = () => {
-  const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
-  const projects = [
+const projects = [
     {
       id: 'creacy-photography',
       title: 'Creacy Photography',
@@ -45,6 +43,14 @@ const WorkSection = () => {
       website: 'https://dentist-hazel-one.vercel.app/'
     }
   ];
+
+const WorkSection = () => {
+  const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
+  
+  // Log project data for debugging
+  useEffect(() => {
+    console.log('Projects data:', projects);
+  }, []);
 
   return (
     <section className="py-10">
@@ -92,19 +98,23 @@ const WorkSection = () => {
                 
                 {/* Inner Image - Website screenshot (16:9) centered */}
                 <div className="absolute inset-0 flex items-center justify-center p-8 md:p-12 lg:p-16">
-                  <div className="relative w-full max-w-md aspect-video bg-white rounded-md shadow-md overflow-hidden">
-                    {!imageErrors[`${project.id}-inner`] && (
+                  <div className="relative w-full max-w-md aspect-video bg-white/10 rounded-md shadow-md overflow-hidden border border-gray-200">
+                    <div className="relative w-full h-full">
                       <Image
                         src={project.innerImage}
                         alt={project.title}
                         fill
                         className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                        onError={() => {
+                        onError={(e) => {
                           console.error(`Failed to load inner image: ${project.innerImage}`);
-                          setImageErrors(prev => ({ ...prev, [`${project.id}-inner`]: true }));
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                        }}
+                        onLoad={() => {
+                          console.log(`Successfully loaded: ${project.innerImage}`);
                         }}
                       />
-                    )}
+                    </div>
                   </div>
                 </div>
                 
