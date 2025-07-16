@@ -1,4 +1,8 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# New Made By Geaney
+
+This is a [Next.js](https://nextjs.org) project for the Made By Geaney website.
+
+Last updated: 2025-07-16 18:07
 
 ## Getting Started
 
