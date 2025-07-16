@@ -78,6 +78,11 @@ const WorkSection = () => {
                   alt={`${project.title} background`}
                   fill
                   className="object-cover"
+                  onError={(e) => {
+                    console.error(`Failed to load image: ${project.outerImage}`);
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                  }}
                 />
                 
                 {/* Inner Image - Website screenshot (16:9) centered */}
@@ -88,6 +93,11 @@ const WorkSection = () => {
                       alt={project.title}
                       fill
                       className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      onError={(e) => {
+                        console.error(`Failed to load inner image: ${project.innerImage}`);
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                      }}
                     />
                   </div>
                 </div>
