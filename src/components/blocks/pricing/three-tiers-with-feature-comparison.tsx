@@ -1,6 +1,33 @@
-import { CheckIcon, XMarkIcon } from '@heroicons/react/20/solid'
+import { CheckIcon, XMarkIcon } from '@heroicons/react/20/solid';
 
-const tiers = [
+type TierName = 'Starter' | 'Growth' | 'Scale';
+type TierValue = boolean | string;
+
+interface Tier {
+  id: string;
+  name: TierName;
+  description: string;
+  price: {
+    monthly: string;
+    annually: string;
+  };
+  highlights: string[];
+  featured: boolean;
+}
+
+interface Feature {
+  name: string;
+  tiers: {
+    [key in TierName]: TierValue;
+  };
+}
+
+interface Section {
+  name: string;
+  features: Feature[];
+}
+
+const tiers: Tier[] = [
   {
     id: 'starter',
     name: 'Starter',
@@ -33,7 +60,7 @@ const tiers = [
     featured: false,
   },
 ]
-const sections = [
+const sections: Section[] = [
   {
     name: 'Features',
     features: [
@@ -245,15 +272,15 @@ export default function ThreeTiersWithFeatureComparison() {
                                 >
                                   <dt className="pr-4 text-gray-600">{feature.name}</dt>
                                   <dd className="flex items-center justify-end sm:justify-center sm:px-4">
-                                    {typeof feature.tiers[tier.name] === 'string' ? (
+                                    {typeof feature.tiers[tier.name as TierName] === 'string' ? (
                                       <span
                                         className={tier.featured ? 'font-semibold text-indigo-600' : 'text-gray-900'}
                                       >
-                                        {feature.tiers[tier.name]}
+                                        {feature.tiers[tier.name as TierName] as string}
                                       </span>
                                     ) : (
                                       <>
-                                        {feature.tiers[tier.name] === true ? (
+                                        {feature.tiers[tier.name as TierName] === true ? (
                                           <CheckIcon aria-hidden="true" className="mx-auto size-5 text-indigo-600" />
                                         ) : (
                                           <XMarkIcon aria-hidden="true" className="mx-auto size-5 text-gray-400" />
