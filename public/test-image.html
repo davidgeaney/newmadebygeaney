@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Test</title>
+    <style>
+        .image-container {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+        img {
+            max-width: 300px;
+            margin: 10px;
+            border: 1px solid #eee;
+        }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Image Loading Test</h1>
+    
+    <div class="image-container">
+        <h2>Creacy Photography</h2>
+        <div>
+            <p>Outer: <span id="creacy-outer-status">Loading...</span></p>
+            <img id="creacy-outer" src="/images/projects/creacyphotographyouterimg.jpg" 
+                 onload="document.getElementById('creacy-outer-status').className='success'; document.getElementById('creacy-outer-status').textContent='Loaded'"
+                 onerror="document.getElementById('creacy-outer-status').className='error'; document.getElementById('creacy-outer-status').textContent='Error loading image'" />
+        </div>
+        <div>
+            <p>Inner: <span id="creacy-inner-status">Loading...</span></p>
+            <img id="creacy-inner" src="/images/projects/creacyphotographyimg.jpg" 
+                 onload="document.getElementById('creacy-inner-status').className='success'; document.getElementById('creacy-inner-status').textContent='Loaded'"
+                 onerror="document.getElementById('creacy-inner-status').className='error'; document.getElementById('creacy-inner-status').textContent='Error loading image'" />
+        </div>
+    </div>
+
+    <div class="image-container">
+        <h2>Classcover</h2>
+        <div>
+            <p>Outer: <span id="classcover-outer-status">Loading...</span></p>
+            <img id="classcover-outer" src="/images/projects/classcoverouterimg.jpg" 
+                 onload="document.getElementById('classcover-outer-status').className='success'; document.getElementById('classcover-outer-status').textContent='Loaded'"
+                 onerror="document.getElementById('classcover-outer-status').className='error'; document.getElementById('classcover-outer-status').textContent='Error loading image'" />
+        </div>
+        <div>
+            <p>Inner: <span id="classcover-inner-status">Loading...</span></p>
+            <img id="classcover-inner" src="/images/projects/classcoverinnerimg.jpg" 
+                 onload="document.getElementById('classcover-inner-status').className='success'; document.getElementById('classcover-inner-status').textContent='Loaded'"
+                 onerror="document.getElementById('classcover-inner-status').className='error'; document.getElementById('classcover-inner-status').textContent='Error loading image'" />
+        </div>
+    </div>
+</body>
+</html>
