@@ -11,6 +11,7 @@ export default function ContactPage() {
     firstName: '',
     lastName: '',
     email: '',
+    position: '',
     projectType: '',
     budget: '',
     message: '',
