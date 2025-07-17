@@ -322,17 +322,31 @@ export default function ContactPage() {
                         <label className="text-gray-500 text-sm">Tell us about yourself</label>
                       </div>
                       <div className="col-span-8 space-y-4">
-                        <div>
-                          <label className="block text-sm text-gray-500 mb-1">Full name</label>
-                          <input
-                            type="text"
-                            name="fullName"
-                            placeholder="John Doe"
-                            value={formData.fullName}
-                            onChange={handleInputChange}
-                            required
-                            className="w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
-                          />
+                        <div className="grid grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-sm text-gray-500 mb-1">First name</label>
+                            <input
+                              type="text"
+                              name="firstName"
+                              placeholder="John"
+                              value={formData.firstName}
+                              onChange={handleInputChange}
+                              required
+                              className="w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm text-gray-500 mb-1">Last name</label>
+                            <input
+                              type="text"
+                              name="lastName"
+                              placeholder="Doe"
+                              value={formData.lastName}
+                              onChange={handleInputChange}
+                              required
+                              className="w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
+                            />
+                          </div>
                         </div>
                         <div>
                           <label className="block text-sm text-gray-500 mb-1">Position</label>
