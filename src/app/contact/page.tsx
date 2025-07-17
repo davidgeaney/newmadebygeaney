@@ -12,7 +12,12 @@ export default function ContactPage() {
     lastName: '',
     email: '',
     position: '',
+    businessName: '',
+    businessDescription: '',
+    location: '',
+    yearsOperating: '',
     projectType: '',
+    projectDescription: '',
     budget: '',
     message: '',
     helpType: ''
