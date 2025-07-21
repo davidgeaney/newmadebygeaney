@@ -13,14 +13,8 @@ export function NavbarWithChildren() {
 const Navbar = () => {
   const navItems = [
     {
-      name: "Services",
-      link: "#",
-      children: [
-        { name: "Web Development", link: "#" },
-        { name: "Interface Design", link: "#" },
-        { name: "Search Engine Optimization", link: "#" },
-        { name: "Branding", link: "#" },
-      ],
+      name: "About",
+      link: "/about",
     },
     {
       name: "Products",

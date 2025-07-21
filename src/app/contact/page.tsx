@@ -62,7 +62,7 @@ export default function ContactPage() {
 
   const navLinks = [
     { name: 'Work', href: '/#work' },
-    { name: 'Services', href: '/#services' },
+    { name: 'About', href: '/about' },
     { name: 'Feed', href: '/#feed' },
     { name: 'Contact', href: '/contact' }
   ];
@@ -87,9 +87,9 @@ export default function ContactPage() {
       <section className="bg-white relative">
         <div className="w-full pt-6 pl-6">
           <div>
-            <h1 className="text-4xl font-bold text-black mb-2 tracking-tight">
+            <Link href="/" className="text-4xl text-black mb-2 tracking-tight hover:opacity-80 transition-opacity">
               MADE BY GEANEY
-            </h1>
+            </Link>
             <div className="flex items-center space-x-2 mb-4 cursor-default">
               <div className={`w-2 h-2 rounded-full ${isAvailable ? 'bg-green-500' : 'bg-red-500'}`}></div>
               <span className="text-sm font-medium text-gray-700">Donegal</span>
@@ -113,7 +113,7 @@ export default function ContactPage() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`group relative text-sm ${link.href === '/contact' ? 'text-black font-medium' : 'text-gray-500 hover:text-black'} transition-all duration-300 h-full flex items-center overflow-hidden`}
+                  className={`group relative text-sm ${link.href === '/contact' ? 'text-black' : 'text-gray-500 hover:text-black'} transition-all duration-300 h-full flex items-center overflow-hidden`}
                 >
                   <span className="relative overflow-hidden h-5 flex items-center">
                     <span className="inline-block transform group-hover:-translate-y-full transition-transform duration-300">
@@ -284,14 +284,14 @@ export default function ContactPage() {
               </div>
 
               {/* Right column - Contact form */}
-              <div className="border-l border-gray-200 pl-12 py-4">
+              <div className="pt-32 border-l border-gray-200 pl-12 py-4">
                 <form onSubmit={handleSubmit} className="space-y-12">
-                  <div className="space-y-10">
+                  <div className="space-y-16">
                     {/* Question 01 */}
-                    <div className="grid grid-cols-12 gap-6 items-start">
+                    <div className="grid grid-cols-12 gap-16 items-start">
                       <div className="col-span-4 flex items-start">
-                        <span className="text-gray-400 text-xs mt-1 mr-2">01</span>
-                        <label className="text-gray-500 text-sm">How can we help?</label>
+                        <span className="text-black text-sm mr-6 flex items-center h-5">01</span>
+                        <label className="text-black text-sm whitespace-nowrap">How can we help?</label>
                       </div>
                       <div className="col-span-8">
                         <label className="block text-sm text-gray-500 mb-1">Reason for enquiry</label>
@@ -322,10 +322,10 @@ export default function ContactPage() {
                     </div>
 
                     {/* Question 02 */}
-                    <div className="grid grid-cols-12 gap-6 items-start">
+                    <div className="grid grid-cols-12 gap-16 items-start">
                       <div className="col-span-4 flex items-start">
-                        <span className="text-gray-400 text-xs mt-1 mr-2">02</span>
-                        <label className="text-gray-500 text-sm">Tell us about yourself</label>
+                        <span className="text-black text-sm mr-6 flex items-center h-5">02</span>
+                        <label className="text-black text-sm whitespace-nowrap">Tell us about yourself</label>
                       </div>
                       <div className="col-span-8 space-y-4">
                         <div className="grid grid-cols-2 gap-4">
@@ -382,10 +382,10 @@ export default function ContactPage() {
                     </div>
 
                     {/* Question 03 */}
-                    <div className="grid grid-cols-12 gap-6 items-start">
+                    <div className="grid grid-cols-12 gap-16 items-start">
                       <div className="col-span-4 flex items-start">
-                        <span className="text-gray-400 text-xs mt-1 mr-2">03</span>
-                        <label className="text-gray-500 text-sm">Tell us about your business</label>
+                        <span className="text-black text-sm mr-6 flex items-center h-5">03</span>
+                        <label className="text-black text-sm whitespace-nowrap">Tell us about your business</label>
                       </div>
                       <div className="col-span-8 space-y-4">
                         <div>
@@ -455,10 +455,10 @@ export default function ContactPage() {
                     </div>
 
                     {/* Question 04 */}
-                    <div className="grid grid-cols-12 gap-6 items-start">
+                    <div className="grid grid-cols-12 gap-16 items-start">
                       <div className="col-span-4 flex items-start">
-                        <span className="text-gray-400 text-xs mt-1 mr-2">04</span>
-                        <label className="text-gray-500 text-sm">Tell us about the project</label>
+                        <span className="text-black text-sm mr-6 flex items-center h-5">04</span>
+                        <label className="text-black text-sm whitespace-nowrap">Tell us about the project</label>
                       </div>
                       <div className="col-span-8 space-y-4">
                         <div>
@@ -536,12 +536,13 @@ export default function ContactPage() {
                     </div>
 
                     {/* Question 05 */}
-                    <div className="grid grid-cols-12 gap-6 items-start">
+                    <div className="grid grid-cols-12 gap-16 items-start">
                       <div className="col-span-4 flex items-start">
-                        <span className="text-gray-400 text-xs mt-1 mr-2">05</span>
-                        <label className="text-gray-500 text-sm">Additional information</label>
+                        <span className="text-black text-sm mr-6 flex items-center h-5">05</span>
+                        <label className="text-black text-sm">Anything else we should know?</label>
                       </div>
                       <div className="col-span-8">
+                        <label className="block text-sm text-gray-500 mb-1">Additional information</label>
                         <textarea
                           name="message"
                           placeholder="Social links, how you found us, anything!"
@@ -554,17 +555,20 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  <div className="pt-4">
-                    <div className="flex justify-end">
-                      <button
-                        type="submit"
-                        className="group relative text-sm text-black bg-gray-100 px-4 py-2.5 pr-6 rounded-full hover:pr-8 hover:bg-black hover:text-white transition-all duration-200 flex items-center w-fit overflow-hidden"
-                      >
-                        <span>Submit</span>
-                        <svg className="absolute w-3.5 h-3.5 right-1 opacity-0 group-hover:opacity-100 group-hover:right-2 transition-all duration-200 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                        </svg>
-                      </button>
+                  <div className="grid grid-cols-12 gap-16 items-start">
+                    <div className="col-span-4"></div>
+                    <div className="col-span-8 pr-4">
+                      <div className="flex justify-end">
+                        <button
+                          type="submit"
+                          className="group relative text-sm text-black bg-gray-100 px-4 py-2.5 pr-6 rounded-full hover:pr-8 hover:bg-black hover:text-white transition-all duration-200 flex items-center w-fit overflow-hidden"
+                        >
+                          <span>Submit</span>
+                          <svg className="absolute w-3.5 h-3.5 right-1 opacity-0 group-hover:opacity-100 group-hover:right-2 transition-all duration-200 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                          </svg>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </form>

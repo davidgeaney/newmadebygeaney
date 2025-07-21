@@ -245,10 +245,10 @@ export function LogoCloudMarquee() {
 
 const Navbar = () => {
   const navItems = [
-    { name: "Work", link: "#" },
-    { name: "Services", link: "#" },
+    { name: "Work", link: "/work" },
+    { name: "About", link: "/about" },
     { name: "Pricing", link: "#" },
-    { name: "Contact", link: "#" },
+    { name: "Contact", link: "/contact" },
   ];
   return (
     <div className="relative z-[60] mx-auto flex w-full max-w-7xl flex-row items-center justify-between px-8 py-8">

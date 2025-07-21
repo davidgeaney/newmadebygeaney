@@ -5,52 +5,67 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
 
-const projects = [
-    {
-      id: 'creacy-photography',
-      title: 'Creacy Photography',
-      description: '→ Custom portfolio with smooth animations and responsive design',
-      category: 'Photography',
-      outerImage: '/images/projects/creacyphotographyouterimg.jpg',
-      innerImage: '/images/projects/creacyphotographyimg.jpg',
-      website: 'https://creacyphotography.vercel.app/'
-    },
-    {
-      id: 'classcover',
-      title: 'Classcover',
-      description: '→ Full-stack platform with booking system and admin dashboard',
-      category: 'Education',
-      outerImage: '/images/projects/classcoverouterimg.jpg',
-      innerImage: '/images/projects/classcoverinnerimg.jpg',
-      website: 'https://www.classcover.ie/'
-    },
-    {
-      id: 'barr-build',
-      title: 'Barr Build',
-      description: '→ Responsive construction site with project showcase and contact forms',
-      category: 'Construction',
-      outerImage: '/images/projects/barrbuildouterimg.jpg',
-      innerImage: '/images/projects/barrbuildinnerimg.jpg',
-      website: 'https://barr-build-h2ba.vercel.app/'
-    },
-    {
-      id: 'smile-dublin',
-      title: 'Smile Dublin',
-      description: '→ Modern dental practice website with appointment booking system',
-      category: 'Healthcare',
-      outerImage: '/images/projects/smiledublinouterimg.jpg',
-      innerImage: '/images/projects/smiledublininnerimg.jpg',
-      website: 'https://dentist-hazel-one.vercel.app/'
-    }
-  ];
+interface Project {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  outerImage: string;
+  innerImage: string;
+  website: string;
+}
+
+interface LoadedImages {
+  [key: string]: boolean;
+}
+
+const projects: Project[] = [
+  {
+    id: 'creacy-photography',
+    title: 'Creacy Photography',
+    description: '→ Custom portfolio with smooth animations and responsive design',
+    category: 'Photography',
+    outerImage: '/images/projects/creacyphotographyouterimg.jpg',
+    innerImage: '/images/projects/creacyphotographyimg.jpg',
+    website: 'https://creacyphotography.vercel.app/'
+  },
+  {
+    id: 'classcover',
+    title: 'Classcover',
+    description: '→ Full-stack platform with booking system and admin dashboard',
+    category: 'Education',
+    outerImage: '/images/projects/classcoverouterimg.jpg',
+    innerImage: '/images/projects/classcoverinnerimg.jpg',
+    website: 'https://www.classcover.ie/'
+  },
+  {
+    id: 'barr-build',
+    title: 'Barr Build',
+    description: '→ Responsive construction site with project showcase and contact forms',
+    category: 'Construction',
+    outerImage: '/images/projects/barrbuildouterimg.jpg',
+    innerImage: '/images/projects/barrbuildinnerimg.jpg',
+    website: 'https://barr-build-h2ba.vercel.app/'
+  },
+  {
+    id: 'dentist',
+    title: 'Dental Practice',
+    description: '→ Modern dental clinic website with appointment booking and service information',
+    category: 'Healthcare',
+    outerImage: '/images/projects/smiledublinouterimg.jpg',
+    innerImage: '/images/projects/smiledublininnerimg.jpg',
+    website: '#'
+  }
+];
 
 const WorkSection = () => {
-  const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
-  
+  const [loadedImages, setLoadedImages] = useState<LoadedImages>({});
+
   // Log the public URL for debugging
   useEffect(() => {
-    console.log('Public URL:', process.env.PUBLIC_URL);
+    console.log('Public URL:', process.env.NEXT_PUBLIC_VERCEL_URL);
   }, []);
+
   return (
     <section className="py-10">
       <div className="w-full">
@@ -74,78 +89,78 @@ const WorkSection = () => {
             <span>View all projects</span>
             <ArrowRightIcon className="absolute w-3.5 h-3.5 right-1 opacity-0 group-hover:opacity-100 group-hover:right-2 transition-all duration-200 text-white" />
           </a>
-        </div>
+          </div>
 
-        {/* Projects Grid - Colossal images with minimal spacing */}
-        <div className="w-full mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 max-w-full">
-            {projects.map((project) => (
-              <div key={project.id} className="group cursor-pointer relative">
-                {/* Outer Image - Background */}
-                <div className="relative overflow-hidden aspect-[4/3] h-[400px] md:h-[500px] lg:h-[600px] rounded-xl w-full max-w-full bg-gray-100">
-                  {/* Outer Image */}
-                  <div className="relative w-full h-full min-h-[400px]">
-                    {!loadedImages[`${project.id}-outer`] && (
-                      <div className="absolute inset-0 bg-gray-200 flex items-center justify-center">
-                        <div className="animate-pulse text-gray-500">Loading...</div>
-                      </div>
-                    )}
-                    <Image
-                      src={project.outerImage}
-                      alt={`${project.title} background`}
-                      fill
-                      className="object-cover"
-                      priority
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      onLoadingComplete={() => setLoadedImages(prev => ({ ...prev, [`${project.id}-outer`]: true }))}
-                    />
-                  </div>
-                
-                  {/* Inner Image - Website screenshot (16:9) centered */}
-                  <div className="absolute inset-0 flex items-center justify-center p-8 md:p-12 lg:p-16 z-10">
-                    <div className="relative w-full max-w-2xl group-hover:scale-105 transition-transform duration-700 ease-out" style={{ aspectRatio: '16/9' }}>
-                      <div className="relative w-full h-full bg-transparent overflow-hidden rounded-xl">
-                        {!loadedImages[`${project.id}-inner`] && (
-                          <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
-                            <div className="animate-pulse text-gray-500">Loading...</div>
+          {/* Projects Grid - Colossal images with minimal spacing */}
+          <div className="w-full mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 max-w-full">
+              {projects.map((project) => (
+                <div key={project.id} className="group cursor-pointer relative">
+                  {/* Outer Image - Background */}
+                  <div className="relative overflow-hidden aspect-[4/3] h-[400px] md:h-[500px] lg:h-[600px] rounded-xl w-full max-w-full bg-gray-100">
+                    {/* Outer Image */}
+                    <div className="relative w-full h-full min-h-[400px]">
+                      {!loadedImages[`${project.id}-outer`] && (
+                        <div className="absolute inset-0 bg-gray-200 flex items-center justify-center">
+                          <div className="animate-pulse text-gray-500">Loading...</div>
+                        </div>
+                      )}
+                      <Image
+                        src={project.outerImage}
+                        alt={`${project.title} background`}
+                        fill
+                        className="object-cover"
+                        priority
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        onLoadingComplete={() => setLoadedImages(prev => ({ ...prev, [`${project.id}-outer`]: true }))}
+                      />
+                    </div>
+                  
+                    {/* Inner Image - Website screenshot (16:9) centered */}
+                    <div className="absolute inset-0 flex items-center justify-center p-8 md:p-12 lg:p-16 z-10">
+                      <div className="relative w-full max-w-2xl group-hover:scale-105 transition-transform duration-700 ease-out" style={{ aspectRatio: '16/9' }}>
+                        <div className="relative w-full h-full bg-transparent overflow-hidden rounded-xl">
+                          {!loadedImages[`${project.id}-inner`] && (
+                            <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
+                              <div className="animate-pulse text-gray-500">Loading...</div>
+                            </div>
+                          )}
+                          <div className="relative w-full h-full">
+                            <Image
+                              src={project.innerImage}
+                              alt={project.title}
+                              fill
+                              className="object-contain w-full h-full"
+                              priority
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                              onLoadingComplete={() => {
+                                console.log(`Image loaded: ${project.innerImage}`);
+                                setLoadedImages(prev => ({ ...prev, [`${project.id}-inner`]: true }));
+                              }}
+                              onError={(e) => {
+                                console.error(`Error loading image: ${project.innerImage}`);
+                                console.error('Error details:', e);
+                                setLoadedImages(prev => ({ ...prev, [`${project.id}-inner`]: true }));
+                              }}
+                            />
                           </div>
-                        )}
-                        <div className="relative w-full h-full">
-                          <Image
-                            src={project.innerImage}
-                            alt={project.title}
-                            fill
-                            className="object-contain w-full h-full"
-                            priority
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            onLoadingComplete={() => {
-                              console.log(`Image loaded: ${project.innerImage}`);
-                              setLoadedImages(prev => ({ ...prev, [`${project.id}-inner`]: true }));
-                            }}
-                            onError={(e) => {
-                              console.error(`Error loading image: ${project.innerImage}`);
-                              console.error('Error details:', e);
-                              setLoadedImages(prev => ({ ...prev, [`${project.id}-inner`]: true }));
-                            }}
-                          />
                         </div>
                       </div>
                     </div>
-                  </div>
-                
-                {/* Bottom text overlay - slides up on hover */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 overflow-hidden">
-                  <div className="translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out pt-8 -mt-8">
-                    <p className="text-white text-sm font-medium">
-                      {project.title} <span className="text-white/70 font-normal">{project.description}</span>
-                    </p>
+                  
+                    {/* Bottom text overlay - slides up on hover */}
+                    <div className="absolute bottom-0 left-0 right-0 p-6 overflow-hidden">
+                      <div className="translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out pt-8 -mt-8">
+                        <p className="text-white text-sm font-medium">
+                          {project.title} <span className="text-white/70 font-normal">{project.description}</span>
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
         </div>
       </div>
     </section>

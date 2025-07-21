@@ -92,68 +92,62 @@ export default function ContactSection() {
             </div>
 
             {/* Right Column - Newsletter Form */}
-            <div className="w-full">
-              <div className="bg-white max-w-lg">
-                <h4 className="text-sm font-medium text-gray-400 mb-6">
-                  Sign up to our newsletter
+            <div className="w-full md:max-w-md pt-10">
+              <div className="bg-white">
+                <h4 className="text-sm font-medium text-gray-400 mb-4">
+                  Newsletter
                 </h4>
                 
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="space-y-1">
-                    <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
-                      First name
-                    </label>
+                <p className="text-sm text-gray-600 mb-4">
+                  Subscribe to our newsletter for updates and insights.
+                </p>
+                
+                <form onSubmit={handleSubmit} className="space-y-3 max-w-sm">
+                  <div>
                     <input
                       type="text"
-                      id="firstName"
                       name="firstName"
-                      placeholder="John"
+                      placeholder="First name"
                       value={formData.firstName}
                       onChange={handleInputChange}
-                      className="w-full p-3 bg-gray-100 rounded-lg text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-20 transition-all text-sm"
+                      className="w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
                       required
                     />
                   </div>
                   
-                  <div className="space-y-1">
-                    <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
-                      Last name
-                    </label>
+                  <div>
                     <input
                       type="text"
-                      id="lastName"
                       name="lastName"
-                      placeholder="Doe"
+                      placeholder="Last name"
                       value={formData.lastName}
                       onChange={handleInputChange}
-                      className="w-full p-3 bg-gray-100 rounded-lg text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-20 transition-all text-sm"
+                      className="w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
                       required
                     />
                   </div>
                   
-                  <div className="space-y-1">
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                      Email address
-                    </label>
+                  <div>
                     <input
                       type="email"
-                      id="email"
                       name="email"
-                      placeholder="example@domain.com"
+                      placeholder="Email address"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full p-3 bg-gray-100 rounded-lg text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-20 transition-all text-sm"
+                      className="w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
                       required
                     />
                   </div>
                   
-                  <div className="flex justify-end pt-2">
+                  <div className="flex justify-end mt-2">
                     <button
                       type="submit"
-                      className="cursor-pointer group relative text-sm text-black bg-gray-100 px-4 py-2 pr-4 rounded-full hover:pr-8 hover:bg-black hover:text-white transition-all duration-300 flex items-center w-fit overflow-hidden"
+                      className="group relative text-sm text-black bg-gray-100 px-4 py-2.5 pr-6 rounded-full hover:pr-8 hover:bg-black hover:text-white transition-all duration-200 flex items-center w-fit overflow-hidden"
                     >
                       <span>Subscribe</span>
-                      <ArrowRightIcon className="absolute w-3.5 h-3.5 right-1 opacity-0 group-hover:opacity-100 group-hover:right-2 transition-all duration-200 text-white" />
+                      <svg className="absolute w-3.5 h-3.5 right-1 opacity-0 group-hover:opacity-100 group-hover:right-2 transition-all duration-200 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
                     </button>
                   </div>
                 </form>

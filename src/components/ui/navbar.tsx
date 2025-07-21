@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
-export default function HeroSection() {
+export default function Navbar() {
   const [currentTime, setCurrentTime] = useState('');
   const [isAvailable, setIsAvailable] = useState(false);
 
@@ -44,8 +44,8 @@ export default function HeroSection() {
   ];
 
   return (
-    <section className="bg-white relative">
-      {/* Hero Content - Positioned in top-left corner */}
+    <div className="w-full">
+      {/* Top Bar with Logo and Time */}
       <div className="w-full pt-6 pl-6">
         <div>
           <Link href="/" className="text-4xl text-black mb-2 tracking-tight hover:opacity-80 transition-opacity">
@@ -63,13 +63,10 @@ export default function HeroSection() {
               </span>
             </div>
           </div>
-          <p className="text-xl text-black max-w-lg leading-relaxed">
-            A globally operating digital design studio, offering purposeful design, goal orientated development and dependable growth.
-          </p>
         </div>
       </div>
       
-      {/* Navigation - Fixed bottom on mobile, fixed top on larger screens */}
+      {/* Navigation */}
       <nav className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-40 md:bottom-auto md:top-6">
         <div className="bg-white/90 backdrop-blur-md border border-gray-200 rounded-full px-4 py-2 shadow-md">
           <div className="flex items-center space-x-4 md:space-x-6 h-full">
@@ -92,6 +89,6 @@ export default function HeroSection() {
           </div>
         </div>
       </nav>
-    </section>
-  )
+    </div>
+  );
 }

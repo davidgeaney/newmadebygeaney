@@ -12,10 +12,10 @@ export function SimpleNavbarWithHoverEffects() {
 
 const Navbar = () => {
   const navItems = [
-    { name: "Work", link: "#" },
-    { name: "Services", link: "#" },
+    { name: "Work", link: "/work" },
+    { name: "About", link: "/about" },
     { name: "Pricing", link: "#" },
-    { name: "Contact", link: "#" },
+    { name: "Contact", link: "/contact" },
   ];
 
   return (
