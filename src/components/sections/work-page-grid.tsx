@@ -101,13 +101,9 @@ const WorkPageGrid = () => {
               aria-label={isGridView ? 'Switch to 2x2 grid' : 'Switch to 3x3 grid'}
             >
               <span className="mr-2">
-                {isGridView ? (
-                  <Squares2X2Icon className="w-4 h-4" />
-                ) : (
-                  <Squares4X4Icon className="w-4 h-4" />
-                )}
+                <Squares2X2Icon className={`w-4 h-4 transition-transform duration-200 ${!isGridView ? 'rotate-90' : ''}`} />
               </span>
-              <span>{isGridView ? '2x2' : '3x3'}</span>
+              <span>{isGridView ? 'Grid' : 'List'}</span>
             </button>
           </div>
 
