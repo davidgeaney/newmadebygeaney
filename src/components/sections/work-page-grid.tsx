@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRightIcon, Squares2X2Icon, Squares4X4Icon } from '@heroicons/react/24/outline';
+import { ArrowRightIcon, Squares2X2Icon } from '@heroicons/react/24/outline';
 
 interface Project {
   id: string;
