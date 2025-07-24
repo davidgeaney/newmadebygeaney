@@ -580,3 +580,5 @@ function ContactPageContent() {
     </MainLayout>
   );
 }
+
+export default ContactPageContent;
