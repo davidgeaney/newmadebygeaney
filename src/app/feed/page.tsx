@@ -1,13 +1,11 @@
 "use client";
 
-import Navbar from '@/components/ui/navbar';
+import MainLayout from '@/components/layouts/main-layout';
 
 export default function FeedPage() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <main className="flex-grow">
-        <Navbar />
-        <section className="py-10">
+    <MainLayout>
+      <section className="py-10">
           <div className="w-full">
             {/* Full-width subtle divider line */}
             <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mb-4">
@@ -31,7 +29,6 @@ export default function FeedPage() {
             </div>
           </div>
         </section>
-      </main>
-    </div>
+    </MainLayout>
   );
 }

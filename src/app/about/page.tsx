@@ -1,16 +1,13 @@
 "use client";
 
-import Navbar from '@/components/ui/navbar';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
 import LogoCarousel from '@/components/ui/logo-carousel';
+import MainLayout from '@/components/layouts/main-layout';
 
 export default function AboutPage() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <main className="flex-grow">
-        <Navbar />
-
-        <section className="py-10">
+    <MainLayout>
+      <section className="py-10">
           <div className="w-full">
             {/* Full-width subtle divider line */}
             <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mb-4">
@@ -101,8 +98,8 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Ethos Section */}
-        <section className="bg-gray-100">
+        {/* Ethos Section with more spacing */}
+        <section className="bg-gray-100 py-24 pb-40">
           <div className="w-full">
             {/* Full-width subtle divider line - white and thinner */}
             <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mb-16">
@@ -136,17 +133,17 @@ export default function AboutPage() {
                 ].map((item, index) => (
                   <div 
                     key={index}
-                    className="group relative bg-white rounded-lg p-8 hover:bg-black transition-all duration-300 cursor-pointer flex flex-col h-full shadow-sm"
+                    className="relative bg-white rounded-lg p-6 flex flex-col h-full shadow-sm"
                   >
-                    <div className="mb-8">
-                      <h3 className="text-xs font-normal text-gray-400 group-hover:text-white transition-colors tracking-widest uppercase">
+                    <div className="pr-16">
+                      <h3 className="text-sm font-normal text-black tracking-widest mb-8">
                         {item.title}
                       </h3>
-                    </div>
-                    <div className="flex-grow pt-2">
-                      <p className="text-base text-gray-600 group-hover:text-gray-200 leading-relaxed transition-colors">
-                        {item.description}
-                      </p>
+                      <div className="flex-grow">
+                        <p className="text-sm text-black leading-relaxed text-left pr-4 mb-12">
+                          {item.description}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -154,7 +151,6 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
-      </main>
-    </div>
+    </MainLayout>
   );
 }

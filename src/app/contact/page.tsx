@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import Footer from '@/components/sections/footer';
+import MainLayout from '@/components/layouts/main-layout';
 
-export default function ContactPage() {
+function ContactPageContent() {
   const [currentTime, setCurrentTime] = useState('');
   const [isAvailable, setIsAvailable] = useState(false);
   const [formData, setFormData] = useState({
@@ -82,7 +82,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <MainLayout>
       {/* Hero Section */}
       <section className="bg-white relative">
         <div className="w-full pt-6 pl-6">
@@ -577,8 +577,6 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
-      
-      <Footer />
-    </div>
+    </MainLayout>
   );
 }
