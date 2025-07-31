@@ -39,7 +39,6 @@ export default function Navbar() {
   const navLinks = [
     { name: 'Work', href: '/work' },
     { name: 'About', href: '/about' },
-    { name: 'Feed', href: '/feed' },
     { name: 'Contact', href: '/contact' }
   ];
 
@@ -48,7 +47,7 @@ export default function Navbar() {
       {/* Top Bar with Logo and Time */}
       <div className="w-full pt-6 pl-6">
         <div>
-          <Link href="/" className="text-4xl text-black mb-2 tracking-tight hover:opacity-80 transition-opacity">
+          <Link href="/" className="text-4xl font-medium text-black mb-2 tracking-tight hover:opacity-80 transition-opacity">
             MADE BY GEANEY
           </Link>
           <div className="flex items-center space-x-2 mb-4 cursor-default">
@@ -74,7 +73,7 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className={`group relative text-sm ${currentPath === link.href ? 'text-black' : 'text-gray-500 hover:text-black'} transition-all duration-300 h-full flex items-center overflow-hidden`}
+                className={`group relative text-sm font-book ${currentPath === link.href ? 'text-black' : 'text-gray-500 hover:text-black'} transition-all duration-300 h-full flex items-center overflow-hidden`}
               >
                 <span className="relative overflow-hidden h-5 flex items-center">
                   <span className="inline-block transform group-hover:-translate-y-full transition-transform duration-300">

@@ -13,86 +13,94 @@ interface CaseStudy {
   contributions: string[];
   timeline: string;
   image: string;
+  website: string;
 }
 
 const caseStudies: CaseStudy[] = [
   {
-    id: 'dropbox-emoji',
+    id: 'classcover',
     year: '2024',
-    company: 'Dropbox',
-    title: 'Emoji Reactions',
-    description: 'Joined the Mobile Preview Team as a Product Design Intern, where I helped with emoji reaction integration on the mobile commenting experience.\n\nI successfully launched new emoji reaction features for mobile comments for 700,000 weekly active users across iOS and Android.',
-    role: 'Product Design Intern',
+    company: 'ClassCover',
+    title: 'ClassCover Ireland',
+    description: 'Seamless substitute teacher management platform connecting schools with qualified substitute teachers instantly.\n\nThe platform streamlines the process of finding and booking substitute teachers, reducing administrative overhead and ensuring classroom continuity.',
+    role: 'Lead Developer',
     contributions: [
-      'UX/UI Design',
-      'User Interviews',
-      'Prototyping',
-      'Interaction Design',
-      'Competitive Analysis',
-      'Stakeholder Alignment',
-      'Engineer Collaboration'
+      'Full-stack Development',
+      'User Experience Design',
+      'API Integration',
+      'Database Design',
+      'Performance Optimization',
+      'Mobile Responsiveness',
+      'User Authentication'
     ],
-    timeline: '7 Weeks',
-    image: '/images/projects/spotify-discovery.jpg'
+    timeline: '6 Months',
+    image: '/images/projects/classcover.webp',
+    website: 'https://classcover.com.au/'
   },
   {
-    id: 'spotify-discovery',
+    id: 'creacy-photography',
     year: '2023',
-    company: 'Spotify',
-    title: 'Music Discovery',
-    description: 'Worked on enhancing the music discovery experience for users by introducing a new algorithmic playlist feature.\n\nThe project resulted in a 22% increase in user engagement with recommended content and a 15% boost in playlist saves.',
-    role: 'UX Designer',
-    image: '/images/projects/spotify-discovery.jpg',
+    company: 'Creacy Photography',
+    title: 'Creacy Photography',
+    description: 'Modern photography studio showcasing stunning visual work and client galleries.\n\nThe website features a clean, image-focused design that highlights the photographer\'s portfolio while providing an easy way for potential clients to view work and get in touch.',
+    role: 'Web Developer',
+    image: '/images/projects/creacyphotography.webp',
     contributions: [
-      'User Research',
-      'Wireframing',
-      'Prototyping',
-      'A/B Testing',
-      'Data Analysis',
-      'User Flows',
-      'UI Design'
+      'Responsive Design',
+      'Image Optimization',
+      'Gallery Implementation',
+      'Contact Form Integration',
+      'SEO Optimization',
+      'Performance Tuning',
+      'Content Management'
     ],
-    timeline: '12 Weeks'
+    timeline: '4 Weeks',
+    website: 'https://creacyphotography.com/'
   },
   {
-    id: 'airbnb-experiences',
+    id: 'cqs',
     year: '2023',
-    company: 'Airbnb',
-    title: 'Local Experiences',
-    description: 'Redesigned the local experiences booking flow to increase conversions and improve user satisfaction.\n\nThe new design led to a 30% increase in bookings and received positive feedback for its intuitive interface and streamlined process.',
-    role: 'Product Designer',
-    image: '/images/projects/airbnb-experiences.jpg',
+    company: 'CQS',
+    title: 'CQS',
+    description: 'Professional quantity surveying firm providing comprehensive cost management services.\n\nThe website was designed to establish trust and professionalism while clearly communicating the firm\'s services and expertise in the construction industry.',
+    role: 'Frontend Developer',
+    image: '/images/projects/cqs.webp',
     contributions: [
-      'User Journey Mapping',
-      'Interface Design',
-      'Usability Testing',
-      'Interaction Design',
-      'Design System Updates',
-      'Cross-functional Collaboration',
-      'Performance Metrics Analysis'
+      'UI/UX Design',
+      'Frontend Development',
+      'Service Showcase',
+      'Contact System',
+      'Cross-browser Compatibility',
+      'Accessibility Compliance',
+      'Performance Optimization'
     ],
-    timeline: '10 Weeks'
+    timeline: '6 Weeks',
+    website: 'https://cqssurveyors.com/'
   },
   {
-    id: 'netflix-mobile',
+    id: 'beltany-build',
     year: '2022',
-    company: 'Netflix',
-    title: 'Mobile App Redesign',
-    description: 'Led the redesign of the Netflix mobile app to improve content discoverability and user retention.\n\nThe redesign resulted in a 25% increase in daily active users and a 40% improvement in content discovery metrics.',
-    role: 'Senior Product Designer',
-    image: '/images/projects/netflix-mobile.jpg',
+    company: 'Beltany Build',
+    title: 'Beltany Build',
+    description: 'A construction company specializing in high-quality residential and commercial projects.\n\nThe website showcases their portfolio, services, and company values while providing an easy way for potential clients to request quotes and view past work.',
+    role: 'Full Stack Developer',
+    image: '/images/projects/beltanybuild.webp',
     contributions: [
-      'Design Strategy',
-      'User Research',
-      'High-fidelity Prototypes',
-      'Design System Development',
-      'User Testing',
-      'Stakeholder Presentations',
-      'Engineering Handoff'
+      'Custom Theme Development',
+      'Project Gallery',
+      'Quote Request System',
+      'Mobile Optimization',
+      'Content Strategy',
+      'Performance Optimization',
+      'Security Implementation'
     ],
-    timeline: '16 Weeks'
+    timeline: '8 Weeks',
+    website: 'https://beltanybuild.com/'
   }
 ];
+
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRightIcon } from '@heroicons/react/24/outline';
 
 const CollapsibleSection = ({ 
   title, 
@@ -106,25 +114,48 @@ const CollapsibleSection = ({
   onClick: () => void;
 }) => {
   return (
-    <div className="border-b border-gray-200 pb-2">
+    <div className="border-b border-gray-200">
       <button
         onClick={onClick}
-        className="w-full flex justify-between items-center py-2 text-left text-sm font-medium text-gray-700 hover:text-gray-900 focus:outline-none"
+        className="w-full flex justify-between items-center py-3 text-left text-[14px] font-normal text-[#252525] hover:opacity-80 focus:outline-none transition-opacity"
       >
         {title}
-        <span className="ml-2 w-4 h-4 flex items-center justify-center">
-          {isOpen ? (
-            <span className="text-lg leading-none">−</span>
-          ) : (
-            <span className="text-lg leading-none">+</span>
-          )}
-        </span>
+        <motion.span 
+          className="ml-2 w-4 h-4 flex items-center justify-center"
+          animate={{ rotate: isOpen ? 45 : 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          <span className="text-lg leading-none">+</span>
+        </motion.span>
       </button>
-      {isOpen && (
-        <div className="mt-2 text-sm text-gray-600">
-          {children}
-        </div>
-      )}
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ 
+              opacity: 1, 
+              height: 'auto',
+              transition: { 
+                opacity: { duration: 0.2 },
+                height: { duration: 0.3, ease: 'easeInOut' }
+              }
+            }}
+            exit={{ 
+              opacity: 0, 
+              height: 0,
+              transition: { 
+                opacity: { duration: 0.15 },
+                height: { duration: 0.2, ease: 'easeInOut' }
+              }
+            }}
+            className="overflow-hidden"
+          >
+            <div className="pb-3 text-[14px] text-[#7A7A7A] font-book">
+              {children}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
@@ -137,75 +168,106 @@ const WorkSection = () => {
   };
 
   return (
-    <section className="pt-6 pl-6">
-      <div className="w-full border-t border-gray-200 my-12"></div>
-      <div className="max-w-7xl">
+    <section className="py-10">
+      <div className="w-full">
+        {/* Full-width subtle divider line */}
+        <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mb-4">
+          <div className="h-px bg-gray-200"></div>
+        </div>
         
-        <div className="space-y-24">
-          {caseStudies.map((caseStudy) => (
-            <article key={caseStudy.id} className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-              {/* Left Column - Text Content */}
-              <div className="lg:col-span-4">
-                <div className="mb-24">
-                  <div className="text-sm text-gray-500">
-                    {caseStudy.year}
-                  </div>
-                  <h3 className="text-4xl font-medium">{caseStudy.title}</h3>
-                </div>
-                
-                <div className="text-sm text-gray-700 space-y-4">
-                  {caseStudy.description.split('\n\n').map((paragraph, i) => (
-                    <p key={i}>{paragraph}</p>
-                  ))}
-                </div>
-
-                {/* Collapsible Sections */}
-                <div className="space-y-1 mt-8">
-                  <CollapsibleSection 
-                    title="Role"
-                    isOpen={openSection === `role-${caseStudy.id}`}
-                    onClick={() => toggleSection(`role-${caseStudy.id}`)}
-                  >
-                    <p>{caseStudy.role}</p>
-                  </CollapsibleSection>
-                  
-                  <CollapsibleSection 
-                    title="Contributions"
-                    isOpen={openSection === `contributions-${caseStudy.id}`}
-                    onClick={() => toggleSection(`contributions-${caseStudy.id}`)}
-                  >
-                    <ul className="list-disc pl-5 space-y-1">
-                      {caseStudy.contributions.map((contribution, index) => (
-                        <li key={index}>{contribution}</li>
+        {/* Content container with side padding */}
+        <div className="px-4 md:px-6">
+          {/* Section Header - Single Line Layout */}
+          <div className="flex flex-col md:flex-row md:items-start justify-between mb-12 gap-4">
+            <p className="text-2xl text-black max-w-xl">
+              <span className="text-2xl text-gray-600 mr-2">Work</span> Selected projects and case studies that showcase my approach to design and problem-solving.
+            </p>
+          </div>
+          
+          <div className="w-full">
+            <div className="space-y-24">
+              {caseStudies.map((caseStudy) => (
+                <article key={caseStudy.id} className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                  {/* Left Column - Text Content - Made even more compact and thinner */}
+                  <div className="lg:col-span-4 max-w-[280px] pt-12">
+                    <div className="mb-8 mt-2 pb-6">
+                      <div className="text-[14px] text-[#7A7A7A] font-book mb-2">
+                        {caseStudy.year}
+                      </div>
+                      <h3 className="text-[20px] text-[#252525] font-normal leading-tight">{caseStudy.title}</h3>
+                    </div>
+                    
+                    <div className="text-[14px] text-[#252525] font-book space-y-3 leading-relaxed">
+                      {caseStudy.description.split('\n\n').map((paragraph, i) => (
+                        <p key={i} className="mb-4">{paragraph}</p>
                       ))}
-                    </ul>
-                  </CollapsibleSection>
+                    </div>
+
+                    {/* Collapsible Sections - Made more compact and aligned with reference */}
+                    <div className="space-y-0.5 mt-8">
+                      <CollapsibleSection 
+                        title="Role"
+                        isOpen={openSection === `role-${caseStudy.id}`}
+                        onClick={() => toggleSection(`role-${caseStudy.id}`)}
+                      >
+                        <p>{caseStudy.role}</p>
+                      </CollapsibleSection>
+                      
+                      <CollapsibleSection 
+                        title="Contributions" 
+                        isOpen={openSection === `${caseStudy.id}-contributions`}
+                        onClick={() => toggleSection(`${caseStudy.id}-contributions`)}
+                      >
+                        <ul className="list-disc pl-5 space-y-1">
+                          {caseStudy.contributions.map((contribution, idx) => (
+                            <li key={idx}>{contribution}</li>
+                          ))}
+                        </ul>
+                      </CollapsibleSection>
+                      
+                      <CollapsibleSection 
+                        title="Timeline" 
+                        isOpen={openSection === `${caseStudy.id}-timeline`}
+                        onClick={() => toggleSection(`${caseStudy.id}-timeline`)}
+                      >
+                        {caseStudy.timeline}
+                      </CollapsibleSection>
+                      
+                      {caseStudy.website && (
+                        <div className="pt-4">
+                          <a 
+                            href={caseStudy.website} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="group relative text-sm text-black bg-gray-100 px-4 py-2.5 pr-6 rounded-full hover:pr-8 hover:bg-black hover:text-white transition-all duration-200 flex items-center w-fit overflow-hidden"
+                          >
+                            <span>Visit Project</span>
+                            <ArrowRightIcon className="absolute w-3.5 h-3.5 right-1 opacity-0 group-hover:opacity-100 group-hover:right-2 transition-all duration-200 text-white" />
+                          </a>
+                        </div>
+                      )}
+                    </div>
+                  </div>
                   
-                  <CollapsibleSection 
-                    title="Timeline"
-                    isOpen={openSection === `timeline-${caseStudy.id}`}
-                    onClick={() => toggleSection(`timeline-${caseStudy.id}`)}
-                  >
-                    <p>{caseStudy.timeline}</p>
-                  </CollapsibleSection>
-                </div>
-              </div>
-              
-              {/* Right Column - Image */}
-              <div className="lg:col-span-8 -mr-12">
-                <div className="relative w-[120%] h-[80vh] max-h-[800px] bg-gray-100 overflow-visible">
-                  <Image
-                    src={caseStudy.image}
-                    alt={caseStudy.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    priority
-                  />
-                </div>
-              </div>
-            </article>
-          ))}
+                  {/* Right Column - Image - Extended to align with section below */}
+                  <div className="lg:col-span-8 xl:col-span-8">
+                    <div className="relative w-full h-full">
+                      <div className="relative w-full h-0 pb-[56.25%] bg-gray-50 overflow-hidden">
+                        <Image
+                          src={caseStudy.image}
+                          alt={caseStudy.title}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 1024px) 100vw, 66vw"
+                        />
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-white/5 pointer-events-none" />
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

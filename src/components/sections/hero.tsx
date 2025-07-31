@@ -39,16 +39,15 @@ export default function HeroSection() {
   const navLinks = [
     { name: 'Work', href: '/work' },
     { name: 'About', href: '/about' },
-    { name: 'Feed', href: '/feed' },
     { name: 'Contact', href: '/contact' }
   ];
 
   return (
-    <section className="bg-white relative">
+    <section className="bg-white relative pb-24">
       {/* Hero Content - Positioned in top-left corner */}
       <div className="w-full pt-6 pl-6">
         <div>
-          <Link href="/" className="text-4xl text-black mb-2 tracking-tight hover:opacity-80 transition-opacity">
+          <Link href="/" className="text-4xl font-medium text-black mb-2 tracking-tight hover:opacity-80 transition-opacity">
             MADE BY GEANEY
           </Link>
           <div className="flex items-center space-x-2 mb-4 cursor-default">
@@ -63,7 +62,7 @@ export default function HeroSection() {
               </span>
             </div>
           </div>
-          <p className="text-xl text-black max-w-lg leading-relaxed">
+          <p className="text-xl font-book text-black max-w-lg leading-relaxed">
             A globally operating digital design studio, offering purposeful design, goal orientated development and dependable growth.
           </p>
         </div>

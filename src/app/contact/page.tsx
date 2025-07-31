@@ -61,9 +61,8 @@ function ContactPageContent() {
   }, []);
 
   const navLinks = [
-    { name: 'Work', href: '/#work' },
+    { name: 'Work', href: '/work' },
     { name: 'About', href: '/about' },
-    { name: 'Feed', href: '/#feed' },
     { name: 'Contact', href: '/contact' }
   ];
 
