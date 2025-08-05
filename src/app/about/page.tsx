@@ -3,10 +3,12 @@
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
 import LogoCarousel from '@/components/ui/logo-carousel';
 import MainLayout from '@/components/layouts/main-layout';
+import Header from '@/components/Header';
 
 export default function AboutPage() {
   return (
     <MainLayout>
+      <Header showDescription={false} />
       <section className="py-10">
           <div className="w-full">
             {/* Full-width subtle divider line */}

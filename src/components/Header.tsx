@@ -3,7 +3,11 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
-export default function HeroSection() {
+interface HeaderProps {
+  showDescription?: boolean;
+}
+
+export default function Header({ showDescription = true }: HeaderProps) {
   const [currentTime, setCurrentTime] = useState('');
   const [isAvailable, setIsAvailable] = useState(false);
 
@@ -30,31 +34,29 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="bg-white relative pb-24">
-      {/* Hero Content - Positioned in top-left corner */}
-      <div className="w-full pt-6 pl-6">
-        <div>
-          <Link href="/" className="text-4xl font-medium text-black mb-2 tracking-tight hover:opacity-80 transition-opacity">
-            MADE BY GEANEY
-          </Link>
-          <div className="flex items-center space-x-2 mb-4 cursor-default">
-            <div className={`w-2 h-2 rounded-full ${isAvailable ? 'bg-green-500' : 'bg-red-500'}`}></div>
-            <span className="text-sm font-medium text-gray-700">Donegal</span>
-            <div className="relative group h-[20px] flex items-center">
-              <span className="inline-block text-sm font-mono text-gray-700 transition-opacity duration-200 group-hover:opacity-0 min-w-[100px]">
-                {currentTime} GMT+1
-              </span>
-              <span className="absolute left-0 text-xs font-mono text-gray-700 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
-                {isAvailable ? "Here to help :)" : "We're asleep :("}
-              </span>
-            </div>
+    <div className="w-full pt-6 pl-6">
+      <div className="relative">
+        <Link href="/" className="text-4xl font-medium text-black mb-2 tracking-tight hover:opacity-80 transition-opacity">
+          MADE BY GEANEY
+        </Link>
+        <div className="flex items-center space-x-2 mb-4 cursor-default">
+          <div className={`w-2 h-2 rounded-full ${isAvailable ? 'bg-green-500' : 'bg-red-500'}`}></div>
+          <span className="text-sm font-medium text-gray-700">Donegal</span>
+          <div className="relative group h-[20px] flex items-center">
+            <span className="inline-block text-sm font-mono text-gray-700 transition-opacity duration-200 group-hover:opacity-0 min-w-[100px]">
+              {currentTime} GMT+1
+            </span>
+            <span className="absolute left-0 text-xs font-mono text-gray-700 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+              {isAvailable ? "Here to help :)" : "We're asleep :("}
+            </span>
           </div>
+        </div>
+        {showDescription && (
           <p className="text-xl font-book text-black max-w-lg leading-relaxed">
             A globally operating digital design studio, offering purposeful design, goal orientated development and dependable growth.
           </p>
-        </div>
+        )}
       </div>
-
-    </section>
-  )
+    </div>
+  );
 }

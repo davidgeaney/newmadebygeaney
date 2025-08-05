@@ -2,7 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import MainLayout from '@/components/layouts/main-layout';
+import Footer from '@/components/sections/footer';
+import dynamic from 'next/dynamic';
+
+// Dynamically import the Navbar component with SSR disabled
+const Navbar = dynamic(() => import('@/components/ui/navbar'), { 
+  ssr: false 
+});
 
 function ContactPageContent() {
   const [currentTime, setCurrentTime] = useState('');
@@ -81,12 +87,13 @@ function ContactPageContent() {
   };
 
   return (
-    <MainLayout>
+    <div className="min-h-screen bg-white">
+      <Navbar />
       {/* Hero Section */}
       <section className="bg-white relative">
         <div className="w-full pt-6 pl-6">
           <div>
-            <Link href="/" className="text-4xl text-black mb-2 tracking-tight hover:opacity-80 transition-opacity">
+            <Link href="/" className="text-4xl font-medium text-black mb-2 tracking-tight hover:opacity-80 transition-opacity">
               MADE BY GEANEY
             </Link>
             <div className="flex items-center space-x-2 mb-4 cursor-default">
@@ -103,30 +110,6 @@ function ContactPageContent() {
             </div>
           </div>
         </div>
-        
-        {/* Navigation */}
-        <nav className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-40 md:bottom-auto md:top-6">
-          <div className="bg-white/90 backdrop-blur-md border border-gray-200 rounded-full px-4 py-2 shadow-md">
-            <div className="flex items-center space-x-4 md:space-x-6 h-full">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className={`group relative text-sm ${link.href === '/contact' ? 'text-black' : 'text-gray-500 hover:text-black'} transition-all duration-300 h-full flex items-center overflow-hidden`}
-                >
-                  <span className="relative overflow-hidden h-5 flex items-center">
-                    <span className="inline-block transform group-hover:-translate-y-full transition-transform duration-300">
-                      {link.name}
-                    </span>
-                    <span className="absolute left-0 top-full w-full text-black transform group-hover:-translate-y-full transition-transform duration-300">
-                      {link.name}
-                    </span>
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </nav>
       </section>
 
       {/* Full width divider */}
@@ -576,8 +559,10 @@ function ContactPageContent() {
           </div>
         </div>
       </div>
-    </MainLayout>
+      <Footer />
+    </div>
   );
 }
 
+// @ts-ignore
 export default ContactPageContent;

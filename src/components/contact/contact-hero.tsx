@@ -171,25 +171,29 @@ const ContactForm = () => {
   ];
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-10">
+    <form onSubmit={handleSubmit} className="space-y-10 font-sans">
       <h2 className="text-2xl font-bold mb-8">Start a project</h2>
       
-      <div className="space-y-10">
+      <div className="space-y-8">
         {questions.map((question, index) => (
-          <div key={index} className="group">
-            <div className="flex items-start">
-              <span className="text-xs text-gray-500 w-8 flex-shrink-0">{question.number}</span>
-              <div className="flex-1">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  {question.label}
-                </label>
+          <div key={index} className="w-full">
+            <div className="flex flex-col sm:flex-row sm:items-start gap-4 w-full">
+              <div className="sm:w-1/4">
+                <div className="flex items-start">
+                  <span className="text-xs text-gray-500 w-6 flex-shrink-0 mt-1">{question.number}</span>
+                  <label className="text-sm font-medium text-gray-700">
+                    {question.label}
+                  </label>
+                </div>
+              </div>
+              <div className="sm:w-3/4">
                 {question.type === 'select' ? (
                   <select
                     name={question.name}
                     required={question.required}
                     value={formData[question.name as keyof typeof formData] as string}
                     onChange={handleChange}
-                    className="mt-1 block w-full border-b border-gray-300 py-2 focus:border-gray-900 focus:outline-none bg-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent bg-white text-gray-900"
                   >
                     <option value="">Select an option</option>
                     {question.options?.map((option, i) => (
@@ -205,7 +209,7 @@ const ContactForm = () => {
                     required={question.required}
                     value={formData[question.name as keyof typeof formData] as string}
                     onChange={handleChange}
-                    className="mt-1 block w-full border-b border-gray-300 py-2 focus:border-gray-900 focus:outline-none resize-none"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent bg-white text-gray-900 resize-none"
                   />
                 ) : (
                   <input
@@ -214,7 +218,7 @@ const ContactForm = () => {
                     required={question.required}
                     value={formData[question.name as keyof typeof formData] as string}
                     onChange={handleChange}
-                    className="mt-1 block w-full border-b border-gray-300 py-2 focus:border-gray-900 focus:outline-none"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent bg-white text-gray-900"
                   />
                 )}
               </div>
@@ -223,10 +227,10 @@ const ContactForm = () => {
         ))}
       </div>
 
-      <div className="pt-8">
+      <div className="pt-6 flex justify-end">
         <button
           type="submit"
-          className="w-full py-3 px-6 bg-black text-white font-medium hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors"
+          className="px-8 py-3 bg-black text-white text-sm font-medium rounded-lg hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black transition-colors w-full sm:w-auto"
         >
           Send message
         </button>

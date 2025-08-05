@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ppNeueMontreal } from "./fonts";
+import { ppNeueMontreal } from "@/app/fonts";
+import { ClientProvider } from "@/components/providers/client-provider";
 
 export const metadata: Metadata = {
   title: "Made By Geaney",
@@ -15,7 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`h-full overflow-x-hidden ${ppNeueMontreal.variable} font-sans`}>
       <body className="antialiased flex flex-col min-h-screen overflow-x-hidden bg-white">
-        {children}
+        <ClientProvider>
+          {children}
+        </ClientProvider>
       </body>
     </html>
   );

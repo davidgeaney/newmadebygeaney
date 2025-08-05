@@ -1,8 +1,13 @@
 "use client";
 
-import { ReactNode } from 'react';
-import Navbar from '@/components/ui/navbar';
-import Footer from '@/components/sections/footer';
+import dynamic from 'next/dynamic';
+import { ReactNode } from "react";
+import Footer from "@/components/sections/footer";
+
+// Dynamically import the Navbar component with SSR disabled
+const Navbar = dynamic(() => import('@/components/ui/navbar'), { 
+  ssr: false 
+});
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -10,12 +15,12 @@ interface MainLayoutProps {
 
 export default function MainLayout({ children }: MainLayoutProps) {
   return (
-    <div className="flex flex-col min-h-screen">
+    <>
       <Navbar />
       <main className="flex-grow">
         {children}
       </main>
       <Footer />
-    </div>
+    </>
   );
 }

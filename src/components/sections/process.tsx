@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link'
 import { ArrowRightIcon } from '@heroicons/react/24/outline'
 
@@ -6,25 +8,25 @@ export default function ProcessSection() {
     {
       number: '01',
       title: "Let's chat",
-      description: 'We start with a conversation to understand your vision, goals, and requirements for the project.',
+      description: 'We discuss your vision and project requirements in detail.',
       bgColor: 'bg-gray-100'
     },
     {
       number: '02',
       title: 'Figure out the plan',
-      description: 'We develop a detailed strategy and roadmap tailored to your specific needs and objectives.',
+      description: 'We create a tailored strategy and roadmap for your project.',
       bgColor: 'bg-[#E9EFF6]'
     },
     {
       number: '03',
       title: 'Design & Develop',
-      description: 'Our team creates stunning designs and brings them to life with clean, efficient code.',
+      description: 'We craft beautiful designs and implement them with clean, efficient code.',
       bgColor: 'bg-[#F2EFF5]'
     },
     {
       number: '04',
       title: 'Launch & Grow',
-      description: 'We deploy your project and provide ongoing support to ensure continued success.',
+      description: 'We launch your project and support its growth and success.',
       bgColor: 'bg-[#EBF6F2]'
     }
   ]
@@ -59,17 +61,17 @@ export default function ProcessSection() {
             {processSteps.map((step, index) => (
               <div
                 key={index}
-                className={`${step.bgColor} rounded-lg p-6 h-0 min-h-[350px] pb-[100%] relative`}
+                className={`${step.bgColor} rounded-lg px-6 pt-6 pb-8 h-0 min-h-[250px] pb-[80%] sm:pb-[70%] md:pb-[90%] relative`}
               >
                 <div className="flex flex-col h-full">
-                  <span className="text-6xl font-regular text-[#BFC8C5] leading-none mb-4">
+                  <span className="text-6xl font-regular text-[#BFC8C5] leading-none mb-6">
                     {step.number}
                   </span>
-                  <div className="mt-auto pt-32">
-                    <h3 className="text-lg font-normal text-black mb-3">
+                  <div className="mt-auto pt-24 sm:pt-28">
+                    <h3 className="text-lg font-medium text-black">
                       {step.title}
                     </h3>
-                    <p className="text-sm text-gray-400 font-regular">
+                    <p className="text-md text-gray-500 font-regular leading-relaxed mb-2">
                       {step.description}
                     </p>
                   </div>
