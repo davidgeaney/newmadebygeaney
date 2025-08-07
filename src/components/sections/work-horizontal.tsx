@@ -147,7 +147,7 @@ const WorkHorizontal = () => {
                         borderRadius: { duration: 0.3, ease: 'easeInOut' }
                       }}
                       style={{
-                        willChange: 'background-color, border-radius',
+                        willChange: 'background-color, border-radius, transform',
                         transformOrigin: 'top left'
                       }}
                       onClick={() => setExpandedProject(expandedProject === project.id ? null : project.id)}
