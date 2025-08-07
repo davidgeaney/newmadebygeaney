@@ -136,6 +136,8 @@ const WorkHorizontal = () => {
                       style={{
                         scrollSnapAlign: 'start',
                         aspectRatio: expandedProject === project.id ? 'auto' : '16/9',
+                        willChange: 'background-color, border-radius, transform',
+                        transformOrigin: 'top left'
                       }}
                       initial={false}
                       animate={{
@@ -145,10 +147,6 @@ const WorkHorizontal = () => {
                       transition={{
                         backgroundColor: { duration: 0.3, ease: 'easeInOut' },
                         borderRadius: { duration: 0.3, ease: 'easeInOut' }
-                      }}
-                      style={{
-                        willChange: 'background-color, border-radius, transform',
-                        transformOrigin: 'top left'
                       }}
                       onClick={() => setExpandedProject(expandedProject === project.id ? null : project.id)}
                     >
