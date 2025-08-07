@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic';
 import HeroSection from '@/components/sections/hero';
 import WorkSection from '@/components/sections/work';
+import WorkHorizontal from '@/components/sections/work-horizontal';
 import ServicesSection from '@/components/sections/services';
 import ProcessSection from '@/components/sections/process';
 import ContactSection from '@/components/sections/contact';
@@ -19,7 +20,9 @@ export default function Home() {
       <Navbar />
       <main className="flex-grow">
         <HeroSection />
-        <WorkSection />
+        {/* Uncomment the work section you want to use */}
+        <WorkHorizontal />
+        {/* <WorkSection /> */}
         <ServicesSection />
         <ProcessSection />
         <ContactSection />

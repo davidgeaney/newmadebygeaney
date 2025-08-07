@@ -7,50 +7,49 @@ import { ArrowRightIcon } from '@heroicons/react/24/outline'
 export default function ServicesSection() {
     const services = [
     {
-      title: 'Custom Design',
-      description: 'Tailored design solutions that perfectly match your brand identity and business goals.',
+      title: 'Fully Custom Websites',
+      description: 'We don\'t do cookie‑cutter. Every site is built from scratch to fit your brand perfectly.',
       image: '/images/services/customdesign.jpg'
     },
     {
-      title: 'Mobile-First',
-      description: 'Responsive designs that look and function beautifully on all devices, with a focus on mobile experience.',
-      image: '/images/services/mobilefirst.png'
-    },
-
-    {
-      title: 'Built For Speed',
-      description: 'Optimized performance for quick load times and smooth user experience.',
+      title: 'Fast Turnaround',
+      description: 'We move quickly so you can launch and start seeing results sooner.',
       image: '/images/services/builtforspeed.png'
     },
     {
-      title: 'SEO Friendly',
-      description: 'Websites built with search engine optimization best practices to improve visibility and rankings.',
-      image: '/images/services/seofriendly.png'
+      title: 'Mobile‑First Design',
+      description: 'Most people visit on their phone, so your site will look amazing on any screen.',
+      image: '/images/services/mobilefirst.png'
     },
     {
-      title: 'Clear Messaging',
-      description: 'Compelling content strategy that clearly communicates your value proposition to your audience.',
-      image: '/images/services/clearmessaging.png'
-    },
-    {
-      title: 'Booking & Forms',
-      description: 'Seamless integration of booking systems and contact forms to capture leads and appointments.',
+      title: 'E‑commerce Sites',
+      description: 'From product pages to secure checkout, we\'ll set you up to sell online with ease.',
       image: '/images/services/bookingandforms.png'
     },
     {
-      title: 'Ongoing Support',
-      description: 'Dedicated support and maintenance to keep your website running smoothly.',
+      title: 'Conversion‑Focused Design',
+      description: 'Your site won\'t just look good. It will be built to turn visitors into customers.',
+      image: '/images/services/clearmessaging.png'
+    },
+    {
+      title: 'SEO & Speed Optimization',
+      description: 'We make sure your site loads fast and gets found on Google.',
+      image: '/images/services/seofriendly.png'
+    },
+    {
+      title: 'Analytics & Tracking',
+      description: 'See exactly who\'s visiting, where they\'re from, and what\'s working.',
       image: '/images/services/ongoingsupport.png'
     },
     {
-      title: 'Scalable Support',
-      description: 'Flexible solutions that grow with your business needs and traffic demands.',
-      image: '/images/services/scalablesupport.png'
+      title: 'Easy Updates',
+      description: 'Want to change a photo or update text? You can do it yourself in seconds.',
+      image: '/images/services/hostingincluded.png'
     },
     {
-      title: 'Hosting Included',
-      description: 'Reliable, secure, and fast hosting with 99.9% uptime, automatic backups, and SSL certificates included.',
-      image: '/images/services/hostingincluded.png'
+      title: 'Ongoing Support',
+      description: 'We don\'t just hand over the keys and vanish. We\'re here whenever you need us.',
+      image: '/images/services/scalablesupport.png'
     }
   ]
 
@@ -67,7 +66,7 @@ export default function ServicesSection() {
           {/* Section Header - Single Line Layout */}
           <div className="flex flex-col md:flex-row md:items-start justify-between mb-12 gap-4">
             <p className="text-2xl text-black max-w-xl">
-              <span className="text-2xl text-gray-600 mr-2">Services</span> We offer a comprehensive range of creative services to help your brand stand out.
+              <span className="text-2xl text-gray-600 mr-2">What We Do</span> We turn coffee into code and pixels into profit. Your website shouldn't just exist—it should work its socks off for you.
             </p>
           
           <Link 

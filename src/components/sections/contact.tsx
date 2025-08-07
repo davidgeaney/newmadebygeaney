@@ -91,62 +91,95 @@ export default function ContactSection() {
               </div>
             </div>
 
-            {/* Right Column - Newsletter Form */}
+            {/* Right Column - Contact Form */}
             <div className="w-full md:max-w-md pt-10">
               <div className="bg-white">
-                <h4 className="text-sm font-medium text-gray-400 mb-4">
-                  Newsletter
-                </h4>
-                
-                <p className="text-sm text-gray-600 mb-4">
-                  Subscribe to our newsletter for updates and insights.
-                </p>
-                
-                <form onSubmit={handleSubmit} className="space-y-3 max-w-sm">
-                  <div>
-                    <input
-                      type="text"
-                      name="firstName"
-                      placeholder="First name"
-                      value={formData.firstName}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
-                      required
-                    />
+                {/* Form Header */}
+                <div className="mb-4">
+                  <h4 className="text-sm font-medium text-gray-400">Newsletter</h4>
+                  <p className="text-sm text-gray-600 mt-1">
+                    Subscribe to our newsletter for updates and insights.
+                  </p>
+                </div>
+
+                {/* Form Fields */}
+                <form onSubmit={handleSubmit}>
+                  <div className="form-container max-w-sm">
+                    {/* First Name Field */}
+                    <div className="form-group">
+                      <div className="form-field flex flex-col sm:flex-row sm:items-center">
+                        <label className="text-sm font-medium text-gray-700 mb-1 sm:mb-0 sm:w-1/3 sm:pr-4">First Name</label>
+                        <div className="w-full">
+                          <input
+                            type="text"
+                            name="firstName"
+                            placeholder="Enter your first name"
+                            value={formData.firstName}
+                            onChange={handleInputChange}
+                            className="form-input w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Last Name Field */}
+                    <div className="form-group">
+                      <div className="form-field flex flex-col sm:flex-row sm:items-center">
+                        <label className="text-sm font-medium text-gray-700 mb-1 sm:mb-0 sm:w-1/3 sm:pr-4">Last Name</label>
+                        <div className="w-full">
+                          <input
+                            type="text"
+                            name="lastName"
+                            placeholder="Enter your last name"
+                            value={formData.lastName}
+                            onChange={handleInputChange}
+                            className="form-input w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Email Field */}
+                    <div className="form-group">
+                      <div className="form-field flex flex-col sm:flex-row sm:items-center">
+                        <label className="text-sm font-medium text-gray-700 mb-1 sm:mb-0 sm:w-1/3 sm:pr-4">Email Address</label>
+                        <div className="w-full">
+                          <input
+                            type="email"
+                            name="email"
+                            placeholder="your.email@example.com"
+                            value={formData.email}
+                            onChange={handleInputChange}
+                            className="form-input w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    
                   </div>
                   
-                  <div>
-                    <input
-                      type="text"
-                      name="lastName"
-                      placeholder="Last name"
-                      value={formData.lastName}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
-                      required
-                    />
-                  </div>
-                  
-                  <div>
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="Email address"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
-                      required
-                    />
-                  </div>
-                  
-                  <div className="flex justify-end mt-2">
+                  {/* Submit Button */}
+                  <div className="form-submit pt-1 flex justify-end max-w-sm">
                     <button
                       type="submit"
                       className="group relative text-sm text-black bg-gray-100 px-4 py-2.5 pr-6 rounded-full hover:pr-8 hover:bg-black hover:text-white transition-all duration-200 flex items-center w-fit overflow-hidden"
                     >
-                      <span>Subscribe</span>
-                      <svg className="absolute w-3.5 h-3.5 right-1 opacity-0 group-hover:opacity-100 group-hover:right-2 transition-all duration-200 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      <span>Submit</span>
+                      <svg
+                        className="ml-2 w-3.5 h-3.5 text-black group-hover:text-white transition-transform duration-200 group-hover:translate-x-1"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M14 5l7 7m0 0l-7 7m7-7H3"
+                        />
                       </svg>
                     </button>
                   </div>
