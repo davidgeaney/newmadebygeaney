@@ -5,9 +5,10 @@ import Link from 'next/link';
 
 interface HeaderProps {
   showDescription?: boolean;
+  description?: string;
 }
 
-export default function Header({ showDescription = true }: HeaderProps) {
+export default function Header({ showDescription = true, description }: HeaderProps) {
   const [currentTime, setCurrentTime] = useState('');
   const [isAvailable, setIsAvailable] = useState(false);
 
@@ -34,11 +35,16 @@ export default function Header({ showDescription = true }: HeaderProps) {
   }, []);
 
   return (
-    <div className="w-full pt-6 pl-6">
+    <div className="w-full pt-4 pl-4">
       <div className="relative">
         <Link href="/" className="text-4xl font-medium text-black mb-2 tracking-tight hover:opacity-80 transition-opacity">
           MADE BY GEANEY
         </Link>
+        {showDescription && (
+          <p className="text-xl font-book text-black max-w-lg leading-relaxed mt-4">
+            {description || "We design and build fully custom websites that look sharp, load fast, and are built to convert the right visitors into customers."}
+          </p>
+        )}
         <div className="flex items-center space-x-2 mb-4 cursor-default">
           <div className={`w-2 h-2 rounded-full ${isAvailable ? 'bg-green-500' : 'bg-red-500'}`}></div>
           <span className="text-sm font-medium text-gray-700">Donegal</span>

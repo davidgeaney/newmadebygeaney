@@ -18,13 +18,13 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="flex-grow">
+      <main className="flex-grow font-untitled-sans">
         <HeroSection />
-        {/* Uncomment the work section you want to use */}
         <WorkHorizontal />
-        {/* <WorkSection /> */}
         <ServicesSection />
-        <ProcessSection />
+        <div className="mt-16">
+          <ProcessSection />
+        </div>
         <ContactSection />
       </main>
       <Footer />

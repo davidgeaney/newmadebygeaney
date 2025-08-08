@@ -91,7 +91,7 @@ function ContactPageContent() {
       <Navbar />
       {/* Hero Section */}
       <section className="bg-white relative">
-        <div className="w-full pt-6 pl-6">
+        <div className="w-full pt-4 pl-4">
           <div>
             <Link href="/" className="text-4xl font-medium text-black mb-2 tracking-tight hover:opacity-80 transition-opacity">
               MADE BY GEANEY
@@ -117,7 +117,7 @@ function ContactPageContent() {
       
       {/* Contact Section */}
       <div className="flex-1 bg-white">
-        <div className="w-full pt-0 pl-6">
+        <div className="w-full pt-0 pl-4">
           <div className="max-w-7xl">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Left column - Contact info */}

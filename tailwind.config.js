@@ -8,7 +8,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-sans)', 'sans-serif'],
+        sans: ['var(--font-ppneue)', 'sans-serif'],
+        'untitled-sans': ['var(--font-untitled-sans)', 'sans-serif'],
       },
       colors: {
         'primary-black': 'var(--color-primary-black)',

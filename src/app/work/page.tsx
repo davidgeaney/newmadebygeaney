@@ -11,10 +11,12 @@ export default function WorkPage() {
       <WorkPageGrid />
       
       {/* Selected Clients Section */}
-      <SelectedClients />
+      <div className="mt-16">
+        <SelectedClients />
+      </div>
       
       {/* Partners and Collaborators Section */}
-      <div className="bg-white">
+      <div className="mt-16 bg-white">
         <LogoCarousel />
       </div>
     </MainLayout>

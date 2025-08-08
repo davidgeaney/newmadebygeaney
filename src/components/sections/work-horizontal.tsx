@@ -76,7 +76,7 @@ const WorkHorizontal = () => {
   const x = useTransform(scrollXProgress, [0, 1], ['0%', '-50%']);
 
   return (
-    <section className="py-10">
+    <section className="pt-4 pl-4">
       <div className="w-full">
         {/* Full-width subtle divider line */}
         <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mb-4">
@@ -84,12 +84,12 @@ const WorkHorizontal = () => {
         </div>
         
         {/* Content container with side padding */}
-        <div className="px-4 md:px-6">
+        <div className="pr-2">
           {/* Section Header - Single Line Layout */}
           <div className="flex flex-col md:flex-row md:items-start justify-between mb-12 gap-4">
-            <p className="text-2xl text-black max-w-xl">
-              <span className="text-2xl text-gray-600 mr-2">Work</span> Selected projects and case studies that showcase my approach to design and problem-solving.
-            </p>
+            <h2 className="text-xl text-black max-w-lg">
+              <span className="text-gray-600 mr-2">Work</span> We help our clients make an impact through informed, authentic digital identities and innovative user experiences
+            </h2>
             <Link 
               href="/work"
               className="group relative text-sm text-black bg-gray-100 px-4 py-2.5 pr-6 rounded-full hover:pr-8 hover:bg-black hover:text-white transition-all duration-300 flex items-center w-fit overflow-hidden self-start md:self-auto"

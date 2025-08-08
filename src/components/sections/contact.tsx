@@ -26,7 +26,7 @@ export default function ContactSection() {
   }
 
   return (
-    <section className="py-10">
+    <section className="pt-4 pl-4">
       <div className="w-full">
         {/* Full-width subtle divider line */}
         <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mb-4">
@@ -34,12 +34,12 @@ export default function ContactSection() {
         </div>
         
         {/* Content container with side padding */}
-        <div className="px-4 md:px-6">
+        <div className="pr-2">
           {/* Section Header - Stacked on mobile, row on desktop */}
           <div className="flex flex-col md:flex-row md:items-start justify-between mb-8 gap-4">
-            <p className="text-xl text-black max-w-xl">
-              <span className="text-xl text-gray-600 mr-2">Contact</span> We're always looking to start new conversations.
-            </p>
+            <h2 className="text-xl text-black max-w-lg">
+              <span className="text-gray-600 mr-2">Contact</span> We're always looking to start new conversations.
+            </h2>
             
             <a 
               href="mailto:hello@newterritory.studio"
@@ -96,9 +96,8 @@ export default function ContactSection() {
               <div className="bg-white">
                 {/* Form Header */}
                 <div className="mb-4">
-                  <h4 className="text-sm font-medium text-gray-400">Newsletter</h4>
-                  <p className="text-sm text-gray-600 mt-1">
-                    Subscribe to our newsletter for updates and insights.
+                  <p className="text-sm text-gray-600 font-normal">
+                    Sign up to our newsletter
                   </p>
                 </div>
 
@@ -106,56 +105,50 @@ export default function ContactSection() {
                 <form onSubmit={handleSubmit}>
                   <div className="form-container max-w-sm">
                     {/* First Name Field */}
-                    <div className="form-group">
-                      <div className="form-field flex flex-col sm:flex-row sm:items-center">
-                        <label className="text-sm font-medium text-gray-700 mb-1 sm:mb-0 sm:w-1/3 sm:pr-4">First Name</label>
-                        <div className="w-full">
-                          <input
-                            type="text"
-                            name="firstName"
-                            placeholder="Enter your first name"
-                            value={formData.firstName}
-                            onChange={handleInputChange}
-                            className="form-input w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
-                            required
-                          />
-                        </div>
+                    <div className="form-group mb-4">
+                      <label className="block text-xs font-medium text-gray-500 mb-1">First Name</label>
+                      <div className="form-field">
+                        <input
+                          type="text"
+                          name="firstName"
+                          placeholder="John"
+                          value={formData.firstName}
+                          onChange={handleInputChange}
+                          className="form-input w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none placeholder-gray-300"
+                          required
+                        />
                       </div>
                     </div>
                     
                     {/* Last Name Field */}
-                    <div className="form-group">
-                      <div className="form-field flex flex-col sm:flex-row sm:items-center">
-                        <label className="text-sm font-medium text-gray-700 mb-1 sm:mb-0 sm:w-1/3 sm:pr-4">Last Name</label>
-                        <div className="w-full">
-                          <input
-                            type="text"
-                            name="lastName"
-                            placeholder="Enter your last name"
-                            value={formData.lastName}
-                            onChange={handleInputChange}
-                            className="form-input w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
-                            required
-                          />
-                        </div>
+                    <div className="form-group mb-4">
+                      <label className="block text-xs font-medium text-gray-500 mb-1">Last Name</label>
+                      <div className="form-field">
+                        <input
+                          type="text"
+                          name="lastName"
+                          placeholder="Doe"
+                          value={formData.lastName}
+                          onChange={handleInputChange}
+                          className="form-input w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none placeholder-gray-300"
+                          required
+                        />
                       </div>
                     </div>
                     
                     {/* Email Field */}
-                    <div className="form-group">
-                      <div className="form-field flex flex-col sm:flex-row sm:items-center">
-                        <label className="text-sm font-medium text-gray-700 mb-1 sm:mb-0 sm:w-1/3 sm:pr-4">Email Address</label>
-                        <div className="w-full">
-                          <input
-                            type="email"
-                            name="email"
-                            placeholder="your.email@example.com"
-                            value={formData.email}
-                            onChange={handleInputChange}
-                            className="form-input w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
-                            required
-                          />
-                        </div>
+                    <div className="form-group mb-4">
+                      <label className="block text-xs font-medium text-gray-500 mb-1">Email Address</label>
+                      <div className="form-field">
+                        <input
+                          type="email"
+                          name="email"
+                          placeholder="example@domain.com"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          className="form-input w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none placeholder-gray-300"
+                          required
+                        />
                       </div>
                     </div>
                     
@@ -165,22 +158,10 @@ export default function ContactSection() {
                   <div className="form-submit pt-1 flex justify-end max-w-sm">
                     <button
                       type="submit"
-                      className="group relative text-sm text-black bg-gray-100 px-4 py-2.5 pr-6 rounded-full hover:pr-8 hover:bg-black hover:text-white transition-all duration-200 flex items-center w-fit overflow-hidden"
+                      className="group relative text-sm text-black bg-gray-100 px-4 py-2 pr-6 rounded-full hover:pr-8 hover:bg-black hover:text-white transition-all duration-200 flex items-center w-fit overflow-hidden"
                     >
-                      <span>Submit</span>
-                      <svg
-                        className="ml-2 w-3.5 h-3.5 text-black group-hover:text-white transition-transform duration-200 group-hover:translate-x-1"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M14 5l7 7m0 0l-7 7m7-7H3"
-                        />
-                      </svg>
+                      <span>Subscribe</span>
+                      <ArrowRightIcon className="absolute w-3.5 h-3.5 right-1 opacity-0 group-hover:opacity-100 group-hover:right-2 transition-all duration-200 text-white" />
                     </button>
                   </div>
                 </form>

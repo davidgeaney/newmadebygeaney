@@ -105,7 +105,7 @@ export default function Footer() {
         </div>
         
         {/* Content container with side padding */}
-        <div className="px-4 md:px-6">
+        <div className="px-4 md:px-4">
           <div className="flex flex-col lg:flex-row">
             {/* Left side - Contact Info */}
             <div className="space-y-3 mb-8 lg:mb-0 lg:pr-8">
@@ -180,19 +180,12 @@ export default function Footer() {
             </div>
           </div>
           
-          {/* Made By Geaney SVG */}
-          <div className="mt-12 md:mt-16 w-full">
-            <div className="w-full max-w-4xl mx-auto px-2 md:px-4">
-              <div className="relative w-full h-auto">
-                <img 
-                  src="/images/MADEBYGEANEY.svg" 
-                  alt="Made By Geaney" 
-                  className="w-full h-auto"
-                  width="2000"
-                  height="200"
-                  loading="lazy"
-                />
-              </div>
+          {/* Made By Geaney Text - Full width, single line */}
+          <div className="mt-16 w-full overflow-x-auto">
+            <div className="w-max min-w-full px-4">
+              <h2 className="text-[8vw] md:text-[7vw] lg:text-[6vw] xl:text-[5.5vw] 2xl:text-[5vw] font-bold tracking-tight whitespace-nowrap text-center mx-auto">
+                MADE BY GEANEY
+              </h2>
             </div>
           </div>
         </div>

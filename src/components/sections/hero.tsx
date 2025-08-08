@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { untitledSansMedium } from '@/app/fonts';
 
 export default function HeroSection() {
   const [currentTime, setCurrentTime] = useState('');
@@ -30,11 +31,11 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="bg-white relative pb-24">
+    <section className="bg-white relative pb-24 font-untitled-sans">
       {/* Hero Content - Positioned in top-left corner */}
-      <div className="w-full pt-6 pl-6">
+      <div className="w-full pt-4 pl-4">
         <div>
-          <Link href="/" className="text-4xl font-medium text-black mb-2 tracking-tight hover:opacity-80 transition-opacity">
+          <Link href="/" className="block text-4xl font-medium text-black mb-4 tracking-tight hover:opacity-80 transition-opacity">
             MADE BY GEANEY
           </Link>
           <div className="flex items-center space-x-2 mb-4 cursor-default">
@@ -50,7 +51,7 @@ export default function HeroSection() {
             </div>
           </div>
           <p className="text-xl font-book text-black max-w-lg leading-relaxed">
-            A globally operating digital design studio, offering purposeful design, goal orientated development and dependable growth.
+          We design and build fully custom websites that look sharp, load fast, and are built to convert the right visitors into customers.
           </p>
         </div>
       </div>
