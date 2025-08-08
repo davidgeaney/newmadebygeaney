@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { untitledSansMedium } from '@/app/fonts';
+import { untitledSans } from '@/app/fonts';
 
 export default function HeroSection() {
   const [currentTime, setCurrentTime] = useState('');
