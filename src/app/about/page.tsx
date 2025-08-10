@@ -52,7 +52,7 @@ export default function AboutPage() {
 
       {/* Main Content Section */}
       <div className="mt-4" style={{ backgroundColor: '#F0F0F0' }}>
-        <section className="pt-4 pl-4">
+        <section className="bg-white pt-4 pl-4">
           <div className="w-full pr-4">
             {/* About Info Content */}
             <div className="mb-16">
@@ -158,31 +158,36 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="relative w-full overflow-hidden">
-                <div className="flex flex-row gap-3 transition-all duration-300 ease-in-out" 
+              <div className="relative w-full">
+                <div 
+                  className="flex flex-nowrap gap-3 pb-4 -mx-4 px-4 overflow-x-auto snap-x snap-mandatory touch-auto"
                   style={{
-                    transform: expandedIndex !== null ? `translateX(calc(${-expandedIndex * 33.333}% + ${expandedIndex * 0.5}rem))` : 'none',
-                    width: expandedIndex !== null ? '150%' : '100%'
+                    WebkitOverflowScrolling: 'touch',
+                    msOverflowStyle: 'none',
+                    scrollbarWidth: 'none',
+                    scrollSnapType: 'x mandatory',
+                    paddingLeft: '1rem',
+                    paddingRight: '1rem'
                   }}
                 >
                   {processItems.map((item, index) => (
                     <motion.div
                       key={index}
-                      className={`relative rounded-lg overflow-hidden ${expandedIndex === index ? 'md:w-2/3' : 'md:w-1/3'} ${expandedIndex === index ? 'bg-black' : 'bg-gray-100'}`}
+                      className={`flex-shrink-0 w-[90vw] md:w-[calc(33.333%-1rem)] rounded-lg overflow-hidden cursor-pointer h-[400px] snap-center ${expandedIndex === index ? 'md:w-[calc(66.666%-0.5rem)]' : ''} ${expandedIndex === index ? 'bg-black' : 'bg-gray-100 hover:bg-black transition-colors duration-300'}`}
                       layout
                       initial={false}
                       onClick={() => expandedIndex !== index && setExpandedIndex(index)}
                     >
                       <motion.div 
-                        className="p-6 h-full relative"
+                        className="p-2 h-full relative"
                         layout
                       >
                         <div className="flex flex-col h-full">
-                          <div className="mb-4">
-                            <span className={`text-sm ${expandedIndex === index ? 'text-white' : 'text-black'} transition-colors block`}>
+                          <div className="mb-10">
+                            <span className={`text-sm ${expandedIndex === index ? 'text-white' : 'text-black group-hover:text-white'} transition-colors block`}>
                               {item.number}
                             </span>
-                            <h3 className={`text-xl ${expandedIndex === index ? 'text-white' : 'text-black'} transition-colors`}>
+                            <h3 className={`text-xl ${expandedIndex === index ? 'text-white' : 'text-black group-hover:text-white'} transition-colors`}>
                               {item.title}
                             </h3>
                           </div>
@@ -191,9 +196,22 @@ export default function AboutPage() {
                             className="mt-auto"
                             layout
                           >
-                            <p className={`text-sm ${expandedIndex === index ? 'text-white' : 'text-black'} transition-colors`}>
+                            <p className={`text-sm max-w-sm ${expandedIndex === index ? 'text-white' : 'text-black group-hover:text-white'} transition-colors`}>
                               {item.description}
                             </p>
+                            
+                            {/* Arrow that appears on hover */}
+                            <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              <svg 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke="currentColor"
+                                className="w-4 h-4 text-white"
+                              >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                              </svg>
+                            </div>
                             
                             {expandedIndex === index && (
                               <motion.div 
@@ -221,17 +239,173 @@ export default function AboutPage() {
                           </motion.div>
                         </div>
                         
+                        {/* Bottom-right arrow that appears on hover */}
                         <div 
-                          className={`absolute bottom-4 right-4 cursor-pointer ${expandedIndex === index ? 'text-white' : 'text-black'}`}
+                          className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                           onClick={(e) => {
                             e.stopPropagation();
                             setExpandedIndex(expandedIndex === index ? null : index);
                           }}
                         >
-                          <ArrowRightIcon className={`w-4 h-4 transition-transform ${expandedIndex === index ? 'rotate-45' : ''}`} />
+                          <svg 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke="currentColor"
+                            className="w-4 h-4 text-white"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.5 4.5l15 15m0 0h-7.5m7.5 0v-7.5" />
+                          </svg>
                         </div>
                       </motion.div>
                     </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Partners and Collaborators Section */}
+            <div className="w-full">
+              <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mb-6">
+                <div className="h-px bg-gray-200"></div>
+              </div>
+              <div className="mb-12">
+                <p className="text-3xl text-black">
+                  <span className="text-3xl text-gray-600 mr-2">Partners and Collaborators</span> We work with specialist partners from around the world, using our combined expertise to deliver on the specific needs of our clients using a dedicated workflow process.
+                </p>
+                <div className="mb-12 mt-6">
+                  <a href="#" className="group relative text-sm text-black bg-gray-100 px-6 py-3 pr-8 rounded-full hover:pr-10 hover:bg-black hover:text-white transition-all duration-200 flex items-center w-fit overflow-hidden">
+                    <span>Partner Workflow</span>
+                    <svg className="absolute w-3.5 h-3.5 right-2 opacity-0 group-hover:opacity-100 group-hover:right-3 transition-all duration-200 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              <div className="relative w-full overflow-hidden py-8">
+                <style jsx>{`
+                  @keyframes scroll {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(calc(-250px * 5)); }
+                  }
+                  .logos {
+                    display: flex;
+                    gap: 1.5rem;
+                    width: max-content;
+                    animation: scroll 30s linear infinite;
+                  }
+                  .logos:hover {
+                    animation-play-state: paused;
+                  }
+                  .logos-slide {
+                    display: flex;
+                    gap: 1.5rem;
+                  }
+                `}</style>
+                <div className="logos">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <div key={`set-${i}`} className="logos-slide">
+                      <div className="group relative h-24 w-64 flex-shrink-0 flex items-center justify-center cursor-pointer">
+                        <div className="bg-[#F0F0F0] group-hover:bg-black p-2 rounded flex items-center justify-center h-full w-full transition-all duration-300 ease-in-out">
+                          <div className="h-12 w-32 flex items-center justify-center">
+                            <img 
+                              src="/images/logos/fullsend.svg" 
+                              alt="Full Send Logo" 
+                              className="h-full w-auto object-contain transition-all duration-300 group-hover:invert"
+                            />
+                          </div>
+                          <svg 
+                            className="absolute top-2 right-2 w-4 h-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-white" 
+                            fill="none" 
+                            stroke="currentColor" 
+                            viewBox="0 0 24 24" 
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                          </svg>
+                        </div>
+                      </div>
+                      <div className="group relative h-24 w-64 flex-shrink-0 flex items-center justify-center cursor-pointer">
+                        <div className="bg-[#F0F0F0] group-hover:bg-black p-2 rounded flex items-center justify-center h-full w-full transition-all duration-300 ease-in-out">
+                          <div className="h-12 w-32 flex items-center justify-center">
+                            <img 
+                              src="/images/logos/veefriends.svg" 
+                              alt="VeeFriends Logo" 
+                              className="h-full w-auto object-contain transition-all duration-300 group-hover:invert"
+                            />
+                          </div>
+                          <svg 
+                            className="absolute top-2 right-2 w-4 h-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-white" 
+                            fill="none" 
+                            stroke="currentColor" 
+                            viewBox="0 0 24 24" 
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                          </svg>
+                        </div>
+                      </div>
+                      <div className="group relative h-24 w-64 flex-shrink-0 flex items-center justify-center cursor-pointer">
+                        <div className="bg-[#F0F0F0] group-hover:bg-black p-2 rounded flex items-center justify-center h-full w-full transition-all duration-300 ease-in-out">
+                          <div className="h-12 w-32 flex items-center justify-center">
+                            <img 
+                              src="/images/logos/coldharbour.svg" 
+                              alt="Coldharbour Logo" 
+                              className="h-full w-auto object-contain transition-all duration-300 group-hover:invert"
+                            />
+                          </div>
+                          <svg 
+                            className="absolute top-2 right-2 w-4 h-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-white" 
+                            fill="none" 
+                            stroke="currentColor" 
+                            viewBox="0 0 24 24" 
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                          </svg>
+                        </div>
+                      </div>
+                      <div className="group relative h-24 w-64 flex-shrink-0 flex items-center justify-center cursor-pointer">
+                        <div className="bg-[#F0F0F0] group-hover:bg-black p-2 rounded flex items-center justify-center h-full w-full transition-all duration-300 ease-in-out">
+                          <div className="h-12 w-32 flex items-center justify-center">
+                            <img 
+                              src="/images/logos/giza.svg" 
+                              alt="Giza Logo" 
+                              className="h-full w-auto object-contain transition-all duration-300 group-hover:invert"
+                            />
+                          </div>
+                          <svg 
+                            className="absolute top-2 right-2 w-4 h-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-white" 
+                            fill="none" 
+                            stroke="currentColor" 
+                            viewBox="0 0 24 24" 
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                          </svg>
+                        </div>
+                      </div>
+                      <div className="group relative h-24 w-64 flex-shrink-0 flex items-center justify-center cursor-pointer">
+                        <div className="bg-[#F0F0F0] group-hover:bg-black p-2 rounded flex items-center justify-center h-full w-full transition-all duration-300 ease-in-out">
+                          <div className="h-12 w-32 flex items-center justify-center">
+                            <img 
+                              src="/images/logos/florianpicasso.svg" 
+                              alt="Florian Picasso Logo" 
+                              className="h-full w-auto object-contain transition-all duration-300 group-hover:invert"
+                            />
+                          </div>
+                          <svg 
+                            className="absolute top-2 right-2 w-4 h-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-white" 
+                            fill="none" 
+                            stroke="currentColor" 
+                            viewBox="0 0 24 24" 
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -267,7 +441,7 @@ export default function AboutPage() {
           <div className="px-4 md:px-6">
             {/* Section Header - Stacked on mobile, row on desktop */}
             <div className="flex flex-col md:flex-row md:items-start justify-between mb-16 gap-4">
-              <p className="text-xl text-black max-w-3xl">
+              <p className="text-xl text-black max-w-lg">
                 <span className="text-gray-600 mr-2">Ethos</span> As a forward-thinking, independent studio we work with people and businesses that share our values and desire to create meaningful connections through impactful design.
               </p>
             </div>
