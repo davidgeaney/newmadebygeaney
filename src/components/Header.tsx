@@ -37,8 +37,14 @@ export default function Header({ showDescription = true, description }: HeaderPr
   return (
     <div className="w-full pt-4 pl-4">
       <div className="relative">
-        <Link href="/" className="text-4xl font-medium text-black mb-2 tracking-tight hover:opacity-80 transition-opacity">
-          MADE BY GEANEY
+        <Link href="/" className="block mb-2 hover:opacity-80 transition-opacity w-48 md:w-64">
+          <img 
+            src="/images/logo.svg" 
+            alt="Made By Geaney" 
+            className="w-full h-auto"
+            width={264}
+            height={88}
+          />
         </Link>
         {showDescription && (
           <p className="text-xl font-book text-black max-w-lg leading-relaxed mt-4">

@@ -93,8 +93,14 @@ function ContactPageContent() {
       <section className="bg-white relative">
         <div className="w-full pt-4 pl-4">
           <div>
-            <Link href="/" className="text-4xl font-medium text-black mb-2 tracking-tight hover:opacity-80 transition-opacity">
-              MADE BY GEANEY
+            <Link href="/" className="block mb-2 hover:opacity-80 transition-opacity w-48 md:w-64">
+              <img 
+                src="/images/logo.svg" 
+                alt="Made By Geaney" 
+                className="w-full h-auto"
+                width={264}
+                height={88}
+              />
             </Link>
             <div className="flex items-center space-x-2 mb-4 cursor-default">
               <div className={`w-2 h-2 rounded-full ${isAvailable ? 'bg-green-500' : 'bg-red-500'}`}></div>

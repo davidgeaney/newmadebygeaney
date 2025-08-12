@@ -33,7 +33,7 @@ const projects: Project[] = [
   {
     id: '2',
     year: '2023',
-    company: 'Creacy',
+    company: 'Creacy Photography',
     title: 'Creacy Photography',
     description: 'Modern photography studio showcasing stunning visual work and client galleries.',
     role: 'Web Developer',
@@ -125,9 +125,9 @@ const WorkHorizontal = () => {
                   >
                     {/* Project Name and Tag - Above Image */}
                     <div className="mb-3 flex items-center space-x-3">
-                      <span className="text-base text-gray-800 font-medium">{project.company}</span>
-                      <span className="text-sm text-gray-700 bg-gray-100 px-3 py-1 rounded-full">
-                        {project.type || 'Project'}
+                      <span className="text-base text-black font-book">{project.company}</span>
+                      <span className="text-base text-black bg-[#F0F0F0] px-2 py-1 rounded-lg">
+                        {project.type || 'Education'}
                       </span>
                     </div>
                     

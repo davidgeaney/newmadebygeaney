@@ -97,6 +97,20 @@
   }
 
   /* Custom scrollbar styles */
+  /* Animation for scrolling partner logos */
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-250px * 6)); /* Move by width of 6 items */
+    }
+  }
+
+  .animate-scroll {
+    animation: scroll 30s linear infinite;
+  }
+
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }

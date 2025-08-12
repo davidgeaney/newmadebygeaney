@@ -97,7 +97,7 @@ const ContactHero = () => {
           </div>
 
           {/* Right section - Contact form */}
-          <div className="border-l border-gray-200 pl-12">
+          <div className="sm:border-l sm:border-gray-200 sm:pl-12">
             <ContactForm />
           </div>
         </div>
@@ -177,7 +177,56 @@ const ContactForm = () => {
       <div className="space-y-8">
         {questions.map((question, index) => (
           <div key={index} className="w-full">
-            <div className="flex flex-col sm:flex-row sm:items-start gap-4 w-full">
+            {/* Mobile Layout - Stacked */}
+            <div className="block sm:hidden">
+              <div className="mb-3">
+                <div className="flex items-start">
+                  <span className="text-xs text-gray-500 w-6 flex-shrink-0 mt-1">{question.number}</span>
+                  <label className="text-sm font-medium text-gray-700">
+                    {question.label}
+                  </label>
+                </div>
+              </div>
+              <div className="w-full">
+                {question.type === 'select' ? (
+                  <select
+                    name={question.name}
+                    required={question.required}
+                    value={formData[question.name as keyof typeof formData] as string}
+                    onChange={handleChange}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent bg-white text-gray-900"
+                  >
+                    <option value="">Select an option</option>
+                    {question.options?.map((option, i) => (
+                      <option key={i} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                ) : question.type === 'textarea' ? (
+                  <textarea
+                    name={question.name}
+                    rows={4}
+                    required={question.required}
+                    value={formData[question.name as keyof typeof formData] as string}
+                    onChange={handleChange}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent bg-white text-gray-900 resize-none"
+                  />
+                ) : (
+                  <input
+                    type={question.type}
+                    name={question.name}
+                    required={question.required}
+                    value={formData[question.name as keyof typeof formData] as string}
+                    onChange={handleChange}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent bg-white text-gray-900"
+                  />
+                )}
+              </div>
+            </div>
+
+            {/* Desktop Layout - Side by Side */}
+            <div className="hidden sm:flex sm:items-start gap-4 w-full">
               <div className="sm:w-1/4">
                 <div className="flex items-start">
                   <span className="text-xs text-gray-500 w-6 flex-shrink-0 mt-1">{question.number}</span>

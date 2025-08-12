@@ -180,12 +180,18 @@ export default function Footer() {
             </div>
           </div>
           
-          {/* Made By Geaney Text - Full width, single line */}
-          <div className="mt-16 w-full overflow-x-auto">
-            <div className="w-max min-w-full px-4">
-              <h2 className="text-[8vw] md:text-[7vw] lg:text-[6vw] xl:text-[5.5vw] 2xl:text-[5vw] font-bold tracking-tight whitespace-nowrap text-center mx-auto">
-                MADE BY GEANEY
-              </h2>
+          {/* Logo - Centered at the bottom */}
+          <div className="mt-16 w-full flex justify-center px-4">
+            <div className="w-48 md:w-64">
+              <a href="/">
+                <img 
+                  src="/images/logo.svg" 
+                  alt="Made By Geaney" 
+                  className="w-full h-auto"
+                  width={256}
+                  height={80}
+                />
+              </a>
             </div>
           </div>
         </div>

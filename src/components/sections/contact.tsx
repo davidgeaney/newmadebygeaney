@@ -41,13 +41,13 @@ export default function ContactSection() {
               <span className="text-gray-600 mr-2">Contact</span> We're always looking to start new conversations.
             </h2>
             
-            <a 
-              href="mailto:hello@newterritory.studio"
+            <Link 
+              href="/contact"
               className="group relative text-sm text-black bg-gray-100 px-4 py-2.5 pr-6 rounded-full hover:pr-8 hover:bg-black hover:text-white transition-all duration-200 flex items-center w-fit overflow-hidden"
             >
-              <span>Get in touch</span>
+              <span>More information</span>
               <ArrowRightIcon className="absolute w-3.5 h-3.5 right-1 opacity-0 group-hover:opacity-100 group-hover:right-2 transition-all duration-200 text-white" />
-            </a>
+            </Link>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
@@ -56,23 +56,19 @@ export default function ContactSection() {
               <div className="mb-12">
                 <p className="text-sm text-black max-w-lg mb-8">
                   To kick off a new project, enquire about a service or to simply just get in touch, please use our contact details below or our{' '}
-                  <Link 
-                    href="/contact"
-                    className="text-black hover:text-gray-600 transition-colors underline"
-                  >
+                  <Link href="/contact#form" className="underline hover:text-gray-600 transition-colors">
                     enquiry form
-                  </Link>
-                  .
+                  </Link>.
                 </p>
                 
                 <div className="flex flex-col items-start space-y-1">
                   {/* Email with special hover effect */}
                   <div>
                     <a 
-                      href="mailto:hello@newterritory.studio"
+                      href="mailto:david@madebygeaney.com"
                       className="group relative text-sm text-black bg-gray-100 px-4 py-2 pr-6 rounded-full hover:pr-8 hover:bg-black hover:text-white transition-all duration-200 flex items-center w-fit overflow-hidden"
                     >
-                      <span>hello@newterritory.studio</span>
+                      <span>david@madebygeaney.com</span>
                       <ArrowRightIcon className="absolute w-3.5 h-3.5 right-1 opacity-0 group-hover:opacity-100 group-hover:right-2 transition-all duration-200 text-white" />
                     </a>
                   </div>
@@ -80,10 +76,10 @@ export default function ContactSection() {
                   {/* Phone with special hover effect */}
                   <div>
                     <a 
-                      href="tel:+642114992221"
+                      href="tel:+353861234567"
                       className="group relative text-sm text-black bg-gray-100 px-4 py-2 pr-6 rounded-full hover:pr-8 hover:bg-black hover:text-white transition-all duration-200 flex items-center w-fit overflow-hidden"
                     >
-                      <span>+64 21 149 9221</span>
+                      <span>+353 83 379 3342</span>
                       <ArrowRightIcon className="absolute w-3.5 h-3.5 right-1 opacity-0 group-hover:opacity-100 group-hover:right-2 transition-all duration-200 text-white" />
                     </a>
                   </div>

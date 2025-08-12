@@ -6,6 +6,16 @@ import { ClientProvider } from "@/components/providers/client-provider";
 export const metadata: Metadata = {
   title: "Made By Geaney",
   description: "Creative studio focused on building meaningful digital experiences",
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '16x16' },
+      { url: '/icon-192x192.png', type: 'image/png', sizes: '192x192' },
+      { url: '/icon-512x512.png', type: 'image/png', sizes: '512x512' },
+    ],
+    apple: [
+      { url: '/apple-icon.png', type: 'image/png', sizes: '180x180' }
+    ]
+  }
 };
 
 export default function RootLayout({

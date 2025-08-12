@@ -6,6 +6,7 @@ import WorkSection from '@/components/sections/work';
 import WorkHorizontal from '@/components/sections/work-horizontal';
 import ServicesSection from '@/components/sections/services';
 import ProcessSection from '@/components/sections/process';
+import FAQSection from '@/components/sections/faq';
 import ContactSection from '@/components/sections/contact';
 import Footer from '@/components/sections/footer';
 
@@ -25,6 +26,7 @@ export default function Home() {
         <div className="mt-16">
           <ProcessSection />
         </div>
+        <FAQSection />
         <ContactSection />
       </main>
       <Footer />

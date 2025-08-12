@@ -33,7 +33,7 @@ export default function ServicesSection() {
         {/* Content container with side padding */}
         <div className="pr-2">
           {/* Section Header */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-8">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-8">
             <div className="max-w-2xl">
               <h2 className="text-xl text-black max-w-lg">
                 <span className="text-gray-600 mr-2">Services</span> We specialise in digital design, development and creative strategy; uncovering insights, design concepts & developing solutions – both large and small.

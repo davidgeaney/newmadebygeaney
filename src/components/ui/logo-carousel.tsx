@@ -3,25 +3,40 @@
 import { useEffect, useRef } from 'react';
 
 const LOGOS = [
-  { id: 1, name: 'Logo 1', src: '/path/to/logo1.png' },
-  { id: 2, name: 'Logo 2', src: '/path/to/logo2.png' },
-  { id: 3, name: 'Logo 3', src: '/path/to/logo3.png' },
-  { id: 4, name: 'Logo 4', src: '/path/to/logo4.png' },
-  { id: 5, name: 'Logo 5', src: '/path/to/logo5.png' },
-  { id: 6, name: 'Logo 6', src: '/path/to/logo6.png' },
-  { id: 7, name: 'Logo 7', src: '/path/to/logo7.png' },
-  { id: 8, name: 'Logo 8', src: '/path/to/logo8.png' },
+  { id: 1, name: 'VeeFriends', src: '/images/logos/veefriends.svg' },
+  { id: 2, name: 'Coldharbour', src: '/images/logos/coldharbour.svg' },
+  { id: 3, name: 'Made by Geaney', src: '/images/logos/madebygeaney-logo.svg' },
+  { id: 4, name: 'VeeFriends', src: '/images/logos/veefriends.svg' },
+  { id: 5, name: 'Coldharbour', src: '/images/logos/coldharbour.svg' },
 ];
+
+// Create multiple sets of logos for smooth infinite scroll
+const LOGO_SETS = 3; // Number of times to repeat the logos for smooth scrolling
 
 export default function LogoCarousel() {
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollerRef = useRef<HTMLDivElement>(null);
   
-  // Duplicate the logos to create a seamless loop
-  const duplicatedLogos = [...LOGOS, ...LOGOS];
+  // Create multiple sets of logos for smooth infinite scroll
+  const duplicatedLogos = Array(LOGO_SETS).fill(LOGOS).flat();
 
   return (
-    <section className="py-16 bg-white overflow-hidden">
+    <section className="py-16 bg-white overflow-hidden relative">
+      <style jsx global>{`
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(calc(-100% / ${LOGOS.length} * ${LOGOS.length * (LOGO_SETS - 1)}));
+          }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          [data-animate="true"] {
+            animation: none !important;
+          }
+        }
+      `}</style>
       <div className="px-4 md:px-6">
         {/* Full-width subtle divider line */}
         <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mb-6">
@@ -50,10 +65,14 @@ export default function LogoCarousel() {
             ref={scrollerRef}
             className="flex items-center gap-8 w-max animate-scroll whitespace-nowrap"
             style={{
-              animationDuration: '40s',
-              animationIterationCount: 'infinite',
+              animationName: 'scroll',
+              animationDuration: '30s',
               animationTimingFunction: 'linear',
+              animationIterationCount: 'infinite',
+              animationDelay: '0s',
+              animationDirection: 'normal'
             }}
+            data-animate="true"
           >
             {duplicatedLogos.map((logo, index) => (
               <div 
@@ -61,7 +80,12 @@ export default function LogoCarousel() {
                 className="relative h-16 w-32 flex-shrink-0 flex items-center justify-center"
               >
                 <div className="bg-white p-4 rounded-lg flex items-center justify-center h-full w-full">
-                  <span className="text-gray-400">{logo.name}</span>
+                  <img 
+                    src={logo.src} 
+                    alt={logo.name} 
+                    className="h-full w-auto object-contain"
+                    loading="lazy"
+                  />
                 </div>
               </div>
             ))}

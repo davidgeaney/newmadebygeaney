@@ -1,251 +1,21 @@
 "use client";
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRightIcon } from '@heroicons/react/24/outline';
-import LogoCarousel from '@/components/ui/logo-carousel';
 import MainLayout from '@/components/layouts/main-layout';
 import Header from '@/components/Header';
-import AboutInfo from '@/components/sections/about-info';
-import { Accordion } from '@/components/ui/accordion';
 
 export default function AboutPage() {
-  const [activeArtist, setActiveArtist] = useState<number | null>(null);
-
-  const toggleArtist = (index: number) => {
-    setActiveArtist(activeArtist === index ? null : index);
-  };
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-  const [isAnimating, setIsAnimating] = useState<boolean>(false);
-  const [pendingIndex, setPendingIndex] = useState<number | null>(null);
-
-  const handleCardClick = (index: number) => {
-    if (isAnimating) return;
-    
-    if (expandedIndex === index) {
-      // Don't close the card when clicking it - only close via close button or clicking another card
-      return;
-    } else if (expandedIndex !== null) {
-      // If another card is open, close it first, then open the new one
-      setIsAnimating(true);
-      setExpandedIndex(null);
-      setTimeout(() => {
-        setExpandedIndex(index);
-        setTimeout(() => setIsAnimating(false), 300); // Wait for open animation
-      }, 300); // Match this with close animation duration
-    } else {
-      // No card is open, just open the clicked one with animation
-      setIsAnimating(true);
-      setExpandedIndex(index);
-      setTimeout(() => setIsAnimating(false), 300); // Match this with animation duration
-    }
-  };
-
-  // Handle animation completion
-  const handleAnimationComplete = () => {
-    if (pendingIndex !== null) {
-      setExpandedIndex(pendingIndex);
-      setPendingIndex(null);
-      setIsAnimating(false);
-    }
-  };
-
-  const processItems = [
-    {
-      number: '01',
-      step: '01',
-      title: 'Design',
-      description: 'Within our iterative, data-driven and collaborative process we ensure that our designs are both engaging and authentic. The projects we produce are tools which often have an intended job and goal, because of this we implement performance optimised design philosophies based on behavioural engineering.',
-      accordionItems: [
-        {
-          title: 'User Research',
-          content: 'Understanding user needs and behaviors through interviews, surveys, and usability testing.'
-        },
-        {
-          title: 'UI/UX Design',
-          content: 'Creating intuitive interfaces with a focus on user flows and interaction design.'
-        },
-        {
-          title: 'Prototyping',
-          content: 'Building interactive prototypes to test and validate design concepts.'
-        },
-        {
-          title: 'Design Systems',
-          content: 'Developing consistent design languages and component libraries.'
-        }
-      ]
-    },
-    {
-      number: '02',
-      step: '02',
-      title: 'Develop',
-      description: 'Utilising the best of current web technologies, we deliver high performance projects of many scales. Built with leading and proven platforms with modern build methodologies we create impactful, engaging user-experiences whilst providing robust, adaptive, future-focused solutions.',
-      accordionItems: [
-        {
-          title: 'Frontend Development',
-          content: 'Building responsive, performant user interfaces with React and Next.js.'
-        },
-        {
-          title: 'Backend Development',
-          content: 'Creating robust APIs and server-side logic with modern frameworks.'
-        },
-        {
-          title: 'Testing',
-          content: 'Implementing comprehensive testing strategies for reliability.'
-        },
-        {
-          title: 'DevOps',
-          content: 'Setting up CI/CD pipelines and cloud infrastructure.'
-        }
-      ]
-    },
-    {
-      number: '03',
-      step: '03',
-      title: 'Grow',
-      description: 'Focused on continual website optimisation, rooted in real user data analysis and the identification of conversion barriers. While continuously monitoring performance, we align our strategies with industry best practices to offer data-driven solutions that span digital marketing, enhancements to the customer experience, and website optimisations. Our aim is to unlock the maximum growth potential by fostering synergy across all platforms to ensure your digital presence evolves and excels.',
-      accordionItems: [
-        {
-          title: 'Analytics',
-          content: 'Tracking key metrics and user behavior to inform decisions.'
-        },
-        {
-          title: 'SEO',
-          content: 'Improving search visibility and organic traffic.'
-        },
-        {
-          title: 'Performance',
-          content: 'Optimizing speed and efficiency for better user experience.'
-        },
-        {
-          title: 'Conversion',
-          content: 'A/B testing and optimization to improve conversion rates.'
-        }
-      ]
-    }
-  ];
-
   return (
     <MainLayout>
       <Header showDescription={false} />
-      
-      {/* Divider */}
-      <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mt-12">
-        <div className="h-px bg-gray-200"></div>
+      <div className="px-4 py-8">
+        <h1 className="text-3xl font-bold mb-4">About Us</h1>
+        <p className="text-lg text-gray-700">
+          We are a creative studio focused on building meaningful digital experiences.
+        </p>
       </div>
-
-      {/* About Section with Large Image */}
-      <div className="mt-12 px-4">
-        <div className="mb-12">
-          <p className="text-2xl text-black max-w-3xl">
-            <span className="text-2xl text-gray-600 mr-2">About</span> We're a creative studio focused on building meaningful digital experiences that make an impact.
-          </p>
-        </div>
-        <div className="w-full h-[600px] rounded-lg overflow-hidden">
-          <img 
-            src="/images/aboutimg.webp" 
-            alt="About us" 
-            className="w-full h-full object-cover"
-          />
-        </div>
-      </div>
-
-      {/* Main Content Section */}
-      <div className="mt-4" style={{ backgroundColor: '#F0F0F0' }}>
-        <section className="bg-white pt-4 pl-4">
-          <div className="w-full pr-4">
-
-            {/* About Info Content */}
-            {/* 
-            <div className="mb-16">
-              <div className="flex flex-col lg:flex-row gap-16">
-                <div className="lg:w-1/2">
-                  <div className="space-y-6">
-                    <p className="text-xl leading-relaxed">
-                      I'm Miggy Fajardo, a digital product designer who believes technology should be simple, intuitive, and inspiring. Born in the Philippines and now based in Arizona, I'm always searching for ways to turn ideas into beautiful experiences that reduce friction and enrich daily life.
-                    </p>
-                    <p className="text-xl leading-relaxed">
-                      I'm a maker and a dreamer. My love for creating has also led me to explore various mediums from 3D visualization, prototyping, interaction design, digital art, and most recently, motion design. If I can imagine it, I'll find a way to make it.
-                    </p>
-                    <p className="text-xl leading-relaxed">
-                      When I'm not designing, I'm usually trying to survive the Arizona heat, cooking at home, or attempting to revive my gaming career.
-                    </p>
-                    <div className="pt-4">
-                      <p className="mb-4">Open to full time opportunities.</p>
-                      <div className="flex flex-col space-y-3 sm:space-y-0 sm:flex-row sm:space-x-6">
-                        <a href="/resume.pdf" className="text-sm hover:underline flex items-center" target="_blank" rel="noopener noreferrer">
-                          <span>→</span>
-                          <span className="ml-2">Resume</span>
-                        </a>
-                        <a href="mailto:hello@miggyfajardo.com" className="text-sm hover:underline flex items-center">
-                          <span>→</span>
-                          <span className="ml-2">Say hello@miggyfajardo.com</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="lg:w-1/2 space-y-12 lg:pl-4">
-                  <div>
-                    <div className="mb-4">
-                      <div className="grid grid-cols-3 gap-4 text-sm font-normal text-gray-500 uppercase tracking-wider mb-2">
-                        <div>COMPANY</div>
-                        <div>ROLE</div>
-                        <div className="text-right">YEAR</div>
-                      </div>
-                      <div className="border-b border-gray-200"></div>
-                    </div>
-                    <div className="space-y-2">
-                      <div className="grid grid-cols-3 gap-4 border-b border-gray-100 pb-3">
-                        <div className="text-sm">MADE BY GEANEY</div>
-                        <div className="text-sm text-gray-600">FOUNDER & LEAD DESIGNER</div>
-                        <div className="text-xs text-gray-500 text-right">2020–PRESENT</div>
-                      </div>
-                      <div className="grid grid-cols-3 gap-4 border-b border-gray-100 pb-3">
-                        <div className="text-sm">DROPBOX</div>
-                        <div className="text-sm text-gray-600">PRODUCT DESIGN INTERN</div>
-                        <div className="text-xs text-gray-500 text-right">2024</div>
-                      </div>
-                      <div className="grid grid-cols-3 gap-4 border-b border-gray-100 pb-3">
-                        <div className="text-sm">HAPPIED</div>
-                        <div className="text-sm text-gray-600">UX/UI DESIGNER</div>
-                        <div className="text-xs text-gray-500 text-right">2022–2023</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="mb-4">
-                      <h2 className="text-sm font-normal uppercase tracking-wider text-gray-500 mb-2">Awards</h2>
-                      <div className="border-b border-gray-200"></div>
-                    </div>
-                    <div className="space-y-3">
-                      <div className="flex justify-between items-baseline border-b border-gray-100 pb-3">
-                        <h3 className="text-sm font-normal">HIDA DESIGN EXCELLENCE AWARD</h3>
-                        <span className="text-xs text-gray-500">2025</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="mb-4">
-                      <h2 className="text-sm font-normal uppercase tracking-wider text-gray-500 mb-2">Education</h2>
-                      <div className="border-b border-gray-200"></div>
-                    </div>
-                    <div className="space-y-3">
-                      <div className="flex justify-between items-baseline border-b border-gray-100 pb-3">
-                        <h3 className="text-sm font-normal">BACHELOR OF DESIGN IN VISUAL COMMUNICATION</h3>
-                        <span className="text-xs text-gray-500">2020</span>
-                      </div>
-                      <div className="flex justify-between items-baseline border-b border-gray-100 pb-3">
-                        <h3 className="text-sm font-normal">DIPLOMA IN DIGITAL DESIGN</h3>
-                        <span className="text-xs text-gray-500">2018</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+    </MainLayout>
+  );
+}
             */}
           
 
@@ -262,82 +32,71 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="relative w-full">
-                <div 
-                  className="flex flex-nowrap gap-3 pb-4 -mx-4 px-4 overflow-x-auto snap-x snap-mandatory touch-auto"
-                  style={{
-                    WebkitOverflowScrolling: 'touch',
-                    msOverflowStyle: 'none',
-                    scrollbarWidth: 'none',
-                    scrollSnapType: 'x mandatory',
-                    paddingLeft: '1rem',
-                    paddingRight: '1rem'
-                  }}
-                >
-                  {processItems.map((item, index) => (
+              <div className="relative w-full overflow-hidden">
+                <div className="relative w-full">
+                  <div 
+                    className="flex flex-nowrap gap-3 pb-4 -mx-4 px-4 overflow-x-auto snap-x snap-mandatory touch-auto"
+                    style={{
+                      WebkitOverflowScrolling: 'touch',
+                      msOverflowStyle: 'none',
+                      scrollbarWidth: 'none',
+                      scrollSnapType: 'x mandatory',
+                      paddingLeft: '1rem',
+                      paddingRight: '1rem',
+                      justifyContent: 'center',
+                      position: 'relative',
+                      scrollPadding: '0 1rem',
+                      scrollBehavior: 'smooth'
+                    }}
+                  >
+                    {processItems.map((item, index) => (
                     <motion.div
                       key={index}
-                      className={`relative flex-shrink-0 w-[90vw] md:w-[calc(33.333%-1rem)] rounded-lg overflow-hidden h-[400px] snap-center ${
-                        expandedIndex === index ? 'md:!w-[calc(66.666%-2rem)] z-10' : 'bg-gray-100 cursor-pointer'
+                      className={`relative flex-shrink-0 w-[90vw] md:w-[calc(33.333%-1rem)] rounded-lg overflow-hidden h-[400px] snap-center cursor-pointer transition-all duration-400 ${
+                        expandedIndex === index ? 'md:!w-[calc(66.666%-0.5rem)] z-10' : 'bg-gray-100'
                       }`}
-                      layout
+                      layout="position"
                       initial={false}
-                      onClick={() => handleCardClick(index)}
+                      onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
+                      // Removed auto-close on mouse leave
                       style={{
                         position: 'relative',
                         zIndex: expandedIndex === index ? 10 : 1,
                       }}
                       animate={{
-                        width: expandedIndex === index ? 'calc(66.666% - 1rem)' : 'calc(33.333% - 1rem)',
-                        height: expandedIndex === index ? '500px' : '350px',
+                        width: expandedIndex === index ? 'calc(66.666% - 0.5rem)' : 'calc(33.333% - 1rem)',
+                        height: expandedIndex === index ? (index === 1 ? '450px' : 'auto') : '350px',
                         backgroundColor: expandedIndex === index ? '#000' : '#f3f4f6',
-                        x: expandedIndex === 2 ? 
-                          (index === 0 ? '-95%' : index === 1 ? '-95%' : '-50%') :
-                          expandedIndex === 1 ? 
-                          (index === 0 ? '-15%' : index === 2 ? '10%' : '-5%') :
-                          (expandedIndex === 0 ? (index === 1 ? '20%' : '0') : '0'),
-                        y: '0',
-                        originX: 'left',
-                        originY: 'top',
-                        opacity: expandedIndex !== null && expandedIndex !== index ? 0.7 : 1,
-                        scale: expandedIndex !== null && expandedIndex !== index ? 0.98 : 1,
+                        x: expandedIndex === index ? 
+                          (index === 2 ? 'calc(-33.333% + 0.5rem)' : 
+                           index === 1 ? 'calc(-16.666% + 0.25rem)' : 0) : 0,
+                        y: expandedIndex === index && index === 1 ? '25px' : 0,
+                        scale: expandedIndex === index && index === 1 ? 1.01 : 1,
+                        marginBottom: expandedIndex === index && index === 1 ? '25px' : '0',
+                        transition: {
+                          duration: 0.4,
+                          ease: 'easeInOut',
+                          when: 'beforeChildren',
+                          staggerChildren: 0.05
+                        }
                       }}
-                      transition={{
-                        duration: 0.3,
-                        ease: [0.16, 1, 0.3, 1],
-                        when: 'beforeChildren',
-                        type: 'tween'
-                      }}
-                      onAnimationComplete={index === expandedIndex ? handleAnimationComplete : undefined}
                     >
                       <motion.div 
-                        className="p-6 h-full relative"
-                        layout="position"
-                        initial={false}
+                        className="p-2 h-full relative"
+                        layout
                         style={{
                           position: 'relative',
                           zIndex: 2,
                           height: '100%',
                           display: 'flex',
                           flexDirection: 'column',
-                          transform: 'translateZ(0)',
-                        }}
-                        animate={{
-                          opacity: expandedIndex === index ? 1 : 0.8,
-                        }}
-                        transition={{
-                          duration: 0.3,
-                          ease: 'easeInOut',
-                          layout: {
-                            duration: 0.3,
-                            ease: [0.16, 1, 0.3, 1]
-                          }
+                          transform: 'translateZ(0)' // Force hardware acceleration
                         }}
                       >
                         <div className="flex flex-col h-full">
                           <div className="flex-1">
                             <div className="flex justify-between w-full items-start">
-                              <span className={`text-sm ${expandedIndex === index ? 'text-gray-400' : 'text-gray-600'}`}>
+                              <span className="text-sm text-gray-400">
                                 {item.number}
                               </span>
                             </div>
@@ -347,61 +106,34 @@ export default function AboutPage() {
                           </div>
                           
                           <motion.div 
-                            className="mt-0 overflow-hidden"
+                            className="mt-0"
                             layout
-                            initial={false}
-                            transition={{
-                              duration: 0.3,
-                              ease: [0.16, 1, 0.3, 1],
-                            }}
                           >
-                            <AnimatePresence mode="wait">
-                              {expandedIndex === index ? (
-                                <motion.div 
-                                  key={`expanded-${index}`}
-                                  initial={{ opacity: 0, y: 10 }}
-                                  animate={{ opacity: 1, y: 0 }}
-                                  exit={{ opacity: 0, y: -10 }}
-                                  transition={{ duration: 0.2 }}
-                                  className="flex gap-8 mt-2"
-                                >
-                                  <div className="max-w-md">
-                                    <p className="text-sm text-white/80 leading-relaxed">
-                                      {item.description}
-                                    </p>
-                                  </div>
-                                  <div className="w-80 flex-shrink-0">
-                                    <Accordion items={item.accordionItems} />
-                                  </div>
-                                </motion.div>
-                              ) : (
-                                <motion.p 
-                                  key={`collapsed-${index}`}
-                                  initial={{ opacity: 0 }}
-                                  animate={{ opacity: 1 }}
-                                  exit={{ opacity: 0 }}
-                                  transition={{ duration: 0.2 }}
-                                  className="max-w-sm text-black font-book text-sm leading-relaxed mt-auto"
-                                >
-                                  {item.description}
-                                </motion.p>
-                              )}
-                            </AnimatePresence>
+                            {expandedIndex === index ? (
+                              <div className="flex gap-8 mt-2">
+                                <div className="max-w-md">
+                                  <p className="text-sm text-white/80 leading-relaxed">
+                                    {item.description}
+                                  </p>
+                                </div>
+                                <div className="w-80 flex-shrink-0">
+                                  <Accordion items={item.accordionItems} />
+                                </div>
+                              </div>
+                            ) : (
+                              <p className="max-w-sm text-black font-book text-sm leading-relaxed mt-auto">
+                                {item.description}
+                              </p>
+                            )}
                           </motion.div>
                         </div>
                         
                         {/* Bottom-right arrow that appears on hover */}
                         <div 
-                          className={`absolute bottom-4 right-4 transition-opacity duration-300 cursor-pointer ${
-                            expandedIndex === index ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
-                          }`}
+                          className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                           onClick={(e) => {
                             e.stopPropagation();
-                            if (expandedIndex === index) {
-                              setExpandedIndex(null);
-                            } else {
-                              handleCardClick(index);
-                            }
+                            setExpandedIndex(expandedIndex === index ? null : index);
                           }}
                         >
                           <svg 
@@ -904,7 +636,6 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-      </section>
     </MainLayout>
   );
 }

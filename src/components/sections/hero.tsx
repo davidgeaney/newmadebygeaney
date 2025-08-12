@@ -35,8 +35,14 @@ export default function HeroSection() {
       {/* Hero Content - Positioned in top-left corner */}
       <div className="w-full pt-4 pl-4">
         <div>
-          <Link href="/" className="block text-4xl font-medium text-black mb-4 tracking-tight hover:opacity-80 transition-opacity">
-            MADE BY GEANEY
+          <Link href="/" className="block mb-2 hover:opacity-80 transition-opacity w-48 md:w-64">
+            <img 
+              src="/images/logo.svg" 
+              alt="Made By Geaney" 
+              className="w-full h-auto"
+              width={264}
+              height={88}
+            />
           </Link>
           <div className="flex items-center space-x-2 mb-4 cursor-default">
             <div className={`w-2 h-2 rounded-full ${isAvailable ? 'bg-green-500' : 'bg-red-500'}`}></div>
@@ -50,7 +56,7 @@ export default function HeroSection() {
               </span>
             </div>
           </div>
-          <p className="text-xl font-book text-black max-w-lg leading-relaxed">
+          <p className="text-xl font-book text-black max-w-lg">
           We design and build fully custom websites that look sharp, load fast, and are built to convert the right visitors into customers.
           </p>
         </div>
