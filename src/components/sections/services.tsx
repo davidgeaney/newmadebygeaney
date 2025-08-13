@@ -27,7 +27,7 @@ export default function ServicesSection() {
       <div className="w-full">
         {/* Full-width subtle divider line */}
         <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mb-4">
-          <div className="h-px bg-gray-200"></div>
+          <div className="h-[0.5px] bg-gray-200"></div>
         </div>
         
         {/* Content container with side padding */}

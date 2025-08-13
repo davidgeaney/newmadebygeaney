@@ -31,9 +31,9 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="bg-white relative pb-24 font-untitled-sans">
+    <section className="fixed top-0 left-0 right-0 h-screen bg-white z-10 font-untitled-sans flex flex-col">
       {/* Hero Content - Positioned in top-left corner */}
-      <div className="w-full pt-4 pl-4">
+      <div className="w-full pt-4 pl-4 pb-4">
         <div>
           <Link href="/" className="block mb-2 hover:opacity-80 transition-opacity w-48 md:w-64">
             <img 
@@ -56,9 +56,7 @@ export default function HeroSection() {
               </span>
             </div>
           </div>
-          <p className="text-xl font-book text-black max-w-lg">
-          We design and build fully custom websites that look sharp, load fast, and are built to convert the right visitors into customers.
-          </p>
+
         </div>
       </div>
 

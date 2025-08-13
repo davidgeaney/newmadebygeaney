@@ -17,10 +17,10 @@ const Navbar = dynamic(() => import('@/components/ui/navbar'), {
 
 export default function Home() {
   return (
-    <>
+    <div className="relative">
       <Navbar />
-      <main className="flex-grow font-untitled-sans">
-        <HeroSection />
+      <HeroSection />
+      <div className="relative z-20 bg-white" style={{ marginTop: '40vh' }}>
         <WorkHorizontal />
         <ServicesSection />
         <div className="mt-16">
@@ -28,8 +28,8 @@ export default function Home() {
         </div>
         <FAQSection />
         <ContactSection />
-      </main>
-      <Footer />
-    </>
+        <Footer />
+      </div>
+    </div>
   );
 }

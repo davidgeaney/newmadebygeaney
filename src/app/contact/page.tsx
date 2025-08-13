@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import Footer from '@/components/sections/footer';
 import dynamic from 'next/dynamic';
+import MainLayout from '@/components/layouts/main-layout';
+import HeroSection from '@/components/sections/hero';
+import Footer from '@/components/sections/footer';
 
 // Dynamically import the Navbar component with SSR disabled
 const Navbar = dynamic(() => import('@/components/ui/navbar'), { 
@@ -87,42 +89,16 @@ function ContactPageContent() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar />
-      {/* Hero Section */}
-      <section className="bg-white relative">
-        <div className="w-full pt-4 pl-4">
-          <div>
-            <Link href="/" className="block mb-2 hover:opacity-80 transition-opacity w-48 md:w-64">
-              <img 
-                src="/images/logo.svg" 
-                alt="Made By Geaney" 
-                className="w-full h-auto"
-                width={264}
-                height={88}
-              />
-            </Link>
-            <div className="flex items-center space-x-2 mb-4 cursor-default">
-              <div className={`w-2 h-2 rounded-full ${isAvailable ? 'bg-green-500' : 'bg-red-500'}`}></div>
-              <span className="text-sm font-medium text-gray-700">Donegal</span>
-              <div className="relative group h-[20px] flex items-center">
-                <span className="inline-block text-sm font-mono text-gray-700 transition-opacity duration-200 group-hover:opacity-0 min-w-[100px]">
-                  {currentTime} GMT+1
-                </span>
-                <span className="absolute left-0 text-xs font-mono text-gray-700 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
-                  {isAvailable ? "Here to help :)" : "We're asleep :("}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Full width divider */}
-      <div className="w-full border-t border-gray-200 mt-12"></div>
-      
-      {/* Contact Section */}
-      <div className="flex-1 bg-white">
+    <MainLayout>
+      <div className="relative">
+        <Navbar />
+        <HeroSection />
+        <div className="relative z-20 bg-white" style={{ marginTop: '25vh' }}>
+          {/* Full width line divider */}
+          <div className="w-screen h-[0.5px] bg-gray-200 mb-4"></div>
+          
+          {/* Contact Section */}
+          <div className="px-4">
         <div className="w-full pt-0 pl-4">
           <div className="max-w-7xl">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -564,9 +540,11 @@ function ContactPageContent() {
             </div>
           </div>
         </div>
+          </div>
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </MainLayout>
   );
 }
 

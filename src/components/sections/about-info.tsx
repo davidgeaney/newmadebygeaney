@@ -6,7 +6,7 @@ const AboutInfo = () => {
       <div>
         {/* Full-width subtle divider line */}
         <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mb-6">
-          <div className="h-px bg-gray-200"></div>
+          <div className="h-[0.5px] bg-gray-200"></div>
         </div>
         <p className="text-xl text-black max-w-lg leading-relaxed">
           <span className="text-gray-600">About</span> We're a creative studio focused on building meaningful digital experiences that make an impact.
@@ -59,7 +59,7 @@ const AboutInfo = () => {
                 <div>ROLE</div>
                 <div className="text-right">YEAR</div>
               </div>
-              <div className="border-b border-gray-200"></div>
+              <div className="border-b border-gray-100 pb-3" style={{ borderBottomWidth: '0.5px' }}></div>
             </div>
             <div className="space-y-2">
               <div className="grid grid-cols-3 gap-4 border-b border-gray-100 pb-3">
@@ -84,7 +84,7 @@ const AboutInfo = () => {
           <div>
             <div className="mb-4">
               <h2 className="text-sm font-normal uppercase tracking-wider text-gray-500 mb-2">Awards</h2>
-              <div className="border-b border-gray-200"></div>
+              <div className="border-b border-gray-100 pb-3" style={{ borderBottomWidth: '0.5px' }}></div>
             </div>
             <div className="space-y-3">
               <div className="flex justify-between items-baseline border-b border-gray-100 pb-3">
