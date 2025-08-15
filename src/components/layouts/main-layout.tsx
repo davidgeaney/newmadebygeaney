@@ -15,12 +15,14 @@ interface MainLayoutProps {
 
 export default function MainLayout({ children }: MainLayoutProps) {
   return (
-    <>
+    <div className="flex flex-col min-h-screen bg-white">
       <Navbar />
-      <main className="flex-grow">
+      <main className="flex-grow pb-16">
         {children}
       </main>
-      <Footer />
-    </>
+      <div className="w-full bg-white border-t border-gray-200">
+        <Footer />
+      </div>
+    </div>
   );
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useRef, useState } from 'react';
 
 const LOGOS = [
   { id: 1, name: 'VeeFriends', src: '/images/logos/veefriends.svg' },
@@ -11,14 +11,15 @@ const LOGOS = [
 ];
 
 // Create multiple sets of logos for smooth infinite scroll
-const LOGO_SETS = 3; // Number of times to repeat the logos for smooth scrolling
+const LOGO_SETS = 2; // Two identical sets for seamless looping
 
 export default function LogoCarousel() {
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
   
-  // Create multiple sets of logos for smooth infinite scroll
-  const duplicatedLogos = Array(LOGO_SETS).fill(LOGOS).flat();
+  // Create three sets of logos for smoother infinite scrolling
+  const duplicatedLogos = [...LOGOS, ...LOGOS, ...LOGOS];
 
   return (
     <section className="py-16 bg-white overflow-hidden relative">
@@ -28,7 +29,7 @@ export default function LogoCarousel() {
             transform: translateX(0);
           }
           100% {
-            transform: translateX(calc(-100% / ${LOGOS.length} * ${LOGOS.length * (LOGO_SETS - 1)}));
+            transform: translateX(calc(-100% / 2));
           }
         }
         @media (prefers-reduced-motion: reduce) {
@@ -63,29 +64,37 @@ export default function LogoCarousel() {
         <div className="relative w-full" ref={containerRef}>
           <div 
             ref={scrollerRef}
-            className="flex items-center gap-8 w-max animate-scroll whitespace-nowrap"
+            className="flex items-center gap-2 w-max whitespace-nowrap"
             style={{
-              animationName: 'scroll',
-              animationDuration: '30s',
-              animationTimingFunction: 'linear',
-              animationIterationCount: 'infinite',
-              animationDelay: '0s',
-              animationDirection: 'normal'
+              animation: 'scroll 40s linear infinite',
+              animationPlayState: isPaused ? 'paused' : 'running',
+              transition: 'animation-play-state 0.2s ease-out'
             }}
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
             data-animate="true"
           >
             {duplicatedLogos.map((logo, index) => (
               <div 
                 key={`${logo.id}-${index}`} 
-                className="relative h-16 w-32 flex-shrink-0 flex items-center justify-center"
+                className="group relative h-24 w-56 flex-shrink-0 flex items-center justify-center"
               >
-                <div className="bg-white p-4 rounded-lg flex items-center justify-center h-full w-full">
+                <div className="bg-gray-100 p-4 rounded-lg flex items-center justify-center h-24 w-56 transition-all duration-300 group-hover:bg-black">
                   <img 
                     src={logo.src} 
                     alt={logo.name} 
-                    className="h-full w-auto object-contain"
+                    className="h-3/5 w-auto object-contain transition-all duration-300 group-hover:invert"
                     loading="lazy"
                   />
+                  <svg 
+                    className="absolute top-2 right-2 w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24" 
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7m0 0H7m10 0v10"></path>
+                  </svg>
                 </div>
               </div>
             ))}

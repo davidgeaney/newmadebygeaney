@@ -4,7 +4,13 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { untitledSans } from '@/app/fonts';
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  showDescription?: boolean;
+}
+
+export default function HeroSection({ 
+  showDescription = false 
+}: HeroSectionProps = {}) {
   const [currentTime, setCurrentTime] = useState('');
   const [isAvailable, setIsAvailable] = useState(false);
 
@@ -31,17 +37,17 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="fixed top-0 left-0 right-0 h-screen bg-white z-10 font-untitled-sans flex flex-col">
+    <div className="fixed top-0 left-0 right-0 h-screen bg-white z-10 font-untitled-sans flex flex-col">
       {/* Hero Content - Positioned in top-left corner */}
       <div className="w-full pt-4 pl-4 pb-4">
         <div>
-          <Link href="/" className="block mb-2 hover:opacity-80 transition-opacity w-48 md:w-64">
+          <Link href="/" className="block mb-2 hover:opacity-80 transition-opacity w-56 md:w-72">
             <img 
               src="/images/logo.svg" 
               alt="Made By Geaney" 
               className="w-full h-auto"
-              width={264}
-              height={88}
+              width={288}
+              height={96}
             />
           </Link>
           <div className="flex items-center space-x-2 mb-4 cursor-default">
@@ -56,10 +62,13 @@ export default function HeroSection() {
               </span>
             </div>
           </div>
-
+          {showDescription && (
+            <p className="text-xl text-black max-w-lg leading-relaxed">
+              A local web design agency delivering fully custom websites, combining rapid development with strong performance.
+            </p>
+          )}
         </div>
       </div>
-
-    </section>
+    </div>
   )
 }

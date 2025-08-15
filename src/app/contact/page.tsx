@@ -3,16 +3,14 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import MainLayout from '@/components/layouts/main-layout';
 import HeroSection from '@/components/sections/hero';
-import Footer from '@/components/sections/footer';
 
 // Dynamically import the Navbar component with SSR disabled
 const Navbar = dynamic(() => import('@/components/ui/navbar'), { 
   ssr: false 
 });
 
-function ContactPageContent() {
+export default function ContactPage() {
   const [currentTime, setCurrentTime] = useState('');
   const [isAvailable, setIsAvailable] = useState(false);
   const [formData, setFormData] = useState({
@@ -89,13 +87,12 @@ function ContactPageContent() {
   };
 
   return (
-    <MainLayout>
-      <div className="relative">
-        <Navbar />
-        <HeroSection />
-        <div className="relative z-20 bg-white" style={{ marginTop: '25vh' }}>
-          {/* Full width line divider */}
-          <div className="w-screen h-[0.5px] bg-gray-200 mb-4"></div>
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
+      <HeroSection />
+      <div className="relative z-20 bg-white pb-20 flex-grow" style={{ marginTop: '40vh' }}>
+        {/* Full width line divider */}
+        <div className="w-screen h-[0.5px] bg-gray-200 mb-4"></div>
           
           {/* Contact Section */}
           <div className="px-4">
@@ -539,14 +536,10 @@ function ContactPageContent() {
               </div>
             </div>
           </div>
-        </div>
           </div>
         </div>
-        <Footer />
       </div>
-    </MainLayout>
+    </div>
   );
 }
 
-// @ts-ignore
-export default ContactPageContent;

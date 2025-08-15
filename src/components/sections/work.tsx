@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface CaseStudy {
   id: string;
@@ -117,7 +118,7 @@ const CollapsibleSection = ({
     <div className="border-b border-gray-200">
       <button
         onClick={onClick}
-        className="w-full flex justify-between items-center py-3 text-left text-[14px] font-normal text-[#252525] hover:opacity-80 focus:outline-none transition-opacity"
+        className="w-full flex justify-between items-center pb-3 text-left text-[14px] font-normal text-[#252525] hover:opacity-80 focus:outline-none transition-opacity"
       >
         {title}
         <motion.span 
@@ -168,20 +169,27 @@ const WorkSection = () => {
   };
 
   return (
-    <section className="py-10">
+    <section className="pb-10">
       <div className="w-full">
         {/* Full-width subtle divider line */}
         <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mb-4">
-          <div className="h-px bg-gray-200"></div>
+          <div className="h-[0.5px] bg-gray-200"></div>
         </div>
         
         {/* Content container with side padding */}
-        <div className="px-4 md:px-6">
+        <div className="px-4">
           {/* Section Header - Single Line Layout */}
-          <div className="flex flex-col md:flex-row md:items-start justify-between mb-12 gap-4">
-            <p className="text-2xl text-black max-w-xl">
-              <span className="text-2xl text-gray-600 mr-2">Work</span> Selected projects and case studies that showcase my approach to design and problem-solving.
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-8">
+            <p className="text-xl text-black max-w-lg">
+              <span className="text-xl text-gray-600 mr-2">Work</span> Helping businesses tell their story online through custom-built, impactful websites.
             </p>
+            <Link 
+              href="/work"
+              className="group relative text-sm text-black bg-gray-100 px-4 py-2.5 pr-6 rounded-full hover:pr-8 hover:bg-black hover:text-white transition-all duration-300 flex items-center w-fit overflow-hidden shrink-0"
+            >
+              <span>View all projects</span>
+              <ArrowRightIcon className="absolute w-3.5 h-3.5 right-1 opacity-0 group-hover:opacity-100 group-hover:right-2 transition-all duration-200 text-white" />
+            </Link>
           </div>
           
           <div className="w-full">

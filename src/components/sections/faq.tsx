@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import { useState, useRef, useEffect } from 'react';
+import { PlusIcon, MinusIcon } from '@heroicons/react/24/outline';
 
 type FAQItem = {
   question: string;
@@ -10,6 +10,8 @@ type FAQItem = {
 
 export default function FAQSection() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [heights, setHeights] = useState<{[key: number]: number}>({});
+  const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const faqs: FAQItem[] = [
     {
@@ -38,8 +40,26 @@ export default function FAQSection() {
     }
   ];
 
+  // Store heights of all content elements
+  useEffect(() => {
+    const newHeights: {[key: number]: number} = {};
+    contentRefs.current.forEach((ref, index) => {
+      if (ref) {
+        newHeights[index] = ref.scrollHeight;
+      }
+    });
+    setHeights(newHeights);
+  }, []);
+
   const toggleAccordion = (index: number) => {
-    setActiveIndex(activeIndex === index ? null : index);
+    if (activeIndex === index) {
+      // If clicking the currently open item, close it
+      setActiveIndex(null);
+    } else {
+      // If clicking a different item, close the current one first, then open the new one
+      setActiveIndex(null);
+      setTimeout(() => setActiveIndex(index), 300); // Wait for close animation to complete
+    }
   };
 
   return (
@@ -59,30 +79,48 @@ export default function FAQSection() {
           </div>
           
           {/* FAQ Items */}
-          <div className="max-w-4xl pl-1">
+          <div className="max-w-4xl pl-1 space-y-3">
             {faqs.map((faq, index) => (
               <div 
                 key={index} 
-                className="border-b border-gray-200 py-4"
+                className="rounded-lg overflow-hidden"
               >
                 <button
-                  className="w-full flex justify-between items-center text-left py-3 focus:outline-none group"
+                  className={`w-full flex justify-between items-center text-left p-4 focus:outline-none bg-gray-100 ${
+                    activeIndex === index ? 'bg-gray-100' : ''
+                  }`}
                   onClick={() => toggleAccordion(index)}
+                  aria-expanded={activeIndex === index}
+                  aria-controls={`faq-content-${index}`}
                 >
-                  <h3 className="text-lg font-book text-black group-hover:text-gray-700 transition-colors">
+                  <h3 className="text-lg font-book text-black pr-4">
                     {faq.question}
                   </h3>
-                  <ChevronDownIcon 
-                    className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${activeIndex === index ? 'transform rotate-180' : ''}`} 
-                    aria-hidden="true"
-                  />
+                  <div className="flex-shrink-0 ml-2">
+                    {activeIndex === index ? (
+                      <MinusIcon className="w-5 h-5 text-gray-600" />
+                    ) : (
+                      <PlusIcon className="w-5 h-5 text-gray-600" />
+                    )}
+                  </div>
                 </button>
-                <div 
-                  className={`overflow-hidden transition-all duration-300 ${activeIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
+                
+                <div
+                  id={`faq-content-${index}`}
+                  ref={el => contentRefs.current[index] = el}
+                  className={`transition-all duration-300 ease-in-out ${
+                    activeIndex === index 
+                      ? 'opacity-100' 
+                      : 'opacity-0 h-0 overflow-hidden'
+                  }`}
+                  style={{
+                    height: activeIndex === index ? `${heights[index]}px` : '0px',
+                    visibility: activeIndex === index ? 'visible' : 'hidden'
+                  }}
                   aria-hidden={activeIndex !== index}
                 >
-                  <div className="pb-4 pr-8">
-                    <p className="text-gray-600">{faq.answer}</p>
+                  <div className="p-5 pt-2 text-gray-600 bg-gray-100">
+                    <p>{faq.answer}</p>
                   </div>
                 </div>
               </div>

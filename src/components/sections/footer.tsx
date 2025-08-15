@@ -97,7 +97,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-white text-black py-10 -mt-px z-0">
+    <footer className="w-full py-10 bg-white">
       <div className="w-full">
         {/* Full-width subtle divider line */}
         <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mb-4">
@@ -105,7 +105,7 @@ export default function Footer() {
         </div>
         
         {/* Content container with side padding */}
-        <div className="px-4 md:px-4">
+        <div className="px-4">
           <div className="flex flex-col lg:flex-row">
             {/* Left side - Contact Info */}
             <div className="space-y-3 mb-8 lg:mb-0 lg:pr-8">

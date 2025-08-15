@@ -8,17 +8,17 @@ export default function ServicesSection() {
     {
       number: '01',
       title: 'Design',
-      description: 'Following our iterative, data-driven and collaborative process we ensure that our designs are both engaging and authentic. The projects we produce are tools which often have an intended job and goal, because of this we implement performance optimised design philosophies based on behavioural engineering.'
+      description: 'We draw inspiration from proven designs and combine it with a collaborative, data-driven process to create work that is both engaging and authentic. Every layout, color, and interaction is intentional, built to serve a clear purpose. Not just visuals, but solutions built to perform and deliver results.'
     },
     {
       number: '02',
       title: 'Develop',
-      description: 'Utilising the best of current web technologies, we deliver high performance projects of many scales. Built with leading and proven platforms with modern build methodologies we create impactful, engaging user-experiences whilst providing robust, adaptive, future-focused solutions.'
+      description: 'By combining advanced frameworks with AI-assisted workflows, we craft websites that perform exceptionally and remain easy to manage. Keeping pace with modern tech means every build is faster, more efficient, and ready for whatever comes next.'
     },
     {
       number: '03',
-      title: 'Grow',
-      description: 'Focused on continual website optimisation, rooted in real user data analysis and the identification of conversion barriers. While continuously monitoring performance, we align our strategies with industry best practices to offer data-driven solutions that span digital marketing, enhancements to the customer experience, and website optimisations.'
+      title: 'Scale',
+      description: 'We continually refine and optimise websites using real user data, identifying friction points and conversion barriers. By monitoring performance, following best practices, and ensuring SEO-friendly implementations, we deliver improvements that enhance user experience, boost engagement, and grow your online presence.'
     }
   ];
 
@@ -36,7 +36,7 @@ export default function ServicesSection() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-8">
             <div className="max-w-2xl">
               <h2 className="text-xl text-black max-w-lg">
-                <span className="text-gray-600 mr-2">Services</span> We specialise in digital design, development and creative strategy; uncovering insights, design concepts & developing solutions – both large and small.
+                <span className="text-gray-600 mr-2">Services</span> From design to code, we create websites that are built for your business, not for someone else’s template.
               </h2>
             </div>
             <Link 
@@ -57,7 +57,7 @@ export default function ServicesSection() {
                 className="group relative p-3 h-full block bg-[#F0F0F0] cursor-pointer rounded-lg overflow-hidden"
               >
                 <div className="flex flex-col h-full">
-                  <div className="mb-8">
+                  <div className="mb-14">
                     <span className="text-sm text-black block">{service.number}</span>
                     <h3 className="text-xl text-black">{service.title}</h3>
                   </div>
