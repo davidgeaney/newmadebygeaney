@@ -107,7 +107,7 @@ export default function FAQSection() {
                 
                 <div
                   id={`faq-content-${index}`}
-                  ref={el => contentRefs.current[index] = el}
+                  ref={el => { if (el) contentRefs.current[index] = el }}
                   className={`transition-all duration-300 ease-in-out ${
                     activeIndex === index 
                       ? 'opacity-100' 
