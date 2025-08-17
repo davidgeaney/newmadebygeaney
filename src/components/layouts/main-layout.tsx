@@ -15,12 +15,12 @@ interface MainLayoutProps {
 
 export default function MainLayout({ children }: MainLayoutProps) {
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <div className="flex flex-col min-h-screen bg-white relative">
       <Navbar />
-      <main className="flex-grow pb-16">
+      <main className="flex-grow overflow-auto">
         {children}
       </main>
-      <div className="w-full bg-white border-t border-gray-200">
+      <div className="fixed bottom-0 left-0 right-0 z-10 bg-white border-t border-gray-200">
         <Footer />
       </div>
     </div>

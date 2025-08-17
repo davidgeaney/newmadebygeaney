@@ -13,7 +13,25 @@ const Navbar = dynamic(() => import('@/components/ui/navbar'), {
 export default function ContactPage() {
   const [currentTime, setCurrentTime] = useState('');
   const [isAvailable, setIsAvailable] = useState(false);
-  const [formData, setFormData] = useState({
+  interface FormData {
+    firstName: string;
+    lastName: string;
+    email: string;
+    position: string;
+    businessName: string;
+    businessDescription: string;
+    location: string;
+    yearsOperating: string;
+    projectType: string;
+    projectDescription: string;
+    budget: string;
+    message: string;
+    helpType: string;
+    timeline: string;
+    referenceSites: string;
+  }
+
+  const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',
     email: '',
@@ -26,7 +44,9 @@ export default function ContactPage() {
     projectDescription: '',
     budget: '',
     message: '',
-    helpType: ''
+    helpType: '',
+    timeline: '',
+    referenceSites: ''
   });
   
   const [expandedSections, setExpandedSections] = useState<{[key: number]: boolean}>({
@@ -90,13 +110,13 @@ export default function ContactPage() {
     <div className="flex flex-col min-h-screen">
       <Navbar />
       <HeroSection />
-      <div className="relative z-20 bg-white pb-20 flex-grow" style={{ marginTop: '40vh' }}>
+      <div className="relative z-20 bg-white pb-20 flex-grow" style={{ marginTop: '25vh' }}>
         {/* Full width line divider */}
         <div className="w-screen h-[0.5px] bg-gray-200 mb-4"></div>
           
           {/* Contact Section */}
           <div className="px-4">
-        <div className="w-full pt-0 pl-4">
+        <div className="w-full">
           <div className="max-w-7xl">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Left column - Contact info */}
@@ -126,17 +146,17 @@ export default function ContactPage() {
                 </div>
 
                 {/* Socials */}
-                <div className="mb-12">
+                <div className="mb-2">
                   <div className="flex gap-12">
                     <div className="w-24 flex-shrink-0">
                       <h3 className="text-sm font-medium text-gray-400">Socials</h3>
                     </div>
-                    <div className="space-y-2">
+                    <div className="flex flex-row gap-2">
                       <a 
                         href="https://instagram.com/newmadebygeaney" 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="group relative text-sm text-black bg-gray-100 px-4 py-2 pr-6 rounded-full hover:pr-8 hover:bg-black hover:text-white transition-all duration-200 flex items-center w-fit overflow-hidden"
+                        className="group relative text-sm text-black bg-[#F0F0F0] px-4 py-2 pr-6 rounded-full hover:pr-8 hover:bg-black hover:text-white transition-all duration-200 flex items-center w-fit overflow-hidden"
                       >
                         <span>Instagram</span>
                         <svg className="absolute w-3.5 h-3.5 right-1 opacity-0 group-hover:opacity-100 group-hover:right-2 transition-all duration-200 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -147,7 +167,7 @@ export default function ContactPage() {
                         href="https://linkedin.com/company/newmadebygeaney" 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="group relative text-sm text-black bg-gray-100 px-4 py-2 pr-6 rounded-full hover:pr-8 hover:bg-black hover:text-white transition-all duration-200 flex items-center w-fit overflow-hidden"
+                        className="group relative text-sm text-black bg-[#F0F0F0] px-4 py-2 pr-6 rounded-full hover:pr-8 hover:bg-black hover:text-white transition-all duration-200 flex items-center w-fit overflow-hidden"
                       >
                         <span>LinkedIn</span>
                         <svg className="absolute w-3.5 h-3.5 right-1 opacity-0 group-hover:opacity-100 group-hover:right-2 transition-all duration-200 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -164,12 +184,12 @@ export default function ContactPage() {
                     <div className="w-24 flex-shrink-0">
                       <h3 className="text-sm font-medium text-gray-400">Playlists</h3>
                     </div>
-                    <div className="space-y-2">
+                    <div className="flex flex-row gap-2">
                       <a 
                         href="https://open.spotify.com/playlist/your-playlist-1" 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="group relative text-sm text-black bg-gray-100 px-4 py-2 pr-6 rounded-full hover:pr-8 hover:bg-black hover:text-white transition-all duration-200 flex items-center w-fit overflow-hidden"
+                        className="group relative text-sm text-black bg-[#F0F0F0] px-4 py-2 pr-6 rounded-full hover:pr-8 hover:bg-black hover:text-white transition-all duration-200 flex items-center w-fit overflow-hidden"
                       >
                         <span>Studio Vibes</span>
                         <svg className="absolute w-3.5 h-3.5 right-1 opacity-0 group-hover:opacity-100 group-hover:right-2 transition-all duration-200 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -180,7 +200,7 @@ export default function ContactPage() {
                         href="https://open.spotify.com/playlist/your-playlist-2" 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="group relative text-sm text-black bg-gray-100 px-4 py-2 pr-6 rounded-full hover:pr-8 hover:bg-black hover:text-white transition-all duration-200 flex items-center w-fit overflow-hidden"
+                        className="group relative text-sm text-black bg-[#F0F0F0] px-4 py-2 pr-6 rounded-full hover:pr-8 hover:bg-black hover:text-white transition-all duration-200 flex items-center w-fit overflow-hidden"
                       >
                         <span>Creative Flow</span>
                         <svg className="absolute w-3.5 h-3.5 right-1 opacity-0 group-hover:opacity-100 group-hover:right-2 transition-all duration-200 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -207,7 +227,7 @@ export default function ContactPage() {
                             type="text"
                             name="newsletterFirstName"
                             placeholder="First name"
-                            className="w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
+                            className="w-full px-4 py-2 bg-[#F0F0F0] border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
                           />
                         </div>
                         <div>
@@ -215,7 +235,7 @@ export default function ContactPage() {
                             type="text"
                             name="newsletterLastName"
                             placeholder="Last name"
-                            className="w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
+                            className="w-full px-4 py-2 bg-[#F0F0F0] border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
                           />
                         </div>
                         <div>
@@ -224,13 +244,13 @@ export default function ContactPage() {
                             name="newsletterEmail"
                             placeholder="Email address"
                             required
-                            className="w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
+                            className="w-full px-4 py-2 bg-[#F0F0F0] border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
                           />
                         </div>
                         <div className="flex justify-end mt-2">
                           <button
                             type="submit"
-                            className="group relative text-sm text-black bg-gray-100 px-4 py-2.5 pr-6 rounded-full hover:pr-8 hover:bg-black hover:text-white transition-all duration-200 flex items-center w-fit overflow-hidden"
+                            className="group relative text-sm text-black bg-[#F0F0F0] px-4 py-2.5 pr-6 rounded-full hover:pr-8 hover:bg-black hover:text-white transition-all duration-200 flex items-center w-fit overflow-hidden"
                           >
                             Subscribe
                             <svg className="absolute w-3.5 h-3.5 right-1 opacity-0 group-hover:opacity-100 group-hover:right-2 transition-all duration-200 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -262,16 +282,19 @@ export default function ContactPage() {
                             value={formData.helpType}
                             onChange={handleInputChange}
                             required
-                            className="w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none pr-8"
+                            className="w-full px-4 py-2 bg-[#F0F0F0] border-0 rounded-xl text-sm focus:ring-0 focus:outline-none pr-8"
                             style={{
                               WebkitAppearance: 'none',
                               MozAppearance: 'none',
                               backgroundImage: 'none'
                             }}
                           >
-                            <option value="">I have a new project</option>
-                            <option value="partnership">Partnership opportunity</option>
-                            <option value="general">General inquiry</option>
+                            <option value="">Select inquiry type...</option>
+                            <option value="new-project">I have a new project</option>
+                            <option value="existing-project">About an existing project</option>
+                            <option value="careers">Careers/Job opportunities</option>
+                            <option value="partnership">Partnership inquiry</option>
+                            <option value="general">General question</option>
                           </select>
                           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
                             <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -299,7 +322,7 @@ export default function ContactPage() {
                               value={formData.firstName}
                               onChange={handleInputChange}
                               required
-                              className="w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
+                              className="w-full px-4 py-2 bg-[#F0F0F0] border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
                             />
                           </div>
                           <div>
@@ -311,7 +334,7 @@ export default function ContactPage() {
                               value={formData.lastName}
                               onChange={handleInputChange}
                               required
-                              className="w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
+                              className="w-full px-4 py-2 bg-[#F0F0F0] border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
                             />
                           </div>
                         </div>
@@ -324,7 +347,7 @@ export default function ContactPage() {
                             value={formData.position}
                             onChange={handleInputChange}
                             required
-                            className="w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
+                            className="w-full px-4 py-2 bg-[#F0F0F0] border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
                           />
                         </div>
                         <div>
@@ -336,7 +359,7 @@ export default function ContactPage() {
                             value={formData.email}
                             onChange={handleInputChange}
                             required
-                            className="w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
+                            className="w-full px-4 py-2 bg-[#F0F0F0] border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
                           />
                         </div>
                       </div>
@@ -358,7 +381,7 @@ export default function ContactPage() {
                             value={formData.businessName}
                             onChange={handleInputChange}
                             required
-                            className="w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
+                            className="w-full px-4 py-2 bg-[#F0F0F0] border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
                           />
                         </div>
                         <div>
@@ -370,7 +393,7 @@ export default function ContactPage() {
                             value={formData.businessDescription}
                             onChange={handleInputChange}
                             required
-                            className="w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
+                            className="w-full px-4 py-2 bg-[#F0F0F0] border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
                           />
                         </div>
                         <div>
@@ -382,7 +405,7 @@ export default function ContactPage() {
                             value={formData.location}
                             onChange={handleInputChange}
                             required
-                            className="w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
+                            className="w-full px-4 py-2 bg-[#F0F0F0] border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
                           />
                         </div>
                         <div>
@@ -393,7 +416,7 @@ export default function ContactPage() {
                               value={formData.yearsOperating}
                               onChange={handleInputChange}
                               required
-                              className="w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none pr-8"
+                              className="w-full px-4 py-2 bg-[#F0F0F0] border-0 rounded-xl text-sm focus:ring-0 focus:outline-none pr-8"
                             style={{
                               WebkitAppearance: 'none',
                               MozAppearance: 'none',
@@ -422,29 +445,92 @@ export default function ContactPage() {
                         <label className="text-black text-sm whitespace-nowrap">Tell us about the project</label>
                       </div>
                       <div className="col-span-8 space-y-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-sm text-gray-500 mb-1">Project Type</label>
+                            <div className="relative">
+                              <select
+                                name="projectType"
+                                value={formData.projectType}
+                                onChange={handleInputChange}
+                                required
+                                className="w-full px-4 py-2 bg-[#F0F0F0] border-0 rounded-xl text-sm focus:ring-0 focus:outline-none pr-8"
+                                style={{
+                                  WebkitAppearance: 'none',
+                                  MozAppearance: 'none',
+                                  backgroundImage: 'none'
+                                }}
+                              >
+                                <option value="">Select project category...</option>
+                                <option value="business-website">Business Website</option>
+                                <option value="portfolio">Portfolio Site</option>
+                                <option value="ecommerce">eCommerce Store</option>
+                                <option value="web-app">Web Application</option>
+                                <option value="saas">SaaS Platform</option>
+                                <option value="membership">Membership Site</option>
+                                <option value="nonprofit">Non-Profit Website</option>
+                                <option value="other">Other (please describe)</option>
+                              </select>
+                              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
+                                <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div>
+                            <label className="block text-sm text-gray-500 mb-1">Project Budget</label>
+                            <div className="relative">
+                              <select
+                                name="budget"
+                                value={formData.budget}
+                                onChange={handleInputChange}
+                                required
+                                className="w-full px-4 py-2 bg-[#F0F0F0] border-0 rounded-xl text-sm focus:ring-0 focus:outline-none pr-8"
+                                style={{
+                                  WebkitAppearance: 'none',
+                                  MozAppearance: 'none',
+                                  backgroundImage: 'none'
+                                }}
+                              >
+                                <option value="">Select budget range...</option>
+                                <option value="lt2k">Under €2,000</option>
+                                <option value="2k-5k">€2,000 - €5,000</option>
+                                <option value="5k-10k">€5,000 - €10,000</option>
+                                <option value="10k-20k">€10,000 - €20,000</option>
+                                <option value="20k+">€20,000+</option>
+                                <option value="not-sure">Not sure yet</option>
+                              </select>
+                              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
+                                <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
                         <div>
-                          <label className="block text-sm text-gray-500 mb-1">What best describes your project?</label>
+                          <label className="block text-sm text-gray-500 mb-1">Project Timeline</label>
                           <div className="relative">
                             <select
-                              name="projectType"
-                              value={formData.projectType}
+                              name="timeline"
+                              value={formData.timeline || ''}
                               onChange={handleInputChange}
-                              required
-                              className="w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none pr-8"
-                            style={{
-                              WebkitAppearance: 'none',
-                              MozAppearance: 'none',
-                              backgroundImage: 'none'
-                            }}
+                              className="w-full px-4 py-2 bg-[#F0F0F0] border-0 rounded-xl text-sm focus:ring-0 focus:outline-none pr-8"
+                              style={{
+                                WebkitAppearance: 'none',
+                                MozAppearance: 'none',
+                                backgroundImage: 'none'
+                              }}
                             >
-                              <option value="ecommerce">eCommerce Development</option>
-                              <option value="website">Website Design & Development</option>
-                              <option value="upgrades">Website Upgrades</option>
-                              <option value="consultancy">Digital Consultancy</option>
-                              <option value="media">New Media Project</option>
-                              <option value="charity">Charity Engagement</option>
-                              <option value="artist">Artist Program</option>
-                              <option value="other">Other</option>
+                              <option value="">When would you like to start?</option>
+                              <option value="asap">Immediately</option>
+                              <option value="1month">Within 1 month</option>
+                              <option value="3months">1-3 months</option>
+                              <option value="6months">3-6 months</option>
+                              <option value="flexible">Flexible timeline</option>
                             </select>
                             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
                               <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -453,44 +539,29 @@ export default function ContactPage() {
                             </div>
                           </div>
                         </div>
+
                         <div>
-                          <label className="block text-sm text-gray-500 mb-1">How much are you looking to invest into the project?</label>
-                          <div className="relative">
-                            <select
-                              name="budget"
-                              value={formData.budget}
-                              onChange={handleInputChange}
-                              required
-                              className="w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none pr-8"
-                            style={{
-                              WebkitAppearance: 'none',
-                              MozAppearance: 'none',
-                              backgroundImage: 'none'
-                            }}
-                            >
-                              <option value="lt5k">Less than 5k</option>
-                              <option value="5-10k">5-10k</option>
-                              <option value="10k+">10k+</option>
-                              <option value="deal">We want to make a deal</option>
-                              <option value="sponsorship">We are looking for sponsorship</option>
-                            </select>
-                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
-                              <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                              </svg>
-                            </div>
-                          </div>
-                        </div>
-                        <div>
-                          <label className="block text-sm text-gray-500 mb-1">Describe your project?</label>
+                          <label className="block text-sm text-gray-500 mb-1">Project Description</label>
                           <textarea
                             name="projectDescription"
-                            placeholder="e.g - what problem you're trying to solve, who and where you serve, about your current operations"
+                            placeholder="Tell us about your project goals, target audience, and any specific requirements..."
                             value={formData.projectDescription}
                             onChange={handleInputChange}
                             required
                             rows={4}
-                            className="w-full px-4 py-2 bg-gray-100 border-0 rounded-xl text-sm focus:ring-0 focus:outline-none resize-none"
+                            className="w-full px-4 py-2 bg-[#F0F0F0] border-0 rounded-xl text-sm focus:ring-0 focus:outline-none resize-none"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-sm text-gray-500 mb-1">Reference Websites (optional)</label>
+                          <input
+                            type="text"
+                            name="referenceSites"
+                            placeholder="Links to websites you like or use as reference"
+                            value={formData.referenceSites || ''}
+                            onChange={handleInputChange}
+                            className="w-full px-4 py-2 bg-[#F0F0F0] border-0 rounded-xl text-sm focus:ring-0 focus:outline-none"
                           />
                         </div>
                       </div>
@@ -542,4 +613,3 @@ export default function ContactPage() {
     </div>
   );
 }
-

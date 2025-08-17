@@ -44,7 +44,7 @@ export default function ProcessSection() {
           {/* Section Header - Single Line Layout */}
           <div className="flex flex-col md:flex-row md:items-start justify-between mb-12 gap-4">
             <h2 className="text-xl text-black max-w-2xl">
-              <span className="text-gray-600 mr-2">Process</span> Our proven approach to delivering exceptional results through collaboration, strategy, and innovative problem-solving – from initial concept to successful launch.
+              <span className="text-gray-600 mr-2">Process</span> Our step-by-step approach makes projects clear and manageable, guiding you with structure and transparency from the first idea all the way to a finished website.
             </h2>
             
             <Link 
@@ -61,17 +61,17 @@ export default function ProcessSection() {
             {processSteps.map((step, index) => (
               <div
                 key={index}
-                className={`${step.bgColor} rounded-lg px-6 pt-6 pb-8 h-0 min-h-[280px] pb-[80%] sm:pb-[70%] md:pb-[90%] relative`}
+                className={`${step.bgColor} rounded-lg px-6 pt-6 pb-8 h-0 min-h-[280px] pb-[80%] sm:pb-[70%] md:pb-[90%] relative transition-all duration-300 hover:bg-black group cursor-pointer`}
               >
                 <div className="flex flex-col h-full">
-                  <span className="text-6xl font-regular text-[#BFC8C5] leading-none mb-6">
+                  <span className="text-6xl font-regular text-[#BFC8C5] leading-none mb-6 group-hover:text-white transition-colors duration-300">
                     {step.number}
                   </span>
                   <div className="mt-auto pt-16 pb-6 sm:pt-20">
-                    <h3 className="text-lg font-book text-black mb-2">
+                    <h3 className="text-lg font-book text-black mb-2 group-hover:text-white transition-colors duration-300">
                       {step.title}
                     </h3>
-                    <p className="text-sm text-gray-500 font-regular leading-relaxed mb-2">
+                    <p className="text-sm text-gray-500 font-regular leading-relaxed mb-2 group-hover:text-gray-300 transition-colors duration-300">
                       {step.description}
                     </p>
                   </div>

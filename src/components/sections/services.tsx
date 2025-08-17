@@ -49,23 +49,23 @@ export default function ServicesSection() {
           </div>
 
           {/* Services Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pb-16">
             {services.map((service, index) => (
               <Link 
                 key={index} 
                 href="/about#process"
-                className="group relative p-3 h-full block bg-[#F0F0F0] cursor-pointer rounded-lg overflow-hidden"
+                className="group relative p-3 h-full block bg-[#F0F0F0] cursor-pointer rounded-lg overflow-hidden transition-colors duration-300 hover:bg-black"
               >
                 <div className="flex flex-col h-full">
                   <div className="mb-14">
-                    <span className="text-sm text-black block">{service.number}</span>
-                    <h3 className="text-xl text-black">{service.title}</h3>
+                    <span className="text-sm text-black group-hover:text-white transition-colors duration-300 block">{service.number}</span>
+                    <h3 className="text-xl text-black group-hover:text-white transition-colors duration-300">{service.title}</h3>
                   </div>
-                  <div className="mt-auto">
-                    <p className="text-sm max-w-sm text-black">{service.description}</p>
+                  <div className="mt-auto relative pr-6">
+                    <p className="text-sm max-w-sm text-black group-hover:text-white transition-colors duration-300">{service.description}</p>
+                    <ArrowRightIcon className="absolute bottom-0 right-0 w-4 h-4 text-black group-hover:text-white opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-1" />
                   </div>
                 </div>
-
               </Link>
             ))}
           </div>

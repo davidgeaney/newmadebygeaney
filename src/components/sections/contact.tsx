@@ -26,7 +26,7 @@ export default function ContactSection() {
   }
 
   return (
-    <section className="pt-4 pl-4">
+    <section className="pt-4 pl-4 relative overflow-visible" style={{ marginBottom: '0' }}>
       <div className="w-full">
         {/* Full-width subtle divider line */}
         <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mb-4">
@@ -151,7 +151,7 @@ export default function ContactSection() {
                   </div>
                   
                   {/* Submit Button */}
-                  <div className="form-submit pt-1 flex justify-end max-w-sm">
+                  <div className="form-submit pt-1 pb-8 flex justify-end max-w-sm">
                     <button
                       type="submit"
                       className="group relative text-sm text-black bg-gray-100 px-4 py-2 pr-6 rounded-full hover:pr-8 hover:bg-black hover:text-white transition-all duration-200 flex items-center w-fit overflow-hidden"
@@ -166,6 +166,7 @@ export default function ContactSection() {
           </div>
         </div>
       </div>
+      <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-b from-black/10 to-transparent" style={{ transform: 'translateY(100%)' }}></div>
     </section>
   )
 }

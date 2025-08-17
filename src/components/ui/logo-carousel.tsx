@@ -5,9 +5,9 @@ import { useRef, useState } from 'react';
 const LOGOS = [
   { id: 1, name: 'VeeFriends', src: '/images/logos/veefriends.svg' },
   { id: 2, name: 'Coldharbour', src: '/images/logos/coldharbour.svg' },
-  { id: 3, name: 'Made by Geaney', src: '/images/logos/madebygeaney-logo.svg' },
-  { id: 4, name: 'VeeFriends', src: '/images/logos/veefriends.svg' },
-  { id: 5, name: 'Coldharbour', src: '/images/logos/coldharbour.svg' },
+  { id: 3, name: 'Made by Geaney', src: '/images/logos/florianpicasso.svg' },
+  { id: 4, name: 'VeeFriends', src: '/images/logos/giza.svg' },
+  { id: 5, name: 'Coldharbour', src: '/images/logos/fullsend.svg' },
 ];
 
 // Create multiple sets of logos for smooth infinite scroll
@@ -46,12 +46,12 @@ export default function LogoCarousel() {
         
         <div className="mb-16">
           <p className="text-2xl text-black max-w-3xl">
-            <span className="text-2xl text-gray-600 mr-2">Partners and Collaborators</span> We work with specialist partners from around the world, using our combined expertise to deliver on the specific needs of our clients using a dedicated workflow process.
+            <span className="text-2xl text-gray-600 mr-2">Clients and Partners</span> From local businesses to global collaborators, our clients and partners trust us to bring clarity, creativity, and results to their projects.
           </p>
           <div className="mb-12 mt-6">
             <a 
               href="#" 
-              className="group relative text-sm text-black bg-gray-100 px-6 py-3 pr-8 rounded-full hover:pr-10 hover:bg-black hover:text-white transition-all duration-200 flex items-center w-fit overflow-hidden"
+              className="group relative text-sm text-black bg-gray-100 px-3 py-2 pr-3 rounded-full hover:pr-10 hover:bg-black hover:text-white transition-all duration-200 flex items-center w-fit overflow-hidden"
             >
               <span>Partner Workflow</span>
               <svg className="absolute w-3.5 h-3.5 right-2 opacity-0 group-hover:opacity-100 group-hover:right-3 transition-all duration-200 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

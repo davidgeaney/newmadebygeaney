@@ -5,14 +5,15 @@ import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Accordion } from '@/components/ui/accordion';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
-import MainLayout from '@/components/layouts/main-layout';
 import HeroSection from '@/components/sections/hero';
+import MainLayout from '@/components/layouts/main-layout';
 import LogoCarousel from '@/components/ui/logo-carousel';
-import Divider from '@/components/ui/divider';
+import { ProcessSection } from '@/components/sections/ProcessSection';
 import Initiatives from '@/components/sections/initiatives';
 import Charities from '@/components/sections/charities';
 import ArtistProgram from '@/components/sections/artist-program';
 import Ventures from '@/components/sections/ventures';
+import Divider from '@/components/ui/divider';
 
 // Dynamically import the Navbar component with SSR disabled
 const Navbar = dynamic(() => import('@/components/ui/navbar'), { 
@@ -35,42 +36,8 @@ interface ProcessItem {
 }
 
 export default function AboutPage() {
-  // State for expanded card index
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-  const [isAnimating, setIsAnimating] = useState<boolean>(false);
-  const [pendingIndex, setPendingIndex] = useState<number | null>(null);
-
-  // Handle card click with animation
-  const handleCardClick = (index: number) => {
-    if (isAnimating) return;
-    
-    if (expandedIndex === index) {
-      // Don't close the card when clicking it - only close via close button or clicking another card
-      return;
-    } else if (expandedIndex !== null) {
-      // If another card is open, close it first, then open the new one
-      setIsAnimating(true);
-      setExpandedIndex(null);
-      setTimeout(() => {
-        setExpandedIndex(index);
-        setTimeout(() => setIsAnimating(false), 300);
-      }, 300);
-    } else {
-      // No card is open, just open the clicked one with animation
-      setIsAnimating(true);
-      setExpandedIndex(index);
-      setTimeout(() => setIsAnimating(false), 300);
-    }
-  };
-
-  // Handle animation completion
-  const handleAnimationComplete = () => {
-    if (pendingIndex !== null) {
-      setExpandedIndex(pendingIndex);
-      setPendingIndex(null);
-      setIsAnimating(false);
-    }
-  };
+  // Keep track of which card is expanded (if any)
+  const [expandedIndex] = useState<number | null>(null);
 
   // Process items data
   const processItems: ProcessItem[] = [
@@ -78,7 +45,7 @@ export default function AboutPage() {
       number: '01',
       step: '01',
       title: 'Design',
-      description: 'Within our iterative, data-driven and collaborative process we ensure that our designs are both engaging and authentic. The projects we produce are tools which often have an intended job and goal, because of this we implement performance optimised design philosophies based on behavioural engineering.',
+      description: 'We draw inspiration from proven designs and combine it with a collaborative, data-driven process to create work that is both engaging and authentic. Every layout, color, and interaction is intentional, built to serve a clear purpose. Not just visuals, but solutions built to perform and deliver results.',
       accordionItems: [
         {
           title: 'User Research',
@@ -102,7 +69,7 @@ export default function AboutPage() {
       number: '02',
       step: '02',
       title: 'Develop',
-      description: 'Utilising the best of current web technologies, we deliver high performance projects of many scales. Built with leading and proven platforms with modern build methodologies we create impactful, engaging user-experiences whilst providing robust, adaptive, future-focused solutions.',
+      description: 'By combining advanced frameworks with AI-assisted workflows, we craft websites that perform exceptionally and remain easy to manage. Keeping pace with modern tech means every build is faster, more efficient, and ready for whatever comes next.',
       accordionItems: [
         {
           title: 'Frontend Development',
@@ -126,7 +93,7 @@ export default function AboutPage() {
       number: '03',
       step: '03',
       title: 'Grow',
-      description: 'Focused on continual website optimisation, rooted in real user data analysis and the identification of conversion barriers. While continuously monitoring performance, we align our strategies with industry best practices to offer data-driven solutions that span digital marketing, enhancements to the customer experience, and website optimisations. Our aim is to unlock the maximum growth potential by fostering synergy across all platforms to ensure your digital presence evolves and excels.',
+      description: 'We continually refine and optimise websites using real user data, identifying friction points and conversion barriers. By monitoring performance, following best practices, and ensuring SEO-friendly implementations, we deliver improvements that enhance user experience, boost engagement, and grow your online presence.',
       accordionItems: [
         {
           title: 'Analytics',
@@ -161,7 +128,7 @@ export default function AboutPage() {
           <div className="px-4">
             <div className="mb-12">
               <p className="text-3xl text-black">
-                <span className="text-3xl text-gray-600 mr-2">About</span> We're a creative studio focused on building meaningful digital experiences that make an impact.
+                <span className="text-3xl text-gray-600 mr-2">About</span> We are a local web design agency focused on creating websites that cut through the noise and actually support your business.
               </p>
             </div>
             <div className="w-full h-[600px] rounded-lg overflow-hidden">
@@ -174,195 +141,41 @@ export default function AboutPage() {
           </div>
 
           {/* Process Section */}
-          <div className="mt-24 px-4">
-            <div className="mb-12">
-              <p className="text-2xl text-black max-w-3xl">
-                <span className="text-2xl text-gray-600 mr-2">Process</span> We can create complete digital experiences from beginning to end or own either part of the process. From conceptualisation through to implementation and management post launch, we have the capabilities to turn your vision into a platform that's effective for your goals.
-              </p>
-            </div>
+          <ProcessSection />
 
-            <div className="relative w-full">
-              <div className="flex flex-nowrap gap-3 pb-4 -mx-4 px-4 overflow-x-auto snap-x snap-mandatory touch-auto"
-                style={{
-                  WebkitOverflowScrolling: 'touch',
-                  msOverflowStyle: 'none',
-                  scrollbarWidth: 'none',
-                  scrollSnapType: 'x mandatory',
-                  paddingLeft: '1rem',
-                  paddingRight: '1rem',
-                  justifyContent: 'center',
-                  position: 'relative',
-                  scrollPadding: '0 1rem',
-                  scrollBehavior: 'smooth'
-                }}>
-                {processItems.map((item, index) => (
-                  <motion.div
-                    key={index}
-                    className={`relative flex-shrink-0 w-[90vw] md:w-[calc(33.333%-1rem)] rounded-lg overflow-hidden h-[400px] snap-center ${
-                      expandedIndex === index ? 'md:!w-[calc(66.666%-2rem)] z-10' : 'bg-gray-100 cursor-pointer'
-                    }`}
-                    layout
-                    initial={false}
-                    onClick={() => handleCardClick(index)}
-                    style={{
-                      position: 'relative',
-                      zIndex: expandedIndex === index ? 10 : 1,
-                    }}
-                    animate={{
-                      width: expandedIndex === index ? 'calc(66.666% - 1rem)' : 'calc(33.333% - 1rem)',
-                      height: expandedIndex === index ? '500px' : '350px',
-                      backgroundColor: expandedIndex === index ? '#000' : '#f3f4f6',
-                      x: expandedIndex === 2 ? 
-                        (index === 0 ? '-95%' : index === 1 ? '-95%' : '-50%') :
-                        expandedIndex === 1 ? 
-                        (index === 0 ? '-15%' : index === 2 ? '10%' : '-5%') :
-                        (expandedIndex === 0 ? (index === 1 ? '20%' : '0') : '0'),
-                      y: '0',
-                      originX: 'left',
-                      originY: 'top',
-                      opacity: expandedIndex !== null && expandedIndex !== index ? 0.7 : 1,
-                      scale: expandedIndex !== null && expandedIndex !== index ? 0.98 : 1,
-                    }}
-                    transition={{
-                      duration: 0.3,
-                      ease: [0.16, 1, 0.3, 1],
-                      when: 'beforeChildren',
-                      type: 'tween'
-                    }}
-                    onAnimationComplete={index === expandedIndex ? handleAnimationComplete : undefined}
-                  >
-                    <motion.div 
-                      className="p-6 h-full relative"
-                      layout="position"
-                      initial={false}
-                      style={{
-                        position: 'relative',
-                        zIndex: 2,
-                        height: '100%',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        transform: 'translateZ(0)',
-                      }}
-                      animate={{
-                        opacity: expandedIndex === index ? 1 : 0.8,
-                      }}
-                      transition={{
-                        duration: 0.3,
-                        ease: 'easeInOut',
-                        layout: {
-                          duration: 0.3,
-                          ease: [0.16, 1, 0.3, 1]
-                        }
-                      }}
-                    >
-                      <div className="flex-1">
-                        <div className="flex justify-between w-full items-start">
-                          <span className={`text-sm ${expandedIndex === index ? 'text-gray-400' : 'text-gray-600'}`}>
-                            {item.number}
-                          </span>
-                        </div>
-                        <h3 className={`text-xl ${expandedIndex === index ? 'text-white' : 'text-black'}`}>
-                          {item.title}
-                        </h3>
-
-                        <AnimatePresence mode="wait">
-                          {expandedIndex === index ? (
-                            <motion.div 
-                              key={`expanded-${index}`}
-                              initial={{ opacity: 0, y: 10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0, y: -10 }}
-                              transition={{ duration: 0.2 }}
-                              className="flex gap-8 mt-2"
-                            >
-                              <div className="max-w-md">
-                                <p className="text-sm text-white/80 leading-relaxed">
-                                  {item.description}
-                                </p>
-                              </div>
-                              <div className="w-80 flex-shrink-0">
-                                <Accordion items={item.accordionItems} />
-                              </div>
-                            </motion.div>
-                          ) : (
-                            <motion.p 
-                              key={`collapsed-${index}`}
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
-                              exit={{ opacity: 0 }}
-                              transition={{ duration: 0.2 }}
-                              className="max-w-sm text-black font-book text-sm leading-relaxed mt-auto"
-                            >
-                              {item.description}
-                            </motion.p>
-                          )}
-                        </AnimatePresence>
-                      </div>
-
-                      <div 
-                        className={`absolute bottom-4 right-4 transition-opacity duration-300 cursor-pointer ${
-                          expandedIndex === index ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
-                        }`}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (expandedIndex === index) {
-                            setExpandedIndex(null);
-                          } else {
-                            handleCardClick(index);
-                          }
-                        }}
-                      >
-                        <svg 
-                          className={`w-4 h-4 ${expandedIndex === index ? 'text-white' : 'text-gray-400'}`}
-                          fill="none" 
-                          viewBox="0 0 24 24" 
-                          stroke="currentColor"
-                        >
-                          <path 
-                            strokeLinecap="round" 
-                            strokeLinejoin="round" 
-                            strokeWidth={2} 
-                            d={expandedIndex === index ? "M6 18L18 6M6 6l12 12" : "M19 9l-7 7-7-7"}
-                          />
-                        </svg>
-                      </div>
-                    </motion.div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Logo Carousel Section */}
+        {/* Logo Carousel Section */}
           <div className="mt-24">
             <LogoCarousel />
           </div>
 
           {/* Studio Section */}
-          <section className="py-16 bg-gray-100">
+          <section className="pt-4 pb-10 bg-[#F0F0F0]">
             <div className="w-full px-4">
               <div className="flex flex-col md:flex-row md:items-start justify-between mb-8 gap-4">
-                <p className="text-2xl text-black max-w-3xl">
-                  <span className="text-2xl text-gray-600 mr-2">Studio</span> We work collaboratively with our clients and partner design studios to form a rich understanding of their needs and goals. To each project we apply our own experience, our practical design philosophies, data awareness and performance oriented approach to meet the project's requirements.
+                <p className="text-3xl text-black font-light">
+                  <span className="text-3xl text-gray-600 font-light mr-2">Studio</span> We’re not a big agency. We’re a small team who work directly with clients, keeping things simple and focused on what matters. Our job is to understand your business, your goals, and where a website can <span className="relative inline-block">
+  <span className="relative z-10">actually make a difference</span>
+  <span className="absolute bottom-1 left-0 w-full h-4 bg-blue-300/70 -z-0 transform -rotate-0.5"></span>
+</span>. From there, we design and build sites that are clear, reliable, and easy to manage, without any unnecessary bs.
                 </p>
               </div>
             </div>
           </section>
 
           {/* Ethos Section */}
-          <section className="bg-gray-100">
+          <section className="bg-[#F0F0F0]">
             <div className="w-full">
               {/* Full-width subtle divider line - white and thinner */}
-              <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mb-16">
+              <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mb-4">
                 <div className="h-[1px] bg-white"></div>
               </div>
 
               {/* Content container with side padding */}
-              <div className="px-4 md:px-6">
+              <div className="px-4 pb-6">
                 {/* Section Header - Stacked on mobile, row on desktop */}
                 <div className="flex flex-col md:flex-row md:items-start justify-between mb-16 gap-4">
-                  <p className="text-2xl text-black max-w-3xl">
-                    <span className="text-2xl text-gray-600 mr-2">Ethos</span> As a forward-thinking, independent studio we work with people and businesses that share our values and desire to create meaningful connections through impactful design.
+                  <p className="text-xl text-black max-w-xl">
+                    <span className="text-xl text-gray-600 mr-2">Ethos</span> We know how important it is for businesses to have a strong online presence today. Without it, opportunities are missed and competitors get ahead. That’s why we keep our approach practical and honest: no overcomplication, no unnecessary add-ons, just websites built to help businesses like yours thrive online. Our goal is straightforward. We want to give you the best possible site to support your growth now and in the future.
                   </p>
                 </div>
 
@@ -370,31 +183,33 @@ export default function AboutPage() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-full mb-24">
                   {[
                     {
-                      title: 'Practice',
-                      description: 'Being a progressive, independent studio, we aspire to collaborate with individuals and organisations who align with our principles, share our passion for crafting meaningful experiences and move with intention; having the same ambitions to move the project with momentum as we do.'
+                      title: 'Impact',
+                      description: 'We focus on creating websites that truly make a difference for our clients. Every project starts with understanding your business, your goals, and the opportunities a strong online presence can unlock. By keeping our approach practical and intentional, we ensure your website isn’t just another online space—it’s a tool designed to help your business grow and stand out.'
                     },
                     {
-                      title: 'Approach',
-                      description: 'Execution and aesthetics exist in harmony for us; if it\'s not functional it\'s not beautiful, and vice versa. Our projects are treated as the tools they are - looking visually great is one thing, but doing the job correctly and effectively is the true mark of success.'
+                      title: 'Quality',
+                      description: 'We believe that design and functionality must work hand in hand. A site that looks great but fails to perform isn’t doing its job. Every project we take on is built to be reliable, easy to manage, and tailored to the client’s goals. No generic templates—every website is crafted to reflect your brand and deliver real results.\n\nAuthenticity drives our approach. We don’t rely on a fixed style or trends; instead, we create digital experiences that communicate your values clearly and effectively. Every decision we make is focused on usability, longevity, and making your online presence genuinely impactful.'
                     },
                     {
-                      title: 'Culture',
-                      description: 'We work with you, not just for you. We view ourselves as partners on your project investing our time and experience to ensure its success, not just a hired gun. Cultivating healthy relationships with clients is an essential part of our cultural outset.'
+                      title: 'Support',
+                      description: 'We see ourselves as partners, not just builders. From the initial concept to post-launch, we’re here to guide, advise, and solve problems so your website works for you. Our aim is to make the process clear and manageable, removing stress and uncertainty from your project.\n\nBeyond launch, we provide practical guidance and ongoing support. Whether it’s updates, optimisations, or helping you understand how to manage your site, we ensure you have the confidence and tools to maintain a strong online presence long after your site goes live.'
                     }
                   ].map((item, index) => (
                     <div 
                       key={index}
-                      className="group relative bg-white rounded-lg p-8 hover:bg-black transition-all duration-300 cursor-pointer flex flex-col h-full shadow-sm"
+                      className="group relative bg-white rounded-lg px-4 pt-4 pb-6 flex flex-col h-full shadow-sm"
                     >
                       <div className="mb-8">
-                        <h3 className="text-xs font-normal text-gray-400 group-hover:text-white transition-colors tracking-widest uppercase">
+                        <h3 className="text-sm font-normal text-black transition-colors tracking-widest mb-12">
                           {item.title}
                         </h3>
                       </div>
-                      <div className="flex-grow pt-2">
-                        <p className="text-base text-gray-600 group-hover:text-gray-200 leading-relaxed transition-colors">
-                          {item.description}
-                        </p>
+                      <div className="flex-grow pt-2 max-w-sm">
+                        <div className="mt-2 text-gray-600 text-sm leading-relaxed space-y-3">
+                          {item.description.split('\n\n').map((paragraph, i) => (
+                            <p key={i}>{paragraph}</p>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   ))}

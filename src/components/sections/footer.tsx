@@ -99,11 +99,6 @@ export default function Footer() {
   return (
     <footer className="w-full py-10 bg-white">
       <div className="w-full">
-        {/* Full-width subtle divider line */}
-        <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mb-4">
-          <div className="h-px bg-gray-200"></div>
-        </div>
-        
         {/* Content container with side padding */}
         <div className="px-4">
           <div className="flex flex-col lg:flex-row">

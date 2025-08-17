@@ -1,17 +1,82 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
-import { PlusIcon, MinusIcon } from '@heroicons/react/24/outline';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 type FAQItem = {
   question: string;
   answer: string;
 };
 
+const AccordionItem = ({ question, answer, isOpen, onClick }) => {
+  return (
+    <div className="mb-2 overflow-hidden">
+      <motion.button
+        className={`w-full flex justify-between items-center text-left p-4 focus:outline-none bg-gray-100 rounded-lg ${
+          isOpen ? 'bg-gray-100' : ''
+        }`}
+        onClick={onClick}
+        initial={false}
+        aria-expanded={isOpen}
+      >
+        <h3 className="text-lg font-medium text-black pr-4">
+          {question}
+        </h3>
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.3 }}
+          className="flex-shrink-0 ml-2"
+        >
+          <svg 
+            className="w-5 h-5 text-gray-600" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={2} 
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </motion.div>
+      </motion.button>
+      
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ 
+              height: 'auto', 
+              opacity: 1,
+              transition: {
+                height: { duration: 0.3 },
+                opacity: { duration: 0.2, delay: 0.1 }
+              }
+            }}
+            exit={{ 
+              height: 0, 
+              opacity: 0,
+              transition: {
+                height: { duration: 0.2 },
+                opacity: { duration: 0.1 }
+              }
+            }}
+            className="overflow-hidden"
+          >
+            <div className="p-4 bg-white border border-t-0 border-gray-200 rounded-b-lg">
+              <p className="text-gray-700">{answer}</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
 export default function FAQSection() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const [heights, setHeights] = useState<{[key: number]: number}>({});
-  const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const faqs: FAQItem[] = [
     {
@@ -40,26 +105,8 @@ export default function FAQSection() {
     }
   ];
 
-  // Store heights of all content elements
-  useEffect(() => {
-    const newHeights: {[key: number]: number} = {};
-    contentRefs.current.forEach((ref, index) => {
-      if (ref) {
-        newHeights[index] = ref.scrollHeight;
-      }
-    });
-    setHeights(newHeights);
-  }, []);
-
   const toggleAccordion = (index: number) => {
-    if (activeIndex === index) {
-      // If clicking the currently open item, close it
-      setActiveIndex(null);
-    } else {
-      // If clicking a different item, close the current one first, then open the new one
-      setActiveIndex(null);
-      setTimeout(() => setActiveIndex(index), 300); // Wait for close animation to complete
-    }
+    setActiveIndex(activeIndex === index ? null : index);
   };
 
   return (
@@ -79,51 +126,15 @@ export default function FAQSection() {
           </div>
           
           {/* FAQ Items */}
-          <div className="max-w-4xl pl-1 space-y-3">
+          <div className="max-w-4xl space-y-3">
             {faqs.map((faq, index) => (
-              <div 
-                key={index} 
-                className="rounded-lg overflow-hidden"
-              >
-                <button
-                  className={`w-full flex justify-between items-center text-left p-4 focus:outline-none bg-gray-100 ${
-                    activeIndex === index ? 'bg-gray-100' : ''
-                  }`}
-                  onClick={() => toggleAccordion(index)}
-                  aria-expanded={activeIndex === index}
-                  aria-controls={`faq-content-${index}`}
-                >
-                  <h3 className="text-lg font-book text-black pr-4">
-                    {faq.question}
-                  </h3>
-                  <div className="flex-shrink-0 ml-2">
-                    {activeIndex === index ? (
-                      <MinusIcon className="w-5 h-5 text-gray-600" />
-                    ) : (
-                      <PlusIcon className="w-5 h-5 text-gray-600" />
-                    )}
-                  </div>
-                </button>
-                
-                <div
-                  id={`faq-content-${index}`}
-                  ref={el => { if (el) contentRefs.current[index] = el }}
-                  className={`transition-all duration-300 ease-in-out ${
-                    activeIndex === index 
-                      ? 'opacity-100' 
-                      : 'opacity-0 h-0 overflow-hidden'
-                  }`}
-                  style={{
-                    height: activeIndex === index ? `${heights[index]}px` : '0px',
-                    visibility: activeIndex === index ? 'visible' : 'hidden'
-                  }}
-                  aria-hidden={activeIndex !== index}
-                >
-                  <div className="p-5 pt-2 text-gray-600 bg-gray-100">
-                    <p>{faq.answer}</p>
-                  </div>
-                </div>
-              </div>
+              <AccordionItem
+                key={index}
+                question={faq.question}
+                answer={faq.answer}
+                isOpen={activeIndex === index}
+                onClick={() => toggleAccordion(index)}
+              />
             ))}
           </div>
         </div>

@@ -18,11 +18,11 @@ export default function Home() {
         <div className="relative z-20 bg-white pb-20 flex-grow" style={{ marginTop: '40vh' }}>
           <WorkSection />
           <ServicesSection />
-          <div className="mt-16">
+          {/* <div className="mt-16">
             <ProcessSection />
-          </div>
-          <FAQSection />
+          </div> */}
           <FeedSection />
+          <FAQSection />
           <ContactSection />
         </div>
       </div>
