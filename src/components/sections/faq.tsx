@@ -8,7 +8,14 @@ type FAQItem = {
   answer: string;
 };
 
-const AccordionItem = ({ question, answer, isOpen, onClick }) => {
+interface AccordionItemProps {
+  question: string;
+  answer: string;
+  isOpen: boolean;
+  onClick: () => void;
+}
+
+const AccordionItem = ({ question, answer, isOpen, onClick }: AccordionItemProps) => {
   return (
     <div className="mb-2 overflow-hidden">
       <motion.button
@@ -127,15 +134,18 @@ export default function FAQSection() {
           
           {/* FAQ Items */}
           <div className="max-w-4xl space-y-3">
-            {faqs.map((faq, index) => (
-              <AccordionItem
-                key={index}
-                question={faq.question}
-                answer={faq.answer}
-                isOpen={activeIndex === index}
-                onClick={() => toggleAccordion(index)}
-              />
-            ))}
+            {faqs.map((faq, index) => {
+              const isOpen = openIndex === index;
+              return (
+                <AccordionItem
+                  key={index}
+                  question={faq.question}
+                  answer={faq.answer}
+                  isOpen={isOpen}
+                  onClick={() => toggleItem(index)}
+                />
+              );
+            })}
           </div>
         </div>
       </div>
