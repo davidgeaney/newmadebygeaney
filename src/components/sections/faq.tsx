@@ -83,7 +83,11 @@ const AccordionItem = ({ question, answer, isOpen, onClick }: AccordionItemProps
 };
 
 export default function FAQSection() {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const toggleItem = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
 
   const faqs: FAQItem[] = [
     {
@@ -111,10 +115,6 @@ export default function FAQSection() {
       answer: "Absolutely! We offer content strategy and copywriting services to ensure your website effectively communicates your message. We can also work with your existing content or collaborate with your content team."
     }
   ];
-
-  const toggleAccordion = (index: number) => {
-    setActiveIndex(activeIndex === index ? null : index);
-  };
 
   return (
     <section className="pt-4 pl-4 pb-16">
