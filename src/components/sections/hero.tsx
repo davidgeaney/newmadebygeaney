@@ -38,8 +38,7 @@ export default function HeroSection({
 
   return (
     <div className="fixed top-0 left-0 right-0 h-screen bg-white z-10 font-untitled-sans flex flex-col">
-      {/* Hero Content - Positioned in top-left corner */}
-      <div className="w-full pt-4 pl-4 pb-4">
+      <div className="w-full mx-auto pl-4 pt-4 pb-4">
         <div>
           <Link href="/" className="block mb-2 hover:opacity-80 transition-opacity w-56 md:w-72">
             <img 
@@ -63,7 +62,7 @@ export default function HeroSection({
             </div>
           </div>
           {showDescription && (
-            <p className="text-xl text-black max-w-lg leading-relaxed">
+            <p className="text-xl text-black max-w-lg">
               A local web design agency delivering fully custom websites, combining rapid development with strong performance.
             </p>
           )}

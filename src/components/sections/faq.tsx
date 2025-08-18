@@ -17,11 +17,9 @@ interface AccordionItemProps {
 
 const AccordionItem = ({ question, answer, isOpen, onClick }: AccordionItemProps) => {
   return (
-    <div className="mb-2 overflow-hidden">
+    <div className="overflow-hidden border-b border-gray-200 last:border-b-0">
       <motion.button
-        className={`w-full flex justify-between items-center text-left p-4 focus:outline-none bg-gray-100 rounded-lg ${
-          isOpen ? 'bg-gray-100' : ''
-        }`}
+        className={`w-full flex justify-between items-center text-left py-5 focus:outline-none`}
         onClick={onClick}
         initial={false}
         aria-expanded={isOpen}
@@ -32,18 +30,18 @@ const AccordionItem = ({ question, answer, isOpen, onClick }: AccordionItemProps
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3 }}
-          className="flex-shrink-0 ml-2"
+          className="flex-shrink-0 ml-2 text-gray-400"
         >
           <svg 
-            className="w-5 h-5 text-gray-600" 
+            className="w-5 h-5" 
             fill="none" 
             viewBox="0 0 24 24" 
             stroke="currentColor"
+            strokeWidth={1.5}
           >
             <path 
               strokeLinecap="round" 
               strokeLinejoin="round" 
-              strokeWidth={2} 
               d="M19 9l-7 7-7-7"
             />
           </svg>
@@ -72,8 +70,8 @@ const AccordionItem = ({ question, answer, isOpen, onClick }: AccordionItemProps
             }}
             className="overflow-hidden"
           >
-            <div className="p-4 bg-white border border-t-0 border-gray-200 rounded-b-lg">
-              <p className="text-gray-700">{answer}</p>
+            <div className="pb-5 text-gray-600">
+              <p>{answer}</p>
             </div>
           </motion.div>
         )}

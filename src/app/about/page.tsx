@@ -8,6 +8,7 @@ import { ArrowRightIcon } from '@heroicons/react/24/outline';
 import HeroSection from '@/components/sections/hero';
 import MainLayout from '@/components/layouts/main-layout';
 import LogoCarousel from '@/components/ui/logo-carousel';
+import ImageCarousel from '@/components/ui/image-carousel';
 import { ProcessSection } from '@/components/sections/ProcessSection';
 import Initiatives from '@/components/sections/initiatives';
 import Charities from '@/components/sections/charities';
@@ -131,11 +132,36 @@ export default function AboutPage() {
                 <span className="text-3xl text-gray-600 mr-2">About</span> We are a local web design agency focused on creating websites that cut through the noise and actually support your business.
               </p>
             </div>
-            <div className="w-full h-[600px] rounded-lg overflow-hidden">
-              <img 
-                src="/images/aboutimg.webp" 
-                alt="About us" 
-                className="w-full h-full object-cover"
+            <div className="w-full h-[800px] rounded-lg overflow-hidden">
+              <ImageCarousel 
+                images={[
+                  {
+                    src: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+                    alt: 'Scenic landscape 1',
+                    caption: 'The natural beauty of our local area'
+                  },
+                  {
+                    src: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80',
+                    alt: 'Scenic landscape 2',
+                    caption: 'Dramatic skies over the countryside'
+                  },
+                  {
+                    src: 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+                    alt: 'Scenic landscape 3',
+                    caption: 'Stunning coastal views'
+                  },
+                  {
+                    src: 'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+                    alt: 'Scenic landscape 4',
+                    caption: 'Lush green forests and rivers'
+                  },
+                  {
+                    src: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+                    alt: 'Scenic landscape 5',
+                    caption: 'Tranquil lakes at sunset'
+                  }
+                ]}
+                interval={5000}
               />
             </div>
           </div>
@@ -218,23 +244,21 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* Initiatives Section */}
+          {/* Initiatives Section - Commented out for now
           <Initiatives />
 
           <Divider />
 
-          {/* Charities Section */}
           <Charities />
 
           <Divider />
 
-          {/* Artist Program Section */}
           <ArtistProgram />
 
           <Divider />
 
-          {/* Ventures Section */}
           <Ventures />
+          */}
         </div>
       </div>
     </MainLayout>
