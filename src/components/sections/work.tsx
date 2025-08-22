@@ -8,6 +8,7 @@ interface CaseStudy {
   id: string;
   year: string;
   company: string;
+  isVideo?: boolean;
   title: string;
   description: string;
   role: string;
@@ -261,13 +262,26 @@ const WorkSection = () => {
                   <div className="lg:col-span-8 xl:col-span-8">
                     <div className="relative w-full h-full">
                       <div className="relative w-full h-0 pb-[56.25%] bg-gray-50 overflow-hidden">
-                        <Image
-                          src={caseStudy.image}
-                          alt={caseStudy.title}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 1024px) 100vw, 66vw"
-                        />
+                        {caseStudy.image.endsWith('.mp4') ? (
+                          <video
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="absolute inset-0 w-full h-full object-cover"
+                          >
+                            <source src={caseStudy.image} type="video/mp4" />
+                            Your browser does not support the video tag.
+                          </video>
+                        ) : (
+                          <Image
+                            src={caseStudy.image}
+                            alt={caseStudy.title}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 1024px) 100vw, 66vw"
+                          />
+                        )}
                       </div>
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-white/5 pointer-events-none" />
                     </div>
