@@ -26,7 +26,7 @@ export default function ContactSection() {
   }
 
   return (
-    <section className="pt-4 pl-4 relative overflow-visible" style={{ marginBottom: '0' }}>
+    <section className="pt-4 pl-4 relative overflow-visible pb-20" style={{ marginBottom: '0' }}>
       <div className="w-full">
         {/* Full-width subtle divider line */}
         <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mb-4">

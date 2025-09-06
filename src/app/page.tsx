@@ -13,9 +13,9 @@ import ContactSection from '@/components/sections/contact';
 export default function Home() {
   return (
     <MainLayout>
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col">
         <HeroSection showDescription={true} />
-        <div className="relative z-20 bg-white pb-20 flex-grow" style={{ marginTop: '40vh' }}>
+        <div className="relative z-20 bg-white pb-20" style={{ marginTop: '40vh' }}>
           <WorkSection />
           <ServicesSection />
           {/* <div className="mt-16">

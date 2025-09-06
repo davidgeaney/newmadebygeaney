@@ -21,6 +21,27 @@ export const caseStudies = [
     isVideo: true
   },
   {
+    id: 'eli-raurich',
+    year: '2024',
+    company: 'Eli Raurich',
+    title: 'Eli Raurich Photography',
+    description: 'Minimalist photography portfolio showcasing clean, elegant visual storytelling.\n\nThe website embodies the photographer\'s minimalist aesthetic with a focus on simplicity, clean lines, and letting the photography speak for itself through thoughtful composition and negative space.',
+    role: 'Web Developer',
+    media: '/images/projects/eli-raurich-showcase.mp4',
+    contributions: [
+      'Minimalist Design Implementation',
+      'Image Optimization',
+      'Gallery Curation',
+      'Clean Typography',
+      'Mobile-First Approach',
+      'Performance Optimization',
+      'Aesthetic Alignment'
+    ],
+    timeline: '3 Weeks',
+    website: 'https://eliraurich.com/',
+    isVideo: true
+  },
+  {
     id: 'creacy-photography',
     year: '2023',
     company: 'Creacy Photography',

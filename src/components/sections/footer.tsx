@@ -97,7 +97,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full py-10 bg-white">
+    <footer className="w-full pt-4 pb-10 bg-white">
       <div className="w-full">
         {/* Content container with side padding */}
         <div className="px-4">
@@ -175,16 +175,16 @@ export default function Footer() {
             </div>
           </div>
           
-          {/* Logo - Centered at the bottom */}
+          {/* Logo - Absolutely huge, almost full width */}
           <div className="mt-16 w-full flex justify-center px-4">
-            <div className="w-48 md:w-64">
+            <div className="w-full max-w-[95vw]">
               <a href="/">
                 <img 
                   src="/images/logo.svg" 
                   alt="Made By Geaney" 
                   className="w-full h-auto"
-                  width={256}
-                  height={80}
+                  width={448}
+                  height={140}
                 />
               </a>
             </div>

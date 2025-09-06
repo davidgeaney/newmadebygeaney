@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -25,7 +25,7 @@ const caseStudies: CaseStudy[] = [
     company: 'ClassCover',
     title: 'ClassCover Ireland',
     description: 'Seamless substitute teacher management platform connecting schools with qualified substitute teachers instantly.\n\nThe platform streamlines the process of finding and booking substitute teachers, reducing administrative overhead and ensuring classroom continuity.',
-    role: 'Lead Developer',
+    role: 'Founder',
     contributions: [
       'Full-stack Development',
       'User Experience Design',
@@ -36,8 +36,28 @@ const caseStudies: CaseStudy[] = [
       'User Authentication'
     ],
     timeline: '6 Months',
-    image: '/images/projects/classcover.webp',
+    image: '/images/projects/classcovermp4.mp4',
     website: 'https://classcover.com.au/'
+  },
+  {
+    id: 'eli-raurich',
+    year: '2024',
+    company: 'Eli Raurich',
+    title: 'Eli Raurich Photography',
+    description: 'Minimalist photography portfolio showcasing clean, elegant visual storytelling.\n\nThe website embodies the photographer\'s minimalist aesthetic with a focus on simplicity, clean lines, and letting the photography speak for itself through thoughtful composition and negative space.',
+    role: 'Web Developer',
+    contributions: [
+      'Minimalist Design Implementation',
+      'Image Optimization',
+      'Gallery Curation',
+      'Clean Typography',
+      'Mobile-First Approach',
+      'Performance Optimization',
+      'Aesthetic Alignment'
+    ],
+    timeline: '1 Week',
+    image: '/images/projects/eliraurich2.mp4',
+    website: 'https://minimalist-photographer.vercel.app/'
   },
   {
     id: 'creacy-photography',
@@ -45,8 +65,8 @@ const caseStudies: CaseStudy[] = [
     company: 'Creacy Photography',
     title: 'Creacy Photography',
     description: 'Modern photography studio showcasing stunning visual work and client galleries.\n\nThe website features a clean, image-focused design that highlights the photographer\'s portfolio while providing an easy way for potential clients to view work and get in touch.',
-    role: 'Web Developer',
-    image: '/images/projects/creacyphotography.webp',
+    role: 'Full Stack Developer',
+    image: '/images/projects/creacy-showcase.mp4',
     contributions: [
       'Responsive Design',
       'Image Optimization',
@@ -57,27 +77,7 @@ const caseStudies: CaseStudy[] = [
       'Content Management'
     ],
     timeline: '4 Weeks',
-    website: 'https://creacyphotography.com/'
-  },
-  {
-    id: 'cqs',
-    year: '2023',
-    company: 'CQS',
-    title: 'CQS',
-    description: 'Professional quantity surveying firm providing comprehensive cost management services.\n\nThe website was designed to establish trust and professionalism while clearly communicating the firm\'s services and expertise in the construction industry.',
-    role: 'Frontend Developer',
-    image: '/images/projects/cqs.webp',
-    contributions: [
-      'UI/UX Design',
-      'Frontend Development',
-      'Service Showcase',
-      'Contact System',
-      'Cross-browser Compatibility',
-      'Accessibility Compliance',
-      'Performance Optimization'
-    ],
-    timeline: '6 Weeks',
-    website: 'https://cqssurveyors.com/'
+    website: 'https://creacyphotography.vercel.app/'
   },
   {
     id: 'beltany-build',
@@ -86,7 +86,7 @@ const caseStudies: CaseStudy[] = [
     title: 'Beltany Build',
     description: 'A construction company specializing in high-quality residential and commercial projects.\n\nThe website showcases their portfolio, services, and company values while providing an easy way for potential clients to request quotes and view past work.',
     role: 'Full Stack Developer',
-    image: '/images/projects/beltanybuild.webp',
+    image: '/images/projects/beltanybuild.mp4',
     contributions: [
       'Custom Theme Development',
       'Project Gallery',
@@ -164,6 +164,38 @@ const CollapsibleSection = ({
 
 const WorkSection = () => {
   const [openSection, setOpenSection] = useState<string | null>(null);
+  const videoRefs = useRef<{[key: string]: HTMLVideoElement | null}>({});
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target as HTMLVideoElement;
+          if (entry.isIntersecting) {
+            video.play().catch(console.error);
+          } else {
+            video.pause();
+            video.currentTime = 0;
+          }
+        });
+      },
+      {
+        threshold: 0.5, // Play when 50% of the video is visible
+        rootMargin: '0px 0px -10% 0px' // Start playing slightly before fully in view
+      }
+    );
+
+    // Observe all video elements
+    Object.values(videoRefs.current).forEach((video) => {
+      if (video) {
+        observer.observe(video);
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   const toggleSection = (section: string) => {
     setOpenSection(openSection === section ? null : section);
@@ -182,7 +214,7 @@ const WorkSection = () => {
           {/* Section Header - Single Line Layout */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-8">
             <p className="text-xl text-black max-w-lg">
-              <span className="text-xl text-gray-600 mr-2">Work</span> Helping businesses tell their story online through custom-built, impactful websites.
+              <span className="text-xl text-gray-600 mr-2">Work</span> We design and build websites that reflect your business, not a one-size-fits-all template.
             </p>
             <Link 
               href="/work"
@@ -261,10 +293,14 @@ const WorkSection = () => {
                   {/* Right Column - Image - Extended to align with section below */}
                   <div className="lg:col-span-8 xl:col-span-8">
                     <div className="relative w-full h-full">
-                      <div className="relative w-full h-0 pb-[56.25%] bg-gray-50 overflow-hidden">
+                      <div className="relative w-full h-0 pb-[56.25%] bg-gray-50 overflow-hidden group cursor-pointer transition-all duration-300 hover:shadow-sm hover:shadow-black/5">
                         {caseStudy.image.endsWith('.mp4') ? (
                           <video
-                            autoPlay
+                            ref={(el) => {
+                              if (el) {
+                                videoRefs.current[caseStudy.id] = el;
+                              }
+                            }}
                             loop
                             muted
                             playsInline

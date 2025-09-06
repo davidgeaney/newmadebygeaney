@@ -13,6 +13,7 @@ interface Project {
   category: string;
   image: string;
   website: string;
+  isVideo?: boolean;
 }
 
 type GridLayout = '2x2' | '3x3';
@@ -23,8 +24,18 @@ const projects: Project[] = [
     title: 'Creacy Photography',
     description: '→ Custom portfolio with smooth animations and responsive design',
     category: 'Photography',
-    image: '/images/projects/creacyphotography.jpg',
-    website: 'https://creacyphotography.vercel.app/'
+    image: '/images/projects/creacy-showcase.mp4',
+    website: 'https://creacyphotography.vercel.app/',
+    isVideo: true
+  },
+  {
+    id: 'eli-raurich',
+    title: 'Eli Raurich Photography',
+    description: '→ Minimalist photography portfolio with clean, elegant design',
+    category: 'Photography',
+    image: '/images/projects/eliraurich2.mp4',
+    website: 'https://minimalist-photographer.vercel.app/',
+    isVideo: true
   },
   {
     id: 'classcover',
@@ -130,27 +141,56 @@ const WorkPageGrid = () => {
                         </div>
                       )}
                       <div className="relative w-full h-full transform transition-transform duration-700 group-hover:scale-105">
-                        <Image
-                          src={project.image}
-                          alt={project.title}
-                          fill
-                          className={`${
-                            gridLayout === '2x2' 
-                              ? 'object-cover' 
-                              : 'object-cover md:object-center'
-                          }`}
-                          priority={index < 6} // Load first 6 images with priority
-                          sizes={gridLayout === '2x2' 
-                            ? "(max-width: 768px) 100vw, 50vw" 
-                            : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          }
-                          onLoadingComplete={() => setLoadedImages(prev => ({ ...prev, [project.id]: true }))}
-                          onError={(e) => {
-                            console.error(`Error loading image: ${project.image}`);
-                            console.error('Error details:', e);
-                            setLoadedImages(prev => ({ ...prev, [project.id]: true }));
-                          }}
-                        />
+                        {project.isVideo ? (
+                          <video
+                            loop
+                            muted
+                            playsInline
+                            className={`w-full h-full ${
+                              gridLayout === '2x2' 
+                                ? 'object-cover' 
+                                : 'object-cover md:object-center'
+                            }`}
+                            onMouseEnter={(e) => {
+                              e.currentTarget.play();
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.pause();
+                              e.currentTarget.currentTime = 0;
+                            }}
+                            onLoadedData={() => setLoadedImages(prev => ({ ...prev, [project.id]: true }))}
+                            onError={(e) => {
+                              console.error(`Error loading video: ${project.image}`);
+                              console.error('Error details:', e);
+                              setLoadedImages(prev => ({ ...prev, [project.id]: true }));
+                            }}
+                          >
+                            <source src={project.image} type="video/mp4" />
+                            Your browser does not support the video tag.
+                          </video>
+                        ) : (
+                          <Image
+                            src={project.image}
+                            alt={project.title}
+                            fill
+                            className={`${
+                              gridLayout === '2x2' 
+                                ? 'object-cover' 
+                                : 'object-cover md:object-center'
+                            }`}
+                            priority={index < 6} // Load first 6 images with priority
+                            sizes={gridLayout === '2x2' 
+                              ? "(max-width: 768px) 100vw, 50vw" 
+                              : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            }
+                            onLoadingComplete={() => setLoadedImages(prev => ({ ...prev, [project.id]: true }))}
+                            onError={(e) => {
+                              console.error(`Error loading image: ${project.image}`);
+                              console.error('Error details:', e);
+                              setLoadedImages(prev => ({ ...prev, [project.id]: true }));
+                            }}
+                          />
+                        )}
                       </div>
                     </div>
                     

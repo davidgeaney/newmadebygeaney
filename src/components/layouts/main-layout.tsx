@@ -20,7 +20,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
       <main className="flex-grow">
         {children}
       </main>
-      <div className="border-t border-gray-200">
+      <div className="relative z-10">
         <Footer />
       </div>
     </div>
