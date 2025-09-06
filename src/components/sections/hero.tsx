@@ -40,8 +40,8 @@ export default function HeroSection({
   return (
     <div className="fixed top-0 left-0 right-0 h-screen bg-white z-10 font-untitled-sans flex flex-col">
       <div className="w-full mx-auto pl-4 pt-4 pb-4">
-        <div className="flex justify-between items-start">
-          <div>
+        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start">
+          <div className="flex-1">
             <Link href="/" className="block mb-2 hover:opacity-80 transition-opacity w-56 md:w-72">
               <img 
                 src="/images/logo.svg" 
@@ -71,7 +71,7 @@ export default function HeroSection({
           </div>
           
           {/* Start Project CTA */}
-          <div className="pr-4">
+          <div className="pr-4 mt-6 lg:mt-0 lg:ml-8">
             <Link 
               href="/contact"
               className="group relative text-sm text-black bg-gray-100 px-4 py-2.5 pr-6 rounded-full hover:pr-8 hover:bg-black hover:text-white transition-all duration-300 flex items-center w-fit overflow-hidden shrink-0"
